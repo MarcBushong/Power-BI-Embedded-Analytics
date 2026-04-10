@@ -395,19 +395,19 @@ namespace AppOwnsDataAdmin.Services {
                 System.Threading.Thread.Sleep(6000);
 
                 // ─── STEP 8: Patch Credentials + Refresh ────────────────
-                // Virtual gateway credential updates require SP root context, not profile context.
-                // GetDatasourcesInGroup is still called in profile context first to get the IDs,
-                // then we switch to SP root for the Gateways.UpdateDatasource call.
-                SetCallingContext(); // SP root — gateway admin
+                // GetDatasourcesInGroup must use profile context (dataset is profile-owned).
+                // Gateways.UpdateDatasource must use SP root context (virtual gateway admin).
+                // profileId is passed so PatchSqlDatasourceCredentials can manage both.
                 PatchSqlDatasourceCredentials(
                     workspace.Id,
                     dataset.Id,
                     tenant.DatabaseUserName,
-                    tenant.DatabaseUserPassword
+                    tenant.DatabaseUserPassword,
+                    profileId
                 );
                 Console.WriteLine($"✅ Credentials patched");
 
-                SetCallingContext(profileId); // restore profile context
+                SetCallingContext(profileId); // ensure profile context for refresh
                 pbiClient.Datasets.RefreshDatasetInGroup(workspace.Id, dataset.Id);
                 Console.WriteLine($"✅ Dataset refresh triggered");
 
@@ -525,9 +525,18 @@ namespace AppOwnsDataAdmin.Services {
 
     }
 
-    public void PatchSqlDatasourceCredentials(Guid WorkspaceId, string DatasetId, string SqlUserName, string SqlUserPassword) {
+    public void PatchSqlDatasourceCredentials(Guid WorkspaceId, string DatasetId, string SqlUserName, string SqlUserPassword, string ProfileId = "") {
 
+      // GetDatasourcesInGroup requires profile context — datasets in profile-owned
+      // workspaces are invisible to the SP root even when it has workspace membership.
+      if (!ProfileId.Equals("")) {
+        SetCallingContext(ProfileId);
+      }
       var datasources = (pbiClient.Datasets.GetDatasourcesInGroup(WorkspaceId, DatasetId)).Value;
+
+      // Gateways.UpdateDatasource requires SP root context — the virtual gateway
+      // admin is the service principal, not the profile.
+      SetCallingContext();
 
       // find the target SQL datasource
       foreach (var datasource in datasources) {
