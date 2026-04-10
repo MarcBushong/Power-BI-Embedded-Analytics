@@ -389,6 +389,11 @@ namespace AppOwnsDataAdmin.Services {
                 pbiClient.Datasets.UpdateParametersInGroup(workspace.Id, dataset.Id, req);
                 Console.WriteLine($"✅ Parameters updated");
 
+                // Wait for Power BI to rebind the datasource after the parameter change
+                // before patching credentials — if we patch too soon we hit the old
+                // template datasource (devcamp) instead of the new target server.
+                System.Threading.Thread.Sleep(6000);
+
                 // ─── STEP 8: Patch Credentials + Refresh ────────────────
                 PatchSqlDatasourceCredentials(
                     workspace.Id,
@@ -505,8 +510,13 @@ namespace AppOwnsDataAdmin.Services {
       var import = pbiClient.Imports.PostImportWithFileInGroup(WorkspaceId, stream, ImportName);
 
       while (import.ImportState != "Succeeded") {
+        System.Threading.Thread.Sleep(1000);
         import = pbiClient.Imports.GetImportInGroup(WorkspaceId, import.Id);
       }
+
+      // Give Power BI a moment after import completes before the caller
+      // tries to query or update the freshly-created dataset.
+      System.Threading.Thread.Sleep(3000);
 
     }
 
