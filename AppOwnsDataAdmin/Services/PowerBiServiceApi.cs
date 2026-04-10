@@ -198,17 +198,36 @@ namespace AppOwnsDataAdmin.Services {
                     }
                     else
                     {
-                        // ✅ Create new under SP root
-                        this.SetCallingContext();
+                        // Create new workspace under profile context so the profile owns it
+                        SetCallingContext(profileId);
                         var workspaceRequest = new GroupCreationRequest(workspaceName);
                         workspace = pbiClient.Groups.CreateGroup(
                             workspaceRequest,
                             workspaceV2: true
                         );
-                        workspaceFoundInProfileContext = false;
-                        Console.WriteLine($"✅ Created workspace: '{workspace.Name}' | {workspace.Id}");
+                        workspaceFoundInProfileContext = true;
+                        Console.WriteLine($"✅ Created workspace under profile context: '{workspace.Name}' | {workspace.Id}");
                     }
                 }
+
+                // If the workspace was found in SP root context, add the profile as Admin
+                // so all subsequent steps can operate under the profile context
+                if (!workspaceFoundInProfileContext)
+                {
+                    Console.WriteLine($"Migrating workspace to profile context — adding profile as Admin...");
+                    this.SetCallingContext();
+                    pbiClient.Groups.AddGroupUser(workspace.Id, new GroupUser
+                    {
+                        Identifier = profileId,
+                        PrincipalType = PrincipalType.App,
+                        GroupUserAccessRight = "Admin"
+                    });
+                    workspaceFoundInProfileContext = true;
+                    Console.WriteLine($"✅ Profile added as Admin — switching to profile context");
+                }
+
+                // All remaining steps use the profile context
+                SetCallingContext(profileId);
 
                 tenant.WorkspaceId = workspace.Id.ToString();
                 tenant.WorkspaceUrl = "https://app.powerbi.com/groups/" + workspace.Id + "/";
@@ -222,18 +241,8 @@ namespace AppOwnsDataAdmin.Services {
                     }
                     else
                     {
-                        // ✅ Use the SAME context that found the workspace
-                        if (workspaceFoundInProfileContext)
-                        {
-                            SetCallingContext(profileId);
-                            Console.WriteLine($"Assigning to capacity (profile context)...");
-                        }
-                        else
-                        {
-                            this.SetCallingContext();
-                            Console.WriteLine($"Assigning to capacity (SP root context)...");
-                        }
-
+                        SetCallingContext(profileId);
+                        Console.WriteLine($"Assigning to capacity (profile context)...");
                         pbiClient.Groups.AssignToCapacity(
                             workspace.Id,
                             new AssignToCapacityRequest
@@ -245,18 +254,8 @@ namespace AppOwnsDataAdmin.Services {
                     }
                 }
 
-                // ✅ Always switch to profile context for remaining steps
-                SetCallingContext(profileId);
                 // ─── STEP 4: Add Service Principal as Contributor ───────
-                // ✅ Use same context that owns the workspace
-                if (workspaceFoundInProfileContext)
-                {
-                    SetCallingContext(profileId);
-                }
-                else
-                {
-                    this.SetCallingContext();
-                }
+                SetCallingContext(profileId);
 
                 // ✅ Wait for workspace to fully provision
                 System.Threading.Thread.Sleep(3000);
@@ -346,7 +345,7 @@ namespace AppOwnsDataAdmin.Services {
                 if (dataset == null)
                 {
                     Console.WriteLine($"Publishing PBIX: {importName}");
-                    PublishPBIX(workspace.Id, importName);
+                    PublishPBIX(workspace.Id, importName, tenant.DatabaseName);
                     dataset = GetDataset(workspace.Id, importName);
                     Console.WriteLine($"✅ PBIX published: {importName}");
                 }
@@ -437,20 +436,39 @@ namespace AppOwnsDataAdmin.Services {
 
     public void DeleteTenant(PowerBiTenant tenant) {
 
-      // delete workspace as service principal profile
-      SetCallingContext(tenant.ProfileId);
       Guid workspaceIdGuid = new Guid(tenant.WorkspaceId);
-      pbiClient.Groups.DeleteGroup(workspaceIdGuid);
 
-      // swtch back to service principal to delete service principal profile
+      // try to delete workspace as service principal profile first;
+      // fall back to SP root context if the workspace was created outside the profile
+      try {
+        SetCallingContext(tenant.ProfileId);
+        pbiClient.Groups.DeleteGroup(workspaceIdGuid);
+      }
+      catch (HttpOperationException) {
+        SetCallingContext();
+        pbiClient.Groups.DeleteGroup(workspaceIdGuid);
+      }
+
+      // switch back to service principal to delete the service principal profile
       SetCallingContext();
       pbiClient.Profiles.DeleteProfile(new Guid(tenant.ProfileId));
 
     }
 
-    public void PublishPBIX(Guid WorkspaceId, string ImportName) {
+    public void PublishPBIX(Guid WorkspaceId, string ImportName, string DatabaseName = "") {
 
-      string PbixFilePath = this.Env.WebRootPath + @"/PBIX/SalesReportTemplate.pbix";
+      string template = DatabaseName.ToLower() switch {
+        "contososales"   => "SalesReportTemplate_EU.pbix",
+        "acmecorpsales"  => "SalesReportTemplate_AU.pbix",
+        _                => "SalesReportTemplate.pbix"   // US default (WingtipSales, MegaCorpSales)
+      };
+
+      string PbixFilePath = System.IO.Path.Combine(this.Env.WebRootPath, "PBIX", template);
+
+      // fall back to base template if the region-specific file hasn't been created yet
+      if (!System.IO.File.Exists(PbixFilePath)) {
+        PbixFilePath = System.IO.Path.Combine(this.Env.WebRootPath, "PBIX", "SalesReportTemplate.pbix");
+      }
 
       FileStream stream = new FileStream(PbixFilePath, FileMode.Open, FileAccess.Read);
 
