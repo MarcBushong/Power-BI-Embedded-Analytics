@@ -395,9 +395,8 @@ namespace AppOwnsDataAdmin.Services {
                 System.Threading.Thread.Sleep(6000);
 
                 // ─── STEP 8: Patch Credentials + Refresh ────────────────
-                // GetDatasourcesInGroup must use profile context (dataset is profile-owned).
-                // Gateways.UpdateDatasource must use SP root context (virtual gateway admin).
-                // profileId is passed so PatchSqlDatasourceCredentials can manage both.
+                // Profile owns the virtual gateway and is its admin — profile context
+                // is required for both GetDatasourcesInGroup and UpdateDatasource.
                 PatchSqlDatasourceCredentials(
                     workspace.Id,
                     dataset.Id,
