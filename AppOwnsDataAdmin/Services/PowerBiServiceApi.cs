@@ -527,16 +527,12 @@ namespace AppOwnsDataAdmin.Services {
 
     public void PatchSqlDatasourceCredentials(Guid WorkspaceId, string DatasetId, string SqlUserName, string SqlUserPassword, string ProfileId = "") {
 
-      // GetDatasourcesInGroup requires profile context — datasets in profile-owned
-      // workspaces are invisible to the SP root even when it has workspace membership.
+      // The profile owns its virtual gateway and is its admin — use profile context
+      // for both GetDatasourcesInGroup and Gateways.UpdateDatasource.
       if (!ProfileId.Equals("")) {
         SetCallingContext(ProfileId);
       }
       var datasources = (pbiClient.Datasets.GetDatasourcesInGroup(WorkspaceId, DatasetId)).Value;
-
-      // Gateways.UpdateDatasource requires SP root context — the virtual gateway
-      // admin is the service principal, not the profile.
-      SetCallingContext();
 
       // find the target SQL datasource
       foreach (var datasource in datasources) {
