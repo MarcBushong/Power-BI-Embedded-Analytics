@@ -395,6 +395,10 @@ namespace AppOwnsDataAdmin.Services {
                 System.Threading.Thread.Sleep(6000);
 
                 // ─── STEP 8: Patch Credentials + Refresh ────────────────
+                // Virtual gateway credential updates require SP root context, not profile context.
+                // GetDatasourcesInGroup is still called in profile context first to get the IDs,
+                // then we switch to SP root for the Gateways.UpdateDatasource call.
+                SetCallingContext(); // SP root — gateway admin
                 PatchSqlDatasourceCredentials(
                     workspace.Id,
                     dataset.Id,
@@ -403,6 +407,7 @@ namespace AppOwnsDataAdmin.Services {
                 );
                 Console.WriteLine($"✅ Credentials patched");
 
+                SetCallingContext(profileId); // restore profile context
                 pbiClient.Datasets.RefreshDatasetInGroup(workspace.Id, dataset.Id);
                 Console.WriteLine($"✅ Dataset refresh triggered");
 
