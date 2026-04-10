@@ -342,16 +342,31 @@ namespace AppOwnsDataAdmin.Services {
 
                 Dataset dataset = GetDataset(workspace.Id, importName);
 
+                if (dataset != null)
+                {
+                    // Check if the existing dataset's DatabaseName parameter matches
+                    // what the tenant is configured for — if not, delete and republish
+                    var currentParams = pbiClient.Datasets.GetParametersInGroup(workspace.Id, dataset.Id).Value;
+                    var currentDb = currentParams.FirstOrDefault(p => p.Name == "DatabaseName")?.CurrentValue ?? "";
+
+                    if (!string.Equals(currentDb, tenant.DatabaseName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine($"⚠️ Dataset database mismatch: '{currentDb}' → '{tenant.DatabaseName}' — republishing PBIX");
+                        pbiClient.Datasets.DeleteDatasetInGroup(workspace.Id, dataset.Id);
+                        dataset = null;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"✅ Dataset already exists and database matches — skipping publish");
+                    }
+                }
+
                 if (dataset == null)
                 {
                     Console.WriteLine($"Publishing PBIX: {importName}");
                     PublishPBIX(workspace.Id, importName, tenant.DatabaseName);
                     dataset = GetDataset(workspace.Id, importName);
                     Console.WriteLine($"✅ PBIX published: {importName}");
-                }
-                else
-                {
-                    Console.WriteLine($"✅ Dataset already exists — skipping publish");
                 }
 
                 // ─── STEP 7: Update Parameters ───────────────────────────
@@ -438,20 +453,36 @@ namespace AppOwnsDataAdmin.Services {
 
       Guid workspaceIdGuid = new Guid(tenant.WorkspaceId);
 
-      // try to delete workspace as service principal profile first;
-      // fall back to SP root context if the workspace was created outside the profile
+      // try profile context first, then SP root; if workspace is already gone, skip gracefully
       try {
         SetCallingContext(tenant.ProfileId);
         pbiClient.Groups.DeleteGroup(workspaceIdGuid);
       }
+      catch (HttpOperationException ex) when (
+          ex.Response?.StatusCode == System.Net.HttpStatusCode.BadRequest ||
+          ex.Response?.StatusCode == System.Net.HttpStatusCode.NotFound) {
+        Console.WriteLine($"⚠️ Workspace already deleted — skipping DeleteGroup");
+      }
       catch (HttpOperationException) {
-        SetCallingContext();
-        pbiClient.Groups.DeleteGroup(workspaceIdGuid);
+        try {
+          SetCallingContext();
+          pbiClient.Groups.DeleteGroup(workspaceIdGuid);
+        }
+        catch (HttpOperationException ex2) when (
+            ex2.Response?.StatusCode == System.Net.HttpStatusCode.BadRequest ||
+            ex2.Response?.StatusCode == System.Net.HttpStatusCode.NotFound) {
+          Console.WriteLine($"⚠️ Workspace already deleted — skipping DeleteGroup");
+        }
       }
 
-      // switch back to service principal to delete the service principal profile
-      SetCallingContext();
-      pbiClient.Profiles.DeleteProfile(new Guid(tenant.ProfileId));
+      // delete the service principal profile
+      try {
+        SetCallingContext();
+        pbiClient.Profiles.DeleteProfile(new Guid(tenant.ProfileId));
+      }
+      catch (HttpOperationException) {
+        Console.WriteLine($"⚠️ Profile already deleted — skipping DeleteProfile");
+      }
 
     }
 
@@ -459,8 +490,7 @@ namespace AppOwnsDataAdmin.Services {
 
       string template = DatabaseName.ToLower() switch {
         "contososales"   => "SalesReportTemplate_EU.pbix",
-        "acmecorpsales"  => "SalesReportTemplate_AU.pbix",
-        _                => "SalesReportTemplate.pbix"   // US default (WingtipSales, MegaCorpSales)
+        _                => "SalesReportTemplate.pbix"   // US default (WingtipSales, MegaCorpSales, AcmeCorpSales)
       };
 
       string PbixFilePath = System.IO.Path.Combine(this.Env.WebRootPath, "PBIX", template);
