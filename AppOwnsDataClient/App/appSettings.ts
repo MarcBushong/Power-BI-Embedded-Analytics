@@ -4,9 +4,9 @@
   public static apiRoot: string = "https://localhost:44302/api/"; 
 
   // setting for Azure AD app which supports SPA authentication
-  public static tenant: string = "11111111-1111-1111-1111-111111111111";
-  public static clientId: string = "22222222-2222-2222-2222-222222222222";
- 
+  public static tenant: string = "24945eed-3a26-431f-8ccb-4f5b87881901";
+  public static clientId: string = "e83d71a3-6b80-48bd-9e2c-fa6b04dc40ba";
+
   // permission scopes required with App-Owns-Data Web API
   public static apiScopes: string[] = [
     "api://" + AppSettings.clientId + "/Reports.Embed"

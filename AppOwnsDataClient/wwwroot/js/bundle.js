@@ -55496,10 +55496,10 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var AppSettings = /** @class */ (function () {
     function AppSettings() {
     }
-    AppSettings.clientId = "501e9a25-112a-45c7-8b3f-9766335d651a";
-    AppSettings.tenant = "2f23c5ea-5a75-41f6-922e-d3392313e61d";
-    AppSettings.apiRoot = "https://appownsdatawebapi.azurewebsites.net/api/";
-    //public static apiRoot: string = "https://localhost:44302/api/";
+    AppSettings.clientId = "e83d71a3-6b80-48bd-9e2c-fa6b04dc40ba";
+    AppSettings.tenant = "24945eed-3a26-431f-8ccb-4f5b87881901";
+    AppSettings.apiRoot = "https://localhost:44302/api/";
+    //public static apiRoot: string = "https://appownsdatawebapi.azurewebsites.net/api/";
     AppSettings.apiScopes = [
         "api://" + AppSettings.clientId + "/Reports.Embed"
     ];

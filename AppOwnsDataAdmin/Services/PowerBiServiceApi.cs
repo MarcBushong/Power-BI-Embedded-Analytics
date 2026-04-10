@@ -115,83 +115,306 @@ namespace AppOwnsDataAdmin.Services {
       return workspaces;
     }
 
-    public PowerBiTenant OnboardNewTenant(PowerBiTenant tenant) {
+        /*    public PowerBiTenant OnboardNewTenant(PowerBiTenant tenant) {
 
-      this.SetCallingContext();
+              this.SetCallingContext();
 
-      var createRequest = new CreateOrUpdateProfileRequest(tenant.Name + " Profile");
-      var profile = pbiClient.Profiles.CreateProfile(createRequest);
+              var createRequest = new CreateOrUpdateProfileRequest(tenant.Name + " Profile");
+              var profile = pbiClient.Profiles.CreateProfile(createRequest);
 
-      string profileId = profile.Id.ToString();
-      tenant.ProfileId = profileId;
+              string profileId = profile.Id.ToString();
+              tenant.ProfileId = profileId;
 
-      SetCallingContext(profileId);
+              SetCallingContext(profileId);
+        */
+        public PowerBiTenant OnboardNewTenant(PowerBiTenant tenant)
+        {
+            this.SetCallingContext();
 
-      // create new app workspace
-      GroupCreationRequest request = new GroupCreationRequest("AODSK: " + tenant.Name);
-      Group workspace = pbiClient.Groups.CreateGroup(request);
+            ServicePrincipalProfile profile;
+            Group workspace;
 
-      // assign new workspace to dedicated capacity 
-      if (targetCapacityId != "") {
-        pbiClient.Groups.AssignToCapacity(workspace.Id, new AssignToCapacityRequest {
-          CapacityId = new Guid(targetCapacityId),
-        });
-      }
+            try
+            {
+                // ─── STEP 1: Get or Create Profile ──────────────────────
+                string profileName = tenant.Name + " Profile";
 
-      tenant.WorkspaceId = workspace.Id.ToString();
-      tenant.WorkspaceUrl = "https://app.powerbi.com/groups/" + workspace.Id.ToString() + "/";
+                var existingProfiles = pbiClient.Profiles.GetProfiles();
+                var existingProfile = existingProfiles.Value
+                    .FirstOrDefault(p => p.DisplayName == profileName);
 
-      // This code adds service principal as workspace Contributor member
-      // -- Adding service principal as member is required due to security bug when 
-      // -- creating embed token for paginated report using service princpal profiles 
-      var userServicePrincipal = pbiClient.Groups.GetGroupUsers(workspace.Id).Value[0];
-      string servicePrincipalObjectId = userServicePrincipal.Identifier;
-      pbiClient.Groups.AddGroupUser(workspace.Id, new GroupUser {
-        Identifier = servicePrincipalObjectId,
-        PrincipalType = PrincipalType.App,
-        GroupUserAccessRight = "Contributor"
-      });
+                if (existingProfile != null)
+                {
+                    profile = existingProfile;
+                    Console.WriteLine($"✅ Reusing profile: {profile.DisplayName} | {profile.Id}");
+                }
+                else
+                {
+                    var profileRequest = new CreateOrUpdateProfileRequest(profileName);
+                    profile = pbiClient.Profiles.CreateProfile(profileRequest);
+                    Console.WriteLine($"✅ Created profile: {profile.DisplayName} | {profile.Id}");
+                }
+
+                string profileId = profile.Id.ToString();
+                tenant.ProfileId = profileId;
+
+                // ─── STEP 2: Get or Create Workspace ────────────────────
+                string workspaceName = "AODSK: " + tenant.Name;
+                bool workspaceFoundInProfileContext = false;
+
+                // ✅ Search profile context first
+                SetCallingContext(profileId);
+                var allProfileWorkspaces = pbiClient.Groups.GetGroups(top: 100);
+
+                // ✅ Search SP root context
+                this.SetCallingContext();
+                var allRootWorkspaces = pbiClient.Groups.GetGroups(top: 100);
+
+                // ✅ Check profile context first
+                workspace = allProfileWorkspaces.Value
+                    .FirstOrDefault(w =>
+                        w.Name.Trim().ToLower() == workspaceName.Trim().ToLower() ||
+                        w.Name.Trim().ToLower() == tenant.Name.Trim().ToLower()
+                    );
+
+                if (workspace != null)
+                {
+                    workspaceFoundInProfileContext = true;
+                    Console.WriteLine($"✅ Found in profile context: '{workspace.Name}' | {workspace.Id}");
+                }
+                else
+                {
+                    // ✅ Check SP root context
+                    workspace = allRootWorkspaces.Value
+                        .FirstOrDefault(w =>
+                            w.Name.Trim().ToLower() == workspaceName.Trim().ToLower() ||
+                            w.Name.Trim().ToLower() == tenant.Name.Trim().ToLower()
+                        );
+
+                    if (workspace != null)
+                    {
+                        workspaceFoundInProfileContext = false;
+                        Console.WriteLine($"✅ Found in SP root context: '{workspace.Name}' | {workspace.Id}");
+                    }
+                    else
+                    {
+                        // ✅ Create new under SP root
+                        this.SetCallingContext();
+                        var workspaceRequest = new GroupCreationRequest(workspaceName);
+                        workspace = pbiClient.Groups.CreateGroup(
+                            workspaceRequest,
+                            workspaceV2: true
+                        );
+                        workspaceFoundInProfileContext = false;
+                        Console.WriteLine($"✅ Created workspace: '{workspace.Name}' | {workspace.Id}");
+                    }
+                }
+
+                tenant.WorkspaceId = workspace.Id.ToString();
+                tenant.WorkspaceUrl = "https://app.powerbi.com/groups/" + workspace.Id + "/";
+
+                // ─── STEP 3: Assign to Capacity ─────────────────────────
+                if (!string.IsNullOrEmpty(targetCapacityId))
+                {
+                    if (workspace.IsOnDedicatedCapacity == true)
+                    {
+                        Console.WriteLine($"✅ Already on capacity — skipping");
+                    }
+                    else
+                    {
+                        // ✅ Use the SAME context that found the workspace
+                        if (workspaceFoundInProfileContext)
+                        {
+                            SetCallingContext(profileId);
+                            Console.WriteLine($"Assigning to capacity (profile context)...");
+                        }
+                        else
+                        {
+                            this.SetCallingContext();
+                            Console.WriteLine($"Assigning to capacity (SP root context)...");
+                        }
+
+                        pbiClient.Groups.AssignToCapacity(
+                            workspace.Id,
+                            new AssignToCapacityRequest
+                            {
+                                CapacityId = new Guid(targetCapacityId)
+                            }
+                        );
+                        Console.WriteLine($"✅ AssignToCapacity succeeded");
+                    }
+                }
+
+                // ✅ Always switch to profile context for remaining steps
+                SetCallingContext(profileId);
+                // ─── STEP 4: Add Service Principal as Contributor ───────
+                // ✅ Use same context that owns the workspace
+                if (workspaceFoundInProfileContext)
+                {
+                    SetCallingContext(profileId);
+                }
+                else
+                {
+                    this.SetCallingContext();
+                }
+
+                // ✅ Wait for workspace to fully provision
+                System.Threading.Thread.Sleep(3000);
+
+                IList<GroupUser> workspaceUsers;
+                try
+                {
+                    workspaceUsers = pbiClient.Groups.GetGroupUsers(workspace.Id).Value;
+                    Console.WriteLine($"Workspace users: {workspaceUsers.Count}");
+                    foreach (var u in workspaceUsers)
+                    {
+                        Console.WriteLine($"  → {u.Identifier} | {u.PrincipalType} | {u.GroupUserAccessRight}");
+                    }
+                }
+                catch (HttpOperationException)
+                {
+                    Console.WriteLine($"⚠️ GetGroupUsers failed — treating as empty");
+                    workspaceUsers = new List<GroupUser>();
+                }
+
+                // ✅ Get SP object ID from config
+                string servicePrincipalObjectId = Configuration["PowerBi:ServicePrincipalObjectId"];
+
+                if (!string.IsNullOrEmpty(servicePrincipalObjectId))
+                {
+                    bool spAlreadyAdded = workspaceUsers.Any(u =>
+                        u.Identifier == servicePrincipalObjectId &&
+                        u.PrincipalType == PrincipalType.App
+                    );
+
+                    if (!spAlreadyAdded)
+                    {
+                        pbiClient.Groups.AddGroupUser(workspace.Id, new GroupUser
+                        {
+                            Identifier = servicePrincipalObjectId,
+                            PrincipalType = PrincipalType.App,
+                            GroupUserAccessRight = "Contributor"
+                        });
+                        Console.WriteLine($"✅ Added SP as Contributor");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"✅ SP already a member — skipping");
+                    }
+                }
+
+                // ─── STEP 5: Add Admin User ──────────────────────────────
+                string adminUserEmail = Configuration["DemoSettings:AdminUser"];
+                if (!string.IsNullOrEmpty(adminUserEmail))
+                {
+                    bool adminAlreadyAdded = workspaceUsers.Any(u =>
+                        u.EmailAddress == adminUserEmail
+                    );
+
+                    if (!adminAlreadyAdded)
+                    {
+                        pbiClient.Groups.AddGroupUser(workspace.Id, new GroupUser
+                        {
+                            Identifier = adminUserEmail,
+                            PrincipalType = PrincipalType.User,
+                            EmailAddress = adminUserEmail,
+                            GroupUserAccessRight = "Admin"
+                        });
+                        Console.WriteLine($"✅ Added admin user: {adminUserEmail}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"✅ Admin already a member — skipping");
+                    }
 
 
-      // add user as new workspace admin to make demoing easier
-      string adminUser = Configuration["DemoSettings:AdminUser"];
-      if (!string.IsNullOrEmpty(adminUser)) {
-        pbiClient.Groups.AddGroupUser(workspace.Id, new GroupUser {
-          Identifier = adminUser,
-          PrincipalType = PrincipalType.User,
-          EmailAddress = adminUser,
-          GroupUserAccessRight = "Admin"
-        });
-      }
+                 
+                }                // ─── STEP 6: Publish PBIX ────────────────────────────────
 
-      // upload sample PBIX file #1
-      string importName = "Sales";
-      PublishPBIX(workspace.Id, importName);
+                if (workspaceFoundInProfileContext)
+                {
+                    SetCallingContext(profileId);
+                }
+                else
+                {
+                    this.SetCallingContext();
+                }
+                string importName = "Sales";
 
-      Dataset dataset = GetDataset(workspace.Id, importName);
+                Dataset dataset = GetDataset(workspace.Id, importName);
 
-      UpdateMashupParametersRequest req =
-        new UpdateMashupParametersRequest(new List<UpdateMashupParameterDetails>() {
-          new UpdateMashupParameterDetails { Name = "DatabaseServer", NewValue = tenant.DatabaseServer },
-          new UpdateMashupParameterDetails { Name = "DatabaseName", NewValue = tenant.DatabaseName }
-      });
+                if (dataset == null)
+                {
+                    Console.WriteLine($"Publishing PBIX: {importName}");
+                    PublishPBIX(workspace.Id, importName);
+                    dataset = GetDataset(workspace.Id, importName);
+                    Console.WriteLine($"✅ PBIX published: {importName}");
+                }
+                else
+                {
+                    Console.WriteLine($"✅ Dataset already exists — skipping publish");
+                }
 
-      pbiClient.Datasets.UpdateParametersInGroup(workspace.Id, dataset.Id, req);
+                // ─── STEP 7: Update Parameters ───────────────────────────
+               
+                
+                
+                var req = new UpdateMashupParametersRequest(
+                    new List<UpdateMashupParameterDetails>() {
+                new UpdateMashupParameterDetails {
+                    Name = "DatabaseServer",
+                    NewValue = tenant.DatabaseServer
+                },
+                new UpdateMashupParameterDetails {
+                    Name = "DatabaseName",
+                    NewValue = tenant.DatabaseName
+                }
+                    }
+                );
 
-      PatchSqlDatasourceCredentials(workspace.Id, dataset.Id, tenant.DatabaseUserName, tenant.DatabaseUserPassword);
+                pbiClient.Datasets.UpdateParametersInGroup(workspace.Id, dataset.Id, req);
+                Console.WriteLine($"✅ Parameters updated");
 
-      pbiClient.Datasets.RefreshDatasetInGroup(workspace.Id, dataset.Id);
+                // ─── STEP 8: Patch Credentials + Refresh ────────────────
+                PatchSqlDatasourceCredentials(
+                    workspace.Id,
+                    dataset.Id,
+                    tenant.DatabaseUserName,
+                    tenant.DatabaseUserPassword
+                );
+                Console.WriteLine($"✅ Credentials patched");
 
-      if (targetCapacityId != "") {
-        // only import paginated report if workspace has been associated with dedicated capacity
-        string PaginatedReportName = "Sales Summary";
-        PublishRDL(workspace, PaginatedReportName, dataset);
-      }
+                pbiClient.Datasets.RefreshDatasetInGroup(workspace.Id, dataset.Id);
+                Console.WriteLine($"✅ Dataset refresh triggered");
 
-      return tenant;
-    }
+                // ─── STEP 9: Publish Paginated Report ───────────────────
+                if (!string.IsNullOrEmpty(targetCapacityId))
+                {
+                    string paginatedReportName = "Sales Summary";
 
-    public PowerBiTenantDetails GetTenantDetails(PowerBiTenant tenant) {
+                    var existingReports = pbiClient.Reports.GetReports(workspace.Id).Value;
+                    bool reportExists = existingReports.Any(r => r.Name == paginatedReportName);
+
+                    if (!reportExists)
+                    {
+                        PublishRDL(workspace, paginatedReportName, dataset);
+                        Console.WriteLine($"✅ Paginated report published");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"✅ Paginated report already exists — skipping");
+                    }
+                }
+            }
+            catch (HttpOperationException ex)
+            {
+                var errorBody = ex.Response?.Content ?? "No response body";
+                throw new Exception($"Power BI API Error: {errorBody}", ex);
+            }
+
+            return tenant;
+        }
+        public PowerBiTenantDetails GetTenantDetails(PowerBiTenant tenant) {
 
       SetCallingContext(tenant.ProfileId);
 
