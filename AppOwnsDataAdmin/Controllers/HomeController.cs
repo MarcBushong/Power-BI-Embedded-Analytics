@@ -54,8 +54,9 @@ namespace AppOwnsDataAdmin.Controllers {
         TenantName = this.AppOwnsDataDBService.GetNextTenantName(),
         SuggestedDatabase = "WingtipSales",
         DatabaseOptions = new List<SelectListItem> {
+          new SelectListItem{ Text="WingtipSales",  Value="WingtipSales",  Selected=true },
           new SelectListItem{ Text="AcmeCorpSales", Value="AcmeCorpSales" },
-          new SelectListItem{ Text="ContosoSales", Value="ContosoSales" },
+          new SelectListItem{ Text="ContosoSales",  Value="ContosoSales" },
           new SelectListItem{ Text="MegaCorpSales", Value="MegaCorpSales" }
         }
       };
