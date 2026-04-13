@@ -29,9 +29,9 @@ namespace AppOwnsDataShared.Services {
         },
 
         ["Contoso"] = new TenantBranding {
-          ThemePrimary   = "#880E4F",
-          ThemeSecondary = "#C2185B",
-          ThemeTertiary  = "#FFB300",
+          ThemePrimary   = "#2E7D32",
+          ThemeSecondary = "#388E3C",
+          ThemeTertiary  = "#69F0AE",
           LogoSymbol     = "CO",
           Tagline        = "Innovation meets elegance"
         },

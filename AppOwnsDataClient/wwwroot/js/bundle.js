@@ -55506,6 +55506,9 @@ var App = /** @class */ (function () {
         $("#brand-logo").html(App.buildLogoSvg(t.logoSymbol, primary, secondary, tertiary));
         $("#brand-company-name").text(viewModel.tenantName);
         $("#brand-tagline").text(t.tagline || '');
+        $('#main-navbar').css('background', 'linear-gradient(90deg,#0f172a 0%,' + primary + ' 100%)');
+        $('#left-nav-watermark').html(App.buildLogoSvg(t.logoSymbol, primary, secondary, tertiary));
+        $('#left-nav-tagline').text(t.tagline || '');
     };
     App.applyPowerBiTheme = function (report, viewModel) {
         if (!viewModel || !viewModel.theme) return;
