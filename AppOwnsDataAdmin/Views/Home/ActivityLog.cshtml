@@ -1,19 +1,19 @@
 ﻿@model IList<AppOwnsDataShared.Models.ActivityLogEntry>
 
 <h2>
-  <a class="btn btn-sm h2-backarrow" asp-action="Index" title="Back to Home"><i class="fa fa-arrow-left"></i></a>
-  <i class="fa fa-list-alt"></i> Activity Log
+  <a class="btn btn-sm h2-backarrow" asp-action="Index" title="Back to Home"><i class="fa-solid fa-arrow-left"></i></a>
+  <i class="fa-solid fa-list-alt"></i> Activity Log
 </h2>
 
 <div class="toolbar">
   <a id="refresh-activity-button" class="btn btn-primary" asp-action="ActivityLog">
-    <i class="fa fa-refresh"></i>
+    <i class="fa-solid fa-rotate-right"></i>
     Refresh Activity Data
   </a>
 </div>
 
 <table class="table table-bordered table-striped table-sm">
-  <thead class="thead-dark">
+  <thead class="table-dark">
     <tr>
       <th>View</th>
       <th>Created</th>
@@ -30,7 +30,7 @@
   @foreach (var logEntry in Model) {
     <tr>
       <td style="text-align:center">
-        <a href="ActivityEvent/?Id=@logEntry.Id" class="nav nav-link" title="View"><i class="fa fa-search"></i></a>
+        <a href="ActivityEvent/?Id=@logEntry.Id" class="nav nav-link" title="View"><i class="fa-solid fa-magnifying-glass"></i></a>
       </td>
       <td>@logEntry.Created.ToString("yyyy-MM-dd 'at' hh:mm tt")</td>
       <td>@logEntry.Activity</td>

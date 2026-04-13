@@ -3,36 +3,36 @@
 
 @if (User.Identity.IsAuthenticated) {
   <div class="jumbotron">
-    <h1>Welcome, @custName Administrator! <i class="fa fa-bolt" style="color:var(--admin-accent)"></i></h1>
+    <h1>Welcome, @custName Administrator! <i class="fa-solid fa-bolt" style="color:var(--admin-accent)"></i></h1>
     <p>You're in the command center — provision new @custName customers, manage user access, and explore embedded Power BI analytics all from one place. Let's build something great.</p>
   </div>
 
   <div class="dashboard-grid">
 
     <div class="action-card">
-      <div class="action-card-icon indigo"><i class="fa fa-building-o"></i></div>
+      <div class="action-card-icon indigo"><i class="fa-regular fa-building"></i></div>
       <h3>@custName's Customers</h3>
       <p>Provision new customer workspaces, assign Power BI datasets, and manage your entire multi-tenant environment — all from one place.</p>
       <a class="btn btn-primary" asp-controller="Home" asp-action="Tenants">
-        <i class="fa fa-building-o"></i> Manage Customers
+        <i class="fa-regular fa-building"></i> Manage Customers
       </a>
     </div>
 
     <div class="action-card">
-      <div class="action-card-icon teal"><i class="fa fa-users"></i></div>
+      <div class="action-card-icon teal"><i class="fa-solid fa-users"></i></div>
       <h3>User Management</h3>
       <p>Control who has access to what — assign users to customer tenants, set permissions, and keep your Power BI environment locked down and secure.</p>
       <a class="btn btn-teal" asp-controller="Home" asp-action="Users">
-        <i class="fa fa-users"></i> Manage Users
+        <i class="fa-solid fa-users"></i> Manage Users
       </a>
     </div>
 
     <div class="action-card">
-      <div class="action-card-icon amber"><i class="fa fa-list-alt"></i></div>
+      <div class="action-card-icon amber"><i class="fa-solid fa-list-alt"></i></div>
       <h3>Activity Log</h3>
       <p>Track every embed session, monitor report usage, and audit user activity across all customer tenants in real time.</p>
       <a class="btn btn-amber" asp-controller="Home" asp-action="ActivityLog">
-        <i class="fa fa-list-alt"></i> View Activity
+        <i class="fa-solid fa-list-alt"></i> View Activity
       </a>
     </div>
 

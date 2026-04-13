@@ -2,8 +2,8 @@
 @{ var custName = _config["DemoSettings:CustomerName"] ?? "Customer"; }
 
 <h2>
-  <a class="btn btn-sm h2-backarrow" asp-action="Tenants" title="Back to @custName's Customers"><i class="fa fa-arrow-left"></i></a>
-  <i class="fa fa-building-o" style="font-size:1.1rem;color:var(--admin-text-muted)"></i>
+  <a class="btn btn-sm h2-backarrow" asp-action="Tenants" title="Back to @custName's Customers"><i class="fa-solid fa-arrow-left"></i></a>
+  <i class="fa-regular fa-building" style="font-size:1.1rem;color:var(--admin-text-muted)"></i>
   Customer Details
 </h2>
 
@@ -72,7 +72,7 @@
   <div class="col-6">
     <h4>Members</h4>
     <table class="table table-sm table-bordered table-striped">
-      <thead class="thead-dark">
+      <thead class="table-dark">
         <tr>
           <th>Member</th>
           <th>Permissions</th>
@@ -92,7 +92,7 @@
   <div class="col-3">
     <h4>Datasets</h4>
     <table class="table table-sm table-bordered table-striped">
-      <thead class="thead-dark">
+      <thead class="table-dark">
         <tr>
           <th>Name</th>
           <th>Is Refreshable</th>
@@ -110,7 +110,7 @@
   <div class="col-3">
     <h4>Report</h4>
     <table class="table table-sm table-bordered table-striped">
-      <thead class="thead-dark">
+      <thead class="table-dark">
         <tr>
           <th>Name</th>
           <th>Report Type</th>

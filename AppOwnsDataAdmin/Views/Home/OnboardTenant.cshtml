@@ -1,12 +1,12 @@
 @model AppOwnsDataAdmin.Controllers.HomeController.OnboardTenantModel
 @{ var custName = _config["DemoSettings:CustomerName"] ?? "Customer"; }
 
-<h2 id="page-title"><i class="fa fa-user-plus"></i> Onboard New @custName Customer</h2>
+<h2 id="page-title"><i class="fa-solid fa-user-plus"></i> Onboard New @custName Customer</h2>
 
 <form id="new-tenant" method="post" class="form-horizontal">
   <div class="toolbar">
     <button id="create-tenant-button" type="submit" class="btn btn-primary" style="margin: 6px">
-      <i class="fa fa-user-plus"></i>
+      <i class="fa-solid fa-user-plus"></i>
       Create New @custName Customer
     </button>
   </div>

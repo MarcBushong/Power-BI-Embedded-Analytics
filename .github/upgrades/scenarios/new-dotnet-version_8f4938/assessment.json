@@ -1,0 +1,1232 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "net10.0",
+    "targetDisplayName": ".NETCoreApp,Version=v10.0"
+  },
+  "analysisStartTime": "2026-04-13T20:49:45.6195373Z",
+  "analysisEndTime": "2026-04-13T20:49:51.7874316Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 5,
+      "issues": 5,
+      "incidents": 41,
+      "effort": 41
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 5,
+        "Optional": 4,
+        "Potential": 32,
+        "Information": 0
+      },
+      "category": {
+        "NuGet": 21,
+        "Project": 5,
+        "Api": 15
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 11,
+      "properties": {
+        "appName": "AppOwnsDataAdmin",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net6.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 32,
+        "numberOfCodeFiles": 22,
+        "linesTotal": 114484,
+        "linesOfCode": 1955,
+        "totalApiScanned": 5798,
+        "minLinesOfCodeToChange": 5,
+        "maxLinesOfCodeToChange": 5
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "b66492cd-4d7d-4e5a-b303-03e4bea3adea",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Design, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.5",
+              "protected": "Microsoft.EntityFrameworkCore.Design, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Design, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.5",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Design, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Design, and replace with new package Microsoft.EntityFrameworkCore.Design 10.0.5",
+            "label": "Microsoft.EntityFrameworkCore.Design 6.0.4",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Design",
+              "PackageVersion": "6.0.4",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "9d6f3674-8875-470a-8281-490caf185d3a",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Authentication.JwtBearer, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.JwtBearer, and replace with new package Microsoft.AspNetCore.Authentication.JwtBearer 10.0.5",
+              "protected": "Microsoft.AspNetCore.Authentication.JwtBearer, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.JwtBearer, and replace with new package Microsoft.AspNetCore.Authentication.JwtBearer 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+            "snippet": "Microsoft.AspNetCore.Authentication.JwtBearer, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.JwtBearer, and replace with new package Microsoft.AspNetCore.Authentication.JwtBearer 10.0.5",
+            "protectedSnippet": "Microsoft.AspNetCore.Authentication.JwtBearer, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.JwtBearer, and replace with new package Microsoft.AspNetCore.Authentication.JwtBearer 10.0.5",
+            "label": "Microsoft.AspNetCore.Authentication.JwtBearer 6.0.4",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.JwtBearer",
+              "PackageVersion": "6.0.4",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "a6d9db2a-f918-4ffc-be8d-b2604725e4bd",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Authentication.OpenIdConnect, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.OpenIdConnect, and replace with new package Microsoft.AspNetCore.Authentication.OpenIdConnect 10.0.5",
+              "protected": "Microsoft.AspNetCore.Authentication.OpenIdConnect, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.OpenIdConnect, and replace with new package Microsoft.AspNetCore.Authentication.OpenIdConnect 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+            "snippet": "Microsoft.AspNetCore.Authentication.OpenIdConnect, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.OpenIdConnect, and replace with new package Microsoft.AspNetCore.Authentication.OpenIdConnect 10.0.5",
+            "protectedSnippet": "Microsoft.AspNetCore.Authentication.OpenIdConnect, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.OpenIdConnect, and replace with new package Microsoft.AspNetCore.Authentication.OpenIdConnect 10.0.5",
+            "label": "Microsoft.AspNetCore.Authentication.OpenIdConnect 6.0.4",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageVersion": "6.0.4",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "53e26461-00cf-453a-a2d5-24c3c4c5e9a8",
+          "ruleId": "NuGet.0005",
+          "projectPath": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Identity.Web, 1.24.1\n\nRecommendation:\n\nMove to Microsoft.Identity.Web.* latest. See https://aka.ms/IdWeb/LTS for details.\nRemove Microsoft.Identity.Web, and replace with new package Microsoft.Identity.Web, 4.7.0",
+              "protected": "Microsoft.Identity.Web, 1.24.1\n\nRecommendation:\n\nMove to Microsoft.Identity.Web.* latest. See https://aka.ms/IdWeb/LTS for details.\nRemove Microsoft.Identity.Web, and replace with new package Microsoft.Identity.Web, 4.7.0"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+            "snippet": "Microsoft.Identity.Web, 1.24.1\n\nRecommendation:\n\nMove to Microsoft.Identity.Web.* latest. See https://aka.ms/IdWeb/LTS for details.\nRemove Microsoft.Identity.Web, and replace with new package Microsoft.Identity.Web, 4.7.0",
+            "protectedSnippet": "Microsoft.Identity.Web, 1.24.1\n\nRecommendation:\n\nMove to Microsoft.Identity.Web.* latest. See https://aka.ms/IdWeb/LTS for details.\nRemove Microsoft.Identity.Web, and replace with new package Microsoft.Identity.Web, 4.7.0",
+            "label": "Microsoft.Identity.Web 1.24.1",
+            "properties": {
+              "PackageId": "Microsoft.Identity.Web",
+              "PackageVersion": "1.24.1",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "b621cf67-896e-4526-8da8-917988db0ebc",
+          "ruleId": "NuGet.0005",
+          "projectPath": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Identity.Web.UI, 1.24.1\n\nRecommendation:\n\nMove to Microsoft.Identity.Web.* latest. See https://aka.ms/IdWeb/LTS for details.\nRemove Microsoft.Identity.Web.UI, and replace with new package Microsoft.Identity.Web.UI, 4.7.0",
+              "protected": "Microsoft.Identity.Web.UI, 1.24.1\n\nRecommendation:\n\nMove to Microsoft.Identity.Web.* latest. See https://aka.ms/IdWeb/LTS for details.\nRemove Microsoft.Identity.Web.UI, and replace with new package Microsoft.Identity.Web.UI, 4.7.0"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+            "snippet": "Microsoft.Identity.Web.UI, 1.24.1\n\nRecommendation:\n\nMove to Microsoft.Identity.Web.* latest. See https://aka.ms/IdWeb/LTS for details.\nRemove Microsoft.Identity.Web.UI, and replace with new package Microsoft.Identity.Web.UI, 4.7.0",
+            "protectedSnippet": "Microsoft.Identity.Web.UI, 1.24.1\n\nRecommendation:\n\nMove to Microsoft.Identity.Web.* latest. See https://aka.ms/IdWeb/LTS for details.\nRemove Microsoft.Identity.Web.UI, and replace with new package Microsoft.Identity.Web.UI, 4.7.0",
+            "label": "Microsoft.Identity.Web.UI 1.24.1",
+            "properties": {
+              "PackageId": "Microsoft.Identity.Web.UI",
+              "PackageVersion": "1.24.1",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "15b75380-f2fd-4e7e-b944-4f4610e3096e",
+          "ruleId": "Project.0002",
+          "projectPath": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net6.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+            "snippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "bfda8193-1266-46aa-979b-37038694e0b2",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials, ProfileId);",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataAdmin\\Services\\PowerBiServiceApi.cs",
+            "snippet": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials, ProfileId);",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 85,
+            "column": 6
+          }
+        },
+        {
+          "incidentId": "d505655a-f4a5-490f-bf52-2dab9e377fd8",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials, ProfileId);",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataAdmin\\Services\\PowerBiServiceApi.cs",
+            "snippet": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials, ProfileId);",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 85,
+            "column": 6
+          }
+        },
+        {
+          "incidentId": "02b35e65-1d35-4130-b865-d057c2076147",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials);",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataAdmin\\Services\\PowerBiServiceApi.cs",
+            "snippet": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials);",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 80,
+            "column": 6
+          }
+        },
+        {
+          "incidentId": "703d09b7-e29c-4c83-9f6f-b655dbfe87c1",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials);",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataAdmin\\Services\\PowerBiServiceApi.cs",
+            "snippet": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials);",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 80,
+            "column": 6
+          }
+        },
+        {
+          "incidentId": "df357574-7970-47ca-af73-22d8f2bb8b09",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: Exception diagnostics are suppressed when IExceptionHandler.TryHandleAsync returns true ",
+          "projectPath": "AppOwnsDataAdmin\\AppOwnsDataAdmin.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "app.UseExceptionHandler(\u0022/Home/Error\u0022);",
+              "protected": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataAdmin\\Startup.cs",
+            "snippet": "app.UseExceptionHandler(\u0022/Home/Error\u0022);",
+            "protectedSnippet": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)",
+            "label": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/aspnet-core/10/exception-handler-diagnostics-suppressed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 62,
+            "column": 8
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "AppOwnsDataClient\\AppOwnsDataClient.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 2,
+      "properties": {
+        "appName": "AppOwnsDataClient",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net6.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 13,
+        "numberOfCodeFiles": 5,
+        "linesTotal": 59605,
+        "linesOfCode": 227,
+        "totalApiScanned": 419,
+        "minLinesOfCodeToChange": 1,
+        "maxLinesOfCodeToChange": 1
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "dd1284c6-e724-49fd-845f-5592ecc3df20",
+          "ruleId": "Project.0002",
+          "projectPath": "AppOwnsDataClient\\AppOwnsDataClient.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net6.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataClient\\AppOwnsDataClient.csproj",
+            "snippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "b9fa5586-d1b3-4963-bfb4-0dce2ee27bd9",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: Exception diagnostics are suppressed when IExceptionHandler.TryHandleAsync returns true ",
+          "projectPath": "AppOwnsDataClient\\AppOwnsDataClient.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "app.UseExceptionHandler(\u0022/Home/Error\u0022);",
+              "protected": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataClient\\Startup.cs",
+            "snippet": "app.UseExceptionHandler(\u0022/Home/Error\u0022);",
+            "protectedSnippet": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)",
+            "label": "M:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/aspnet-core/10/exception-handler-diagnostics-suppressed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 30,
+            "column": 8
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "AppOwnsDataReactClient\\AppOwnsDataReactClient.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 7,
+      "properties": {
+        "appName": "AppOwnsDataReactClient",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net6.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 9,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 122839,
+        "linesOfCode": 18,
+        "totalApiScanned": 37,
+        "minLinesOfCodeToChange": 5,
+        "maxLinesOfCodeToChange": 5
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "9cce3755-db40-41b2-a492-644f0ba4216a",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataReactClient\\AppOwnsDataReactClient.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.SpaServices.Extensions, 6.0.5\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.SpaServices.Extensions, and replace with new package Microsoft.AspNetCore.SpaServices.Extensions 10.0.5",
+              "protected": "Microsoft.AspNetCore.SpaServices.Extensions, 6.0.5\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.SpaServices.Extensions, and replace with new package Microsoft.AspNetCore.SpaServices.Extensions 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataReactClient\\AppOwnsDataReactClient.csproj",
+            "snippet": "Microsoft.AspNetCore.SpaServices.Extensions, 6.0.5\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.SpaServices.Extensions, and replace with new package Microsoft.AspNetCore.SpaServices.Extensions 10.0.5",
+            "protectedSnippet": "Microsoft.AspNetCore.SpaServices.Extensions, 6.0.5\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.SpaServices.Extensions, and replace with new package Microsoft.AspNetCore.SpaServices.Extensions 10.0.5",
+            "label": "Microsoft.AspNetCore.SpaServices.Extensions 6.0.5",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.SpaServices.Extensions",
+              "PackageVersion": "6.0.5",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "7e202605-e1dd-4b1a-9a2d-3a90d9577e39",
+          "ruleId": "Project.0002",
+          "projectPath": "AppOwnsDataReactClient\\AppOwnsDataReactClient.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net6.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataReactClient\\AppOwnsDataReactClient.csproj",
+            "snippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "19bbec88-2e0d-498f-b367-d7867be73232",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.SpaServices.Extensions, 8.0.6. Add package reference to Microsoft.AspNetCore.SpaServices.Extensions, 8.0.6",
+          "projectPath": "AppOwnsDataReactClient\\AppOwnsDataReactClient.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "app.UseSpa(spa =\u003E {});",
+              "protected": "T:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataReactClient\\Program.cs",
+            "snippet": "app.UseSpa(spa =\u003E {});",
+            "protectedSnippet": "T:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions",
+            "label": "T:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.SpaServices.Extensions",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 15,
+            "column": 0
+          }
+        },
+        {
+          "incidentId": "effec7db-1700-46ad-b725-d488702dd932",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.SpaServices.Extensions, 8.0.6. Add package reference to Microsoft.AspNetCore.SpaServices.Extensions, 8.0.6",
+          "projectPath": "AppOwnsDataReactClient\\AppOwnsDataReactClient.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "app.UseSpa(spa =\u003E {});",
+              "protected": "M:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions.UseSpa(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{Microsoft.AspNetCore.SpaServices.ISpaBuilder})"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataReactClient\\Program.cs",
+            "snippet": "app.UseSpa(spa =\u003E {});",
+            "protectedSnippet": "M:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions.UseSpa(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{Microsoft.AspNetCore.SpaServices.ISpaBuilder})",
+            "label": "M:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions.UseSpa(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{Microsoft.AspNetCore.SpaServices.ISpaBuilder})",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.SpaServices.Extensions",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 15,
+            "column": 0
+          }
+        },
+        {
+          "incidentId": "ab7241b4-a53e-4cb1-bf13-f81f90839dd6",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.SpaServices.Extensions, 8.0.6. Add package reference to Microsoft.AspNetCore.SpaServices.Extensions, 8.0.6",
+          "projectPath": "AppOwnsDataReactClient\\AppOwnsDataReactClient.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "configuration.RootPath = \u0022wwwRoot\u0022;",
+              "protected": "P:Microsoft.AspNetCore.SpaServices.StaticFiles.SpaStaticFilesOptions.RootPath"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataReactClient\\Program.cs",
+            "snippet": "configuration.RootPath = \u0022wwwRoot\u0022;",
+            "protectedSnippet": "P:Microsoft.AspNetCore.SpaServices.StaticFiles.SpaStaticFilesOptions.RootPath",
+            "label": "P:Microsoft.AspNetCore.SpaServices.StaticFiles.SpaStaticFilesOptions.RootPath",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.SpaServices.Extensions",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 3,
+            "column": 2
+          }
+        },
+        {
+          "incidentId": "00fbf508-5105-4eb9-b280-42bc67c49d22",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.SpaServices.Extensions, 8.0.6. Add package reference to Microsoft.AspNetCore.SpaServices.Extensions, 8.0.6",
+          "projectPath": "AppOwnsDataReactClient\\AppOwnsDataReactClient.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddSpaStaticFiles(configuration =\u003E {\r\n  configuration.RootPath = \u0022wwwRoot\u0022;\r\n});",
+              "protected": "T:Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataReactClient\\Program.cs",
+            "snippet": "builder.Services.AddSpaStaticFiles(configuration =\u003E {\r\n  configuration.RootPath = \u0022wwwRoot\u0022;\r\n});",
+            "protectedSnippet": "T:Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions",
+            "label": "T:Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.SpaServices.Extensions",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 2,
+            "column": 0
+          }
+        },
+        {
+          "incidentId": "c34d547f-6ad3-4657-80c1-2a93012f0c68",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.SpaServices.Extensions, 8.0.6. Add package reference to Microsoft.AspNetCore.SpaServices.Extensions, 8.0.6",
+          "projectPath": "AppOwnsDataReactClient\\AppOwnsDataReactClient.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddSpaStaticFiles(configuration =\u003E {\r\n  configuration.RootPath = \u0022wwwRoot\u0022;\r\n});",
+              "protected": "M:Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions.AddSpaStaticFiles(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.SpaServices.StaticFiles.SpaStaticFilesOptions})"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataReactClient\\Program.cs",
+            "snippet": "builder.Services.AddSpaStaticFiles(configuration =\u003E {\r\n  configuration.RootPath = \u0022wwwRoot\u0022;\r\n});",
+            "protectedSnippet": "M:Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions.AddSpaStaticFiles(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.SpaServices.StaticFiles.SpaStaticFilesOptions})",
+            "label": "M:Microsoft.Extensions.DependencyInjection.SpaStaticFilesExtensions.AddSpaStaticFiles(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.SpaServices.StaticFiles.SpaStaticFilesOptions})",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.SpaServices.Extensions",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 2,
+            "column": 0
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 6,
+      "properties": {
+        "appName": "AppOwnsDataShared",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net6.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 8,
+        "numberOfCodeFiles": 8,
+        "linesTotal": 1034,
+        "linesOfCode": 1034,
+        "totalApiScanned": 1363,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "773d480f-24fb-4c6e-8944-ead4ff86b66c",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.5",
+              "protected": "Microsoft.EntityFrameworkCore, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.5",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.5",
+            "label": "Microsoft.EntityFrameworkCore 6.0.4",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "6.0.4",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "2eb9c7ee-7b61-40e1-84da-2085e15f2511",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.5",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.5",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.5",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 6.0.4",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "6.0.4",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "18e29665-6ab2-46ba-9329-76c51c24cb20",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Tools, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Tools, and replace with new package Microsoft.EntityFrameworkCore.Tools 10.0.5",
+              "protected": "Microsoft.EntityFrameworkCore.Tools, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Tools, and replace with new package Microsoft.EntityFrameworkCore.Tools 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Tools, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Tools, and replace with new package Microsoft.EntityFrameworkCore.Tools 10.0.5",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Tools, 6.0.4\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Tools, and replace with new package Microsoft.EntityFrameworkCore.Tools 10.0.5",
+            "label": "Microsoft.EntityFrameworkCore.Tools 6.0.4",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Tools",
+              "PackageVersion": "6.0.4",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "74b82716-c152-46d8-bad5-0284ac644b86",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Configuration.FileExtensions, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.FileExtensions, and replace with new package Microsoft.Extensions.Configuration.FileExtensions 10.0.5",
+              "protected": "Microsoft.Extensions.Configuration.FileExtensions, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.FileExtensions, and replace with new package Microsoft.Extensions.Configuration.FileExtensions 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+            "snippet": "Microsoft.Extensions.Configuration.FileExtensions, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.FileExtensions, and replace with new package Microsoft.Extensions.Configuration.FileExtensions 10.0.5",
+            "protectedSnippet": "Microsoft.Extensions.Configuration.FileExtensions, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.FileExtensions, and replace with new package Microsoft.Extensions.Configuration.FileExtensions 10.0.5",
+            "label": "Microsoft.Extensions.Configuration.FileExtensions 6.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Configuration.FileExtensions",
+              "PackageVersion": "6.0.0",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "f307714f-2e94-408a-af7a-14ff059840d0",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Configuration.Json, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.5",
+              "protected": "Microsoft.Extensions.Configuration.Json, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+            "snippet": "Microsoft.Extensions.Configuration.Json, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.5",
+            "protectedSnippet": "Microsoft.Extensions.Configuration.Json, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Configuration.Json, and replace with new package Microsoft.Extensions.Configuration.Json 10.0.5",
+            "label": "Microsoft.Extensions.Configuration.Json 6.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Configuration.Json",
+              "PackageVersion": "6.0.0",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "3fc12fbe-cd43-4354-8513-1b83cf086a90",
+          "ruleId": "Project.0002",
+          "projectPath": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net6.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataShared\\AppOwnsDataShared.csproj",
+            "snippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 15,
+      "properties": {
+        "appName": "AppOwnsDataWebApi",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net6.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 13,
+        "numberOfCodeFiles": 10,
+        "linesTotal": 758,
+        "linesOfCode": 714,
+        "totalApiScanned": 993,
+        "minLinesOfCodeToChange": 4,
+        "maxLinesOfCodeToChange": 4
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "3d544f39-b8e1-4b81-a13a-79500125a0e3",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Authentication.JwtBearer, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.JwtBearer, and replace with new package Microsoft.AspNetCore.Authentication.JwtBearer 10.0.5",
+              "protected": "Microsoft.AspNetCore.Authentication.JwtBearer, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.JwtBearer, and replace with new package Microsoft.AspNetCore.Authentication.JwtBearer 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+            "snippet": "Microsoft.AspNetCore.Authentication.JwtBearer, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.JwtBearer, and replace with new package Microsoft.AspNetCore.Authentication.JwtBearer 10.0.5",
+            "protectedSnippet": "Microsoft.AspNetCore.Authentication.JwtBearer, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.JwtBearer, and replace with new package Microsoft.AspNetCore.Authentication.JwtBearer 10.0.5",
+            "label": "Microsoft.AspNetCore.Authentication.JwtBearer 6.0.8",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.JwtBearer",
+              "PackageVersion": "6.0.8",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "947c1031-4042-40ec-8429-91575c32e891",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Authentication.OpenIdConnect, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.OpenIdConnect, and replace with new package Microsoft.AspNetCore.Authentication.OpenIdConnect 10.0.5",
+              "protected": "Microsoft.AspNetCore.Authentication.OpenIdConnect, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.OpenIdConnect, and replace with new package Microsoft.AspNetCore.Authentication.OpenIdConnect 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+            "snippet": "Microsoft.AspNetCore.Authentication.OpenIdConnect, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.OpenIdConnect, and replace with new package Microsoft.AspNetCore.Authentication.OpenIdConnect 10.0.5",
+            "protectedSnippet": "Microsoft.AspNetCore.Authentication.OpenIdConnect, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.OpenIdConnect, and replace with new package Microsoft.AspNetCore.Authentication.OpenIdConnect 10.0.5",
+            "label": "Microsoft.AspNetCore.Authentication.OpenIdConnect 6.0.8",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageVersion": "6.0.8",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "dd34fd8a-3ff7-43fb-a411-6c6c37dd5648",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.5",
+              "protected": "Microsoft.EntityFrameworkCore, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.5",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore, and replace with new package Microsoft.EntityFrameworkCore 10.0.5",
+            "label": "Microsoft.EntityFrameworkCore 6.0.8",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore",
+              "PackageVersion": "6.0.8",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "8efc271b-dafe-4bc2-84f6-f890b1ce2b0e",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Sqlite, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Sqlite, and replace with new package Microsoft.EntityFrameworkCore.Sqlite 10.0.5",
+              "protected": "Microsoft.EntityFrameworkCore.Sqlite, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Sqlite, and replace with new package Microsoft.EntityFrameworkCore.Sqlite 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Sqlite, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Sqlite, and replace with new package Microsoft.EntityFrameworkCore.Sqlite 10.0.5",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Sqlite, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Sqlite, and replace with new package Microsoft.EntityFrameworkCore.Sqlite 10.0.5",
+            "label": "Microsoft.EntityFrameworkCore.Sqlite 6.0.8",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Sqlite",
+              "PackageVersion": "6.0.8",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "79b13ea9-eda4-4f56-8f04-f5723c7a05af",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.5",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.5",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.5",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 6.0.8",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "6.0.8",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "1ddc9c31-86f6-4664-9c25-eec25135155f",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Tools, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Tools, and replace with new package Microsoft.EntityFrameworkCore.Tools 10.0.5",
+              "protected": "Microsoft.EntityFrameworkCore.Tools, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Tools, and replace with new package Microsoft.EntityFrameworkCore.Tools 10.0.5"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Tools, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Tools, and replace with new package Microsoft.EntityFrameworkCore.Tools 10.0.5",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Tools, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Tools, and replace with new package Microsoft.EntityFrameworkCore.Tools 10.0.5",
+            "label": "Microsoft.EntityFrameworkCore.Tools 6.0.8",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Tools",
+              "PackageVersion": "6.0.8",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "9906fa42-fd50-49a6-a595-8580e5b8aadd",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.VisualStudio.Web.CodeGeneration.Design, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.VisualStudio.Web.CodeGeneration.Design, and replace with new package Microsoft.VisualStudio.Web.CodeGeneration.Design 10.0.2",
+              "protected": "Microsoft.VisualStudio.Web.CodeGeneration.Design, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.VisualStudio.Web.CodeGeneration.Design, and replace with new package Microsoft.VisualStudio.Web.CodeGeneration.Design 10.0.2"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+            "snippet": "Microsoft.VisualStudio.Web.CodeGeneration.Design, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.VisualStudio.Web.CodeGeneration.Design, and replace with new package Microsoft.VisualStudio.Web.CodeGeneration.Design 10.0.2",
+            "protectedSnippet": "Microsoft.VisualStudio.Web.CodeGeneration.Design, 6.0.8\n\nRecommendation:\n\nRemove Microsoft.VisualStudio.Web.CodeGeneration.Design, and replace with new package Microsoft.VisualStudio.Web.CodeGeneration.Design 10.0.2",
+            "label": "Microsoft.VisualStudio.Web.CodeGeneration.Design 6.0.8",
+            "properties": {
+              "PackageId": "Microsoft.VisualStudio.Web.CodeGeneration.Design",
+              "PackageVersion": "6.0.8",
+              "PackageNewVersion": "10.0.2",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "47947b03-817b-4c5c-8305-99f543f381d0",
+          "ruleId": "NuGet.0002",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Newtonsoft.Json, 13.0.1\n\nRecommendation:\n\nRemove Newtonsoft.Json, and replace with new package Newtonsoft.Json 13.0.4",
+              "protected": "Newtonsoft.Json, 13.0.1\n\nRecommendation:\n\nRemove Newtonsoft.Json, and replace with new package Newtonsoft.Json 13.0.4"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+            "snippet": "Newtonsoft.Json, 13.0.1\n\nRecommendation:\n\nRemove Newtonsoft.Json, and replace with new package Newtonsoft.Json 13.0.4",
+            "protectedSnippet": "Newtonsoft.Json, 13.0.1\n\nRecommendation:\n\nRemove Newtonsoft.Json, and replace with new package Newtonsoft.Json 13.0.4",
+            "label": "Newtonsoft.Json 13.0.1",
+            "properties": {
+              "PackageId": "Newtonsoft.Json",
+              "PackageVersion": "13.0.1",
+              "PackageNewVersion": "13.0.4",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "74e67351-c56f-4c1f-84da-458b4047a299",
+          "ruleId": "NuGet.0005",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Identity.Client, 4.46.2\n\nRecommendation:\n\nMove to latest Microsoft.Identity.Client. See https://aka.ms/msal/LTS for details.\nRemove Microsoft.Identity.Client, and replace with new package Microsoft.Identity.Client, 4.83.3",
+              "protected": "Microsoft.Identity.Client, 4.46.2\n\nRecommendation:\n\nMove to latest Microsoft.Identity.Client. See https://aka.ms/msal/LTS for details.\nRemove Microsoft.Identity.Client, and replace with new package Microsoft.Identity.Client, 4.83.3"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+            "snippet": "Microsoft.Identity.Client, 4.46.2\n\nRecommendation:\n\nMove to latest Microsoft.Identity.Client. See https://aka.ms/msal/LTS for details.\nRemove Microsoft.Identity.Client, and replace with new package Microsoft.Identity.Client, 4.83.3",
+            "protectedSnippet": "Microsoft.Identity.Client, 4.46.2\n\nRecommendation:\n\nMove to latest Microsoft.Identity.Client. See https://aka.ms/msal/LTS for details.\nRemove Microsoft.Identity.Client, and replace with new package Microsoft.Identity.Client, 4.83.3",
+            "label": "Microsoft.Identity.Client 4.46.2",
+            "properties": {
+              "PackageId": "Microsoft.Identity.Client",
+              "PackageVersion": "4.46.2",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "044ab322-9e3f-4589-a978-ebda0c9c72ab",
+          "ruleId": "NuGet.0005",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Identity.Web, 1.25.2\n\nRecommendation:\n\nMove to Microsoft.Identity.Web.* latest. See https://aka.ms/IdWeb/LTS for details.\nRemove Microsoft.Identity.Web, and replace with new package Microsoft.Identity.Web, 4.7.0",
+              "protected": "Microsoft.Identity.Web, 1.25.2\n\nRecommendation:\n\nMove to Microsoft.Identity.Web.* latest. See https://aka.ms/IdWeb/LTS for details.\nRemove Microsoft.Identity.Web, and replace with new package Microsoft.Identity.Web, 4.7.0"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+            "snippet": "Microsoft.Identity.Web, 1.25.2\n\nRecommendation:\n\nMove to Microsoft.Identity.Web.* latest. See https://aka.ms/IdWeb/LTS for details.\nRemove Microsoft.Identity.Web, and replace with new package Microsoft.Identity.Web, 4.7.0",
+            "protectedSnippet": "Microsoft.Identity.Web, 1.25.2\n\nRecommendation:\n\nMove to Microsoft.Identity.Web.* latest. See https://aka.ms/IdWeb/LTS for details.\nRemove Microsoft.Identity.Web, and replace with new package Microsoft.Identity.Web, 4.7.0",
+            "label": "Microsoft.Identity.Web 1.25.2",
+            "properties": {
+              "PackageId": "Microsoft.Identity.Web",
+              "PackageVersion": "1.25.2",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "762b4ad9-be23-4d16-9806-5ec98865bee1",
+          "ruleId": "Project.0002",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net6.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+            "snippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "c3c57ec3-d3ce-4bba-a07f-24bd036cbaf9",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials, ProfileId);",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\Services\\PowerBiServiceApi.cs",
+            "snippet": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials, ProfileId);",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 40,
+            "column": 6
+          }
+        },
+        {
+          "incidentId": "8735a34b-c3cd-4d6e-b2e0-4006191f468b",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials, ProfileId);",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\Services\\PowerBiServiceApi.cs",
+            "snippet": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials, ProfileId);",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 40,
+            "column": 6
+          }
+        },
+        {
+          "incidentId": "344f5d49-3130-4824-876d-b798a764f81d",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials);",
+              "protected": "T:System.Uri"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\Services\\PowerBiServiceApi.cs",
+            "snippet": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials);",
+            "protectedSnippet": "T:System.Uri",
+            "label": "T:System.Uri",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 35,
+            "column": 6
+          }
+        },
+        {
+          "incidentId": "8cb923d5-03bc-4ac2-92d3-fa5227fe0051",
+          "ruleId": "Api.0003",
+          "description": "Breaking change: URI length limits removed ",
+          "projectPath": "AppOwnsDataWebApi\\AppOwnsDataWebApi.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials);",
+              "protected": "M:System.Uri.#ctor(System.String)"
+            },
+            "kind": "File",
+            "path": "AppOwnsDataWebApi\\Services\\PowerBiServiceApi.cs",
+            "snippet": "return new PowerBIClient(new Uri(urlPowerBiServiceApiRoot), tokenCredentials);",
+            "protectedSnippet": "M:System.Uri.#ctor(System.String)",
+            "label": "M:System.Uri.#ctor(System.String)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/networking/10.0/uri-length-limits-removed.md",
+                "isCustom": false
+              }
+            ],
+            "line": 35,
+            "column": 6
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "NuGet.0002": {
+      "id": "NuGet.0002",
+      "isFeature": false,
+      "description": "NuGet package upgrade is recommended for selected target framework.\n\nStandard .NET packages are recommended to have versions matching version of .NET that project targets.\n\nSome other packages also are known to work better for selected target frameworks.",
+      "label": "NuGet package upgrade is recommended",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262530",
+          "isCustom": false
+        }
+      ]
+    },
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "Project\u0027s target framework(s) needs to be changed to the new target framework that you selected for this upgrade.\n\nDuring upgrade target framework will be adjusted to corresponding platform when applicable. In some cases project would result in multiple target frameworks after the upgrade if it was using features that now have their own platforms in modern .NET frameworks (windows, iOS, Android etc).",
+      "label": "Project\u0027s target framework(s) needs to be changed",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0005": {
+      "id": "NuGet.0005",
+      "isFeature": false,
+      "description": "NuGet package is deprecated.\n\nGo to its documentation and if there is a guidance for replacement of functionality provided by this package.",
+      "label": "NuGet package is deprecated",
+      "severity": "Optional",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262531",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0003": {
+      "id": "Api.0003",
+      "isFeature": false,
+      "description": "API has a behavioral change in selected .NET version: code and binaries may behave differently at runtime without needing recompilation, but the new behavior might be undesirable and require updates.",
+      "label": "Behavioral change in selected .NET version",
+      "severity": "Potential",
+      "effort": 1
+    },
+    "Api.0002": {
+      "id": "Api.0002",
+      "isFeature": false,
+      "description": "API is source incompatible for selected .NET version: requires code changes to compile successfully when targeting a new version, such as removing obsolete APIs or changing method signatures.",
+      "label": "Source incompatible for selected .NET version",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Breaking changes in .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262679",
+          "isCustom": false
+        }
+      ]
+    }
+  }
+}

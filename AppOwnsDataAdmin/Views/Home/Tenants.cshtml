@@ -2,38 +2,40 @@
 @{ var custName = _config["DemoSettings:CustomerName"] ?? "Customer"; }
 
 <h2>
-  <a class="btn btn-sm h2-backarrow" asp-action="Index" title="Back to Home"><i class="fa fa-arrow-left"></i></a>
-  <i class="fa fa-building-o"></i> @custName's Customers
+  <a class="btn btn-sm h2-backarrow" asp-action="Index" title="Back to Home"><i class="fa-solid fa-arrow-left"></i></a>
+  <i class="fa-regular fa-building"></i> @custName's Customers
 </h2>
 
 <div class="toolbar">
   <a id="create-workspace-button" class="btn btn-primary" asp-action="OnboardTenant">
-    <i class="fa fa-user-plus"></i>
+    <i class="fa-solid fa-user-plus"></i>
     Onboard New @custName Customer
   </a>
 </div>
 
-<table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-    <tr>
-      <th>Customer</th>
-      <th>Created</th>
-      <th>Workspace ID</th>
-      <th style="text-align:center;">Embed</th>
-      <th style="text-align:center;">PBI Web</th>
-      <th style="text-align:center;">View</th>
-      <th style="text-align:center;">Delete</th>
-    </tr>
-  </thead>
-  @foreach (var tenant in Model) {
-    <tr>
-      <td>@tenant.Name</td>
-      <td>@tenant.Created.ToString("yyyy-MM-dd 'at' hh:mm tt")</td>
-      <td>@tenant.WorkspaceId</td>
-      <td style="text-align:center"><a href="~/Home/Embed/?TenantName=@tenant.Name" class="nav nav-link btn-action-embed" target="_blank" title="Embed"><i class="fa fa-bar-chart"></i></a></td>
-      <td style="text-align:center"><a href="@tenant.WorkspaceUrl" class="nav nav-link btn-action-web" target="_blank" title="Open in Power BI"><i class="fa fa-external-link"></i></a></td>
-      <td style="text-align:center"><a href="Tenant/?Name=@tenant.Name" class="nav nav-link" title="View Details"><i class="fa fa-binoculars"></i></a></td>
-      <td style="text-align:center"><a href="DeleteTenant/?TenantName=@tenant.Name" class="nav nav-link btn-action-delete" title="Delete"><i class="fa fa-trash"></i></a></td>
-    </tr>
-  }
-</table>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr class="table-dark">
+        <th>Customer</th>
+        <th>Created</th>
+        <th>Workspace ID</th>
+        <th class="text-center">Embed</th>
+        <th class="text-center">PBI Web</th>
+        <th class="text-center">View</th>
+        <th class="text-center">Delete</th>
+      </tr>
+    </thead>
+    @foreach (var tenant in Model) {
+      <tr>
+        <td>@tenant.Name</td>
+        <td>@tenant.Created.ToString("yyyy-MM-dd 'at' hh:mm tt")</td>
+        <td><code>@tenant.WorkspaceId</code></td>
+        <td class="text-center"><a href="~/Home/Embed/?TenantName=@tenant.Name" class="btn btn-sm btn-outline-primary" target="_blank" title="Embed"><i class="fa-solid fa-chart-bar"></i></a></td>
+        <td class="text-center"><a href="@tenant.WorkspaceUrl" class="btn btn-sm btn-outline-secondary" target="_blank" title="Open in Power BI"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></td>
+        <td class="text-center"><a href="Tenant/?Name=@tenant.Name" class="btn btn-sm btn-outline-info" title="View Details"><i class="fa-solid fa-binoculars"></i></a></td>
+        <td class="text-center"><a href="DeleteTenant/?TenantName=@tenant.Name" class="btn btn-sm btn-outline-danger" title="Delete"><i class="fa-solid fa-trash"></i></a></td>
+      </tr>
+    }
+  </table>
+</div>

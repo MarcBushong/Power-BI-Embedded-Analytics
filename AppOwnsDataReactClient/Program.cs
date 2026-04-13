@@ -1,9 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSpaStaticFiles(configuration => {
-  configuration.RootPath = "wwwRoot";
-});
-
 var app = builder.Build();
 app.UseHttpsRedirection();
 
@@ -13,6 +9,9 @@ options.DefaultFileNames.Add("index.htm");
 app.UseDefaultFiles(options);
 
 app.UseStaticFiles();
-app.UseSpa(spa => {});
+
+// .NET 10: Replaces removed UseSpa() — serves index.htm for all unmatched routes
+// enabling full SPA client-side routing support
+app.MapFallbackToFile("index.htm");
 
 app.Run();

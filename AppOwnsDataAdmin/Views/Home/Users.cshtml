@@ -1,19 +1,19 @@
 @model IList<AppOwnsDataShared.Models.User>
 
 <h2>
-  <a class="btn btn-sm h2-backarrow" asp-action="Index" title="Back to Home"><i class="fa fa-arrow-left"></i></a>
-  <i class="fa fa-users"></i> Users
+  <a class="btn btn-sm h2-backarrow" asp-action="Index" title="Back to Home"><i class="fa-solid fa-arrow-left"></i></a>
+  <i class="fa-solid fa-users"></i> Users
 </h2>
 
 <div class="toolbar">
   <a id="create-workspace-button" class="btn btn-primary" asp-action="CreateUser">
-    <i class="fa fa-user-plus"></i>
+    <i class="fa-solid fa-user-plus"></i>
     Create New User
   </a>
 </div>
 
 <table class="table table-bordered table-striped">
-  <thead class="thead-dark">
+  <thead class="table-dark">
     <tr>
       <th>Login ID</th>
       <th>User Name</th>
@@ -34,11 +34,11 @@
   <td>@user.Created.ToString("g")</td>
   <td>@user.LastLogin.ToString("g")</td>
   <td>@(!string.IsNullOrEmpty(user.TenantName) ? user.TenantName : Html.Raw("<span class='badge-unassigned'>unassigned</span>"))</td>
-  <td>@(user.CanEdit ? Html.Raw("<span class='badge-yes'><i class='fa fa-check'></i> Yes</span>") : Html.Raw("<span class='badge-no'><i class='fa fa-times'></i> No</span>"))</td>
-  <td>@(user.CanCreate ? Html.Raw("<span class='badge-yes'><i class='fa fa-check'></i> Yes</span>") : Html.Raw("<span class='badge-no'><i class='fa fa-times'></i> No</span>"))</td>
-  <td style="text-align:center"><a href="GetUser/?LoginId=@user.LoginId" class="nav nav-link" title="View"><i class="fa fa-binoculars"></i></a></td>
-  <td style="text-align:center"><a href="EditUser/?LoginId=@user.LoginId" class="nav nav-link btn-action-edit" title="Edit"><i class="fa fa-pencil"></i></a></td>
-  <td style="text-align:center"><a href="DeleteUser/?LoginId=@user.LoginId" class="nav nav-link btn-action-delete" title="Delete"><i class="fa fa-trash"></i></a></td>
+  <td>@(user.CanEdit ? Html.Raw("<span class='badge-yes'><i class='fa-solid fa-check'></i> Yes</span>") : Html.Raw("<span class='badge-no'><i class='fa-solid fa-xmark'></i> No</span>"))</td>
+  <td>@(user.CanCreate ? Html.Raw("<span class='badge-yes'><i class='fa-solid fa-check'></i> Yes</span>") : Html.Raw("<span class='badge-no'><i class='fa-solid fa-xmark'></i> No</span>"))</td>
+  <td style="text-align:center"><a href="GetUser/?LoginId=@user.LoginId" class="nav nav-link" title="View"><i class="fa-solid fa-binoculars"></i></a></td>
+  <td style="text-align:center"><a href="EditUser/?LoginId=@user.LoginId" class="nav nav-link btn-action-edit" title="Edit"><i class="fa-solid fa-pencil"></i></a></td>
+  <td style="text-align:center"><a href="DeleteUser/?LoginId=@user.LoginId" class="nav nav-link btn-action-delete" title="Delete"><i class="fa-solid fa-trash"></i></a></td>
 </tr>
   }
 </table>
