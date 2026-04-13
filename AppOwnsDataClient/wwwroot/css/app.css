@@ -98,6 +98,75 @@ i {
     font-size: 9px;
     font-weight: bold;
     padding: 2px;
+
+/* ── Tenant brand banner ───────────────────────────────────── */
+#brand-banner {
+  display: flex;
+  align-items: center;
+  height: 110px;
+  margin: 0 -15px 0 -15px;
+  padding: 0 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+}
+
+/* two large faint circles for depth */
+#brand-banner::before {
+  content: '';
+  position: absolute;
+  right: -50px; top: -80px;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.07);
+  pointer-events: none;
+}
+#brand-banner::after {
+  content: '';
+  position: absolute;
+  right: 80px; bottom: -90px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.05);
+  pointer-events: none;
+}
+
+#brand-logo-container {
+  flex: 0 0 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+#brand-logo svg {
+  width: 78px;
+  height: 78px;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
+}
+
+#brand-info {
+  flex: 1;
+  padding-left: 20px;
+  z-index: 1;
+}
+
+#brand-company-name {
+  font-size: 2.1em;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+#brand-tagline {
+  font-size: 0.92em;
+  color: rgba(255,255,255,0.76);
+  margin-top: 5px;
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
     color: #222;
     background-color: #F2C811;
     border-color: #111;
