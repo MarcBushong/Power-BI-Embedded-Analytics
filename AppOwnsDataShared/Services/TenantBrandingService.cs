@@ -45,11 +45,11 @@ namespace AppOwnsDataShared.Services {
         },
 
         ["AcmeCorp"] = new TenantBranding {
-          ThemePrimary   = "#004D40",
-          ThemeSecondary = "#00695C",
-          ThemeTertiary  = "#FFD600",
-          LogoSymbol     = "AC",
-          Tagline        = "Building tomorrow, today"
+          ThemePrimary   = "#6D0000",
+          ThemeSecondary = "#B71C1C",
+          ThemeTertiary  = "#FFD700",
+          LogoSymbol     = "ROCKET",
+          Tagline        = "Order now. Explode later.\u2122"
         },
       };
 

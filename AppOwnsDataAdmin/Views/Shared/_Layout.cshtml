@@ -7,23 +7,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
-  <link rel="stylesheet" href="~/css/site.css" />
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-expand-sm navbar-dark admin-navbar">
+    <nav class="navbar navbar-expand navbar-dark admin-navbar">
       <div class="container-fluid admin-nav-inner">
         <a class="navbar-brand admin-brand" asp-area="" asp-controller="Home" asp-action="Index">
           <span class="brand-icon"><i class="fa fa-bolt"></i></span>
           <span class="brand-text">PowerBI <span class="brand-highlight">Admin</span></span>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse">
           <ul class="navbar-nav admin-nav-links mr-auto">
             <li class="nav-item">
               <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Tenants">
@@ -51,8 +47,8 @@
       @RenderBody()
     </main>
   </div>
-  <script src="~/lib/jquery/dist/jquery.min.js"></script>
-  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
   @RenderSection("Scripts", required: false)
 </body>
 </html>

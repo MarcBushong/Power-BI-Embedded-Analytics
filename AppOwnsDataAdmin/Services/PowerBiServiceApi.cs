@@ -26,6 +26,11 @@ namespace AppOwnsDataAdmin.Services {
     public string EmbedUrl;
     public string Token;
     public string TenantName;
+    public string ThemePrimary;
+    public string ThemeSecondary;
+    public string ThemeTertiary;
+    public string LogoSymbol;
+    public string Tagline;
   }
 
   public class PowerBiTenantDetails : PowerBiTenant {
@@ -597,11 +602,16 @@ namespace AppOwnsDataAdmin.Services {
                                                                  generateTokenRequestParameters).Token;
 
       return new EmbeddedReportViewModel {
-        ReportId = report.Id.ToString(),
-        Name = report.Name,
-        EmbedUrl = report.EmbedUrl,
-        Token = embedToken,
-        TenantName = Tenant.Name
+        ReportId       = report.Id.ToString(),
+        Name           = report.Name,
+        EmbedUrl       = report.EmbedUrl,
+        Token          = embedToken,
+        TenantName     = Tenant.Name,
+        ThemePrimary   = Tenant.ThemePrimary   ?? "#37474F",
+        ThemeSecondary = Tenant.ThemeSecondary ?? "#546E7A",
+        ThemeTertiary  = Tenant.ThemeTertiary  ?? "#FF6F00",
+        LogoSymbol     = Tenant.LogoSymbol     ?? "T",
+        Tagline        = Tenant.Tagline        ?? ""
       };
 
     }
