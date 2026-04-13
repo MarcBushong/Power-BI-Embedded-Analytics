@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
+  @{ var custName = _config["DemoSettings:CustomerName"] ?? "Customer"; }
   <header>
     <nav class="navbar navbar-expand navbar-dark admin-navbar">
       <div class="container-fluid admin-nav-inner">
@@ -23,7 +24,7 @@
           <ul class="navbar-nav admin-nav-links mr-auto">
             <li class="nav-item">
               <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Tenants">
-                <i class="fa fa-building-o"></i> Tenants
+                <i class="fa fa-building-o"></i> @custName's Customers
               </a>
             </li>
             <li class="nav-item">

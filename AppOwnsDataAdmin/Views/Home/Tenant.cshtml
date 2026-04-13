@@ -1,9 +1,10 @@
 @model AppOwnsDataAdmin.Services.PowerBiTenantDetails
+@{ var custName = _config["DemoSettings:CustomerName"] ?? "Customer"; }
 
 <h2>
-  <a class="btn btn-sm h2-backarrow" asp-action="Tenants" title="Back to Tenants"><i class="fa fa-arrow-left"></i></a>
+  <a class="btn btn-sm h2-backarrow" asp-action="Tenants" title="Back to @custName's Customers"><i class="fa fa-arrow-left"></i></a>
   <i class="fa fa-building-o" style="font-size:1.1rem;color:var(--admin-text-muted)"></i>
-  Tenant Details
+  Customer Details
 </h2>
 
 <form class="form-horizontal" role="form">

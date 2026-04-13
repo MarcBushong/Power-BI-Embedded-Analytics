@@ -1,17 +1,18 @@
 @model AppOwnsDataAdmin.Controllers.HomeController.OnboardTenantModel
+@{ var custName = _config["DemoSettings:CustomerName"] ?? "Customer"; }
 
-<h2 id="page-title"><i class="fa fa-user-plus"></i> Onboard New Tenant</h2>
+<h2 id="page-title"><i class="fa fa-user-plus"></i> Onboard New @custName Customer</h2>
 
 <form id="new-tenant" method="post" class="form-horizontal">
   <div class="toolbar">
     <button id="create-tenant-button" type="submit" class="btn btn-primary" style="margin: 6px">
       <i class="fa fa-user-plus"></i>
-      Create New Customer Tenant
+      Create New @custName Customer
     </button>
   </div>
   <fieldset style="padding: 8px;">
     <div class="form-group row">
-      <label for="TenantName" class="col-sm-3 col-form-label">Tenant Name</label>
+      <label for="TenantName" class="col-sm-3 col-form-label">Customer Name</label>
       <div class="col-sm-9">
         <input class="form-control" id="TenantName" name="TenantName" placeholder="Enter tenant name" value="@Model.TenantName">
       </div>
@@ -55,7 +56,7 @@
 
         $("#new-tenant").submit(function() {
             $("#new-tenant").hide();
-            $("#page-title").text("Onboarding New Tenant...");
+            $("#page-title").text("Onboarding New @custName Customer...");
             $(".loading").show(100);
         });
 

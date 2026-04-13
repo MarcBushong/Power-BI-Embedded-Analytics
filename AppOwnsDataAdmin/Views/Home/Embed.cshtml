@@ -18,7 +18,7 @@
 </style>
 
 <h2 class="embed-heading">
-  <a class="btn btn-sm h2-backarrow" asp-action="Tenants" title="Back to Tenants"><i class="fa fa-arrow-left"></i></a>
+  <a class="btn btn-sm h2-backarrow" asp-action="Tenants" title="Back to @(_config["DemoSettings:CustomerName"] ?? "Customer")'s Customers"><i class="fa fa-arrow-left"></i></a>
   <i class="fa fa-bar-chart" style="font-size:1.1rem"></i>
   @Model.TenantName — Sales Report
 </h2>
