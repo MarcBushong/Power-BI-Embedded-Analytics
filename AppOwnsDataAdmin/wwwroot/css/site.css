@@ -270,7 +270,8 @@ fieldset {
 }
 .form-control:focus { border-color: var(--admin-primary); box-shadow: 0 0 0 3px rgba(79,70,229,0.15); background-color: #fff; outline: none; }
 .form-control[readonly] { background-color: #f8fafc; color: var(--admin-text-muted); cursor: default; }
-.col-form-label { padding: 0; margin: 0; margin-top: 6px; font-size: 0.85rem; font-weight: 500; color: var(--admin-text-muted); }
+.col-form-label { padding: 0; margin: 0; margin-top: 6px; font-size: 0.85rem; font-weight: 500; color: var(--admin-text-muted); text-align: right; padding-right: 1.25rem; }
+.form-horizontal { max-width: 800px; }
 .form-check-input { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--admin-primary); }
 label { font-size: 0.85rem; font-weight: 500; }
 .button-row { padding-left: 0; margin-left: 0; padding-top: 0.5rem; }
