@@ -603,12 +603,15 @@ namespace AppOwnsDataAdmin.Services {
       Guid workspaceId = new Guid(Tenant.WorkspaceId);
       var allReports = (await pbiClient.Reports.GetReportsInGroupAsync(workspaceId)).Value;
 
-      // Generate individual V1 tokens per report — works on any capacity tier
-      var viewTokenReq = new GenerateTokenRequest(accessLevel: "View");
-      var reportItems  = new List<EmbeddedReportItem>();
+      // Generate individual V1 tokens per report — works on any capacity tier.
+      // Paginated reports require the associated datasetId in the token request.
+      var reportItems = new List<EmbeddedReportItem>();
       foreach (var r in allReports) {
         try {
-          string tok = pbiClient.Reports.GenerateTokenInGroup(workspaceId, r.Id, viewTokenReq).Token;
+          var tokenReq = (r.ReportType == "PaginatedReport" && !string.IsNullOrEmpty(r.DatasetId))
+            ? new GenerateTokenRequest(accessLevel: "View", datasetId: r.DatasetId)
+            : new GenerateTokenRequest(accessLevel: "View");
+          string tok = pbiClient.Reports.GenerateTokenInGroup(workspaceId, r.Id, tokenReq).Token;
           reportItems.Add(new EmbeddedReportItem {
             Id         = r.Id.ToString(),
             Name       = r.Name,
@@ -618,7 +621,7 @@ namespace AppOwnsDataAdmin.Services {
           });
         }
         catch (Exception ex) {
-          Console.WriteLine($"⚠️ Skipping report '{r.Name}': {ex.Message}");
+          Console.WriteLine($"⚠️ Report '{r.Name}' ({r.ReportType}, datasetId={r.DatasetId}) token failed: {ex.Message}");
         }
       }
 
