@@ -602,26 +602,54 @@ namespace AppOwnsDataAdmin.Services {
 
       Guid workspaceId = new Guid(Tenant.WorkspaceId);
       var allReports = (await pbiClient.Reports.GetReportsInGroupAsync(workspaceId)).Value;
+      var allDatasets = (await pbiClient.Datasets.GetDatasetsInGroupAsync(workspaceId)).Value;
 
-      // Generate individual V1 tokens per report — works on any capacity tier.
-      // Paginated reports require the associated datasetId in the token request.
+      // Log workspace inventory so failures are visible in the Kestrel console
+      Console.WriteLine($"[Embed] {Tenant.Name} | workspace={workspaceId} | {allReports.Count} reports, {allDatasets.Count} datasets");
+      foreach (var r in allReports)
+        Console.WriteLine($"  report: '{r.Name}'  type={r.ReportType}  datasetId={r.DatasetId ?? "null"}");
+
+      // Fallback dataset ID — used when the paginated report's metadata lacks its own
+      string workspaceDatasetId = allDatasets.FirstOrDefault()?.Id;
+
       var reportItems = new List<EmbeddedReportItem>();
       foreach (var r in allReports) {
         try {
-          var tokenReq = (r.ReportType == "PaginatedReport" && !string.IsNullOrEmpty(r.DatasetId))
-            ? new GenerateTokenRequest(accessLevel: "View", datasetId: r.DatasetId)
-            : new GenerateTokenRequest(accessLevel: "View");
-          string tok = pbiClient.Reports.GenerateTokenInGroup(workspaceId, r.Id, tokenReq).Token;
-          reportItems.Add(new EmbeddedReportItem {
-            Id         = r.Id.ToString(),
-            Name       = r.Name,
-            EmbedUrl   = r.EmbedUrl,
-            ReportType = r.ReportType,
-            Token      = tok
-          });
+          string tok = null;
+
+          if (r.ReportType == "PaginatedReport") {
+            // Paginated reports must have the datasetId in the token request.
+            // Try the report's own datasetId first; fall back to the first workspace dataset.
+            string dsId = !string.IsNullOrEmpty(r.DatasetId) ? r.DatasetId : workspaceDatasetId;
+            if (!string.IsNullOrEmpty(dsId)) {
+              tok = pbiClient.Reports.GenerateTokenInGroup(workspaceId, r.Id,
+                      new GenerateTokenRequest(accessLevel: "View", datasetId: dsId)).Token;
+            }
+            else {
+              Console.WriteLine($"  ⚠️ '{r.Name}': no datasetId available — skipping paginated token");
+            }
+          }
+          else {
+            tok = pbiClient.Reports.GenerateTokenInGroup(workspaceId, r.Id,
+                    new GenerateTokenRequest(accessLevel: "View")).Token;
+          }
+
+          if (tok != null) {
+            reportItems.Add(new EmbeddedReportItem {
+              Id         = r.Id.ToString(),
+              Name       = r.Name,
+              EmbedUrl   = r.EmbedUrl,
+              ReportType = r.ReportType,
+              Token      = tok
+            });
+            Console.WriteLine($"  ✅ token OK: '{r.Name}'");
+          }
+        }
+        catch (Microsoft.Rest.HttpOperationException hex) {
+          Console.WriteLine($"  ❌ token FAILED: '{r.Name}' ({r.ReportType}) status={hex.Response?.StatusCode} body={hex.Response?.Content}");
         }
         catch (Exception ex) {
-          Console.WriteLine($"⚠️ Report '{r.Name}' ({r.ReportType}, datasetId={r.DatasetId}) token failed: {ex.Message}");
+          Console.WriteLine($"  ❌ token FAILED: '{r.Name}' ({r.ReportType}) {ex.GetType().Name}: {ex.Message}");
         }
       }
 
