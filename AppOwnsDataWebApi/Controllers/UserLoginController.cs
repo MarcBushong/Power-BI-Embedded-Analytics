@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using AppOwnsDataShared.Models;
 using AppOwnsDataShared.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -22,8 +23,10 @@ namespace AppOwnsDataWebApi.Controllers {
 
     [HttpPost]
     public ActionResult<User> PostUser(User user) {
-      string authenticatedUser = this.User.FindFirst("preferred_username").Value;
-      if (user.LoginId.Equals(authenticatedUser)) {
+      var usernameClaim = this.User.FindFirst("preferred_username");
+      if (usernameClaim == null) return Unauthorized();
+      string authenticatedUser = usernameClaim.Value;
+      if (user.LoginId.Equals(authenticatedUser, StringComparison.OrdinalIgnoreCase)) {
         this.appOwnsDataDBService.ProcessUserLogin(user);
         return NoContent();
       }

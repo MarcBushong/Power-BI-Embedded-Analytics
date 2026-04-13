@@ -4,6 +4,14 @@ using System.IO;
 
 namespace AppOwnsDataWebApi.Models {
 
+  public class TenantTheme {
+    public string primary { get; set; }
+    public string secondary { get; set; }
+    public string tertiary { get; set; }
+    public string logoSymbol { get; set; }
+    public string tagline { get; set; }
+  }
+
   public class EmbeddedReport {
     public string id;
     public string name;
@@ -28,6 +36,7 @@ namespace AppOwnsDataWebApi.Models {
     public string user { get; set; }
     public bool userCanEdit { get; set; }
     public bool userCanCreate { get; set; }
+    public TenantTheme theme { get; set; }
   }
 
   public class EmbedTokenResult{

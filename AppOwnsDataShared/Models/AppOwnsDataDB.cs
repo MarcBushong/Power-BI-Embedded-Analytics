@@ -21,6 +21,11 @@ namespace AppOwnsDataShared.Models {
     public string DatabaseUserName { get; set; }
     public string DatabaseUserPassword { get; set; }
     public DateTime Created { get; set; }
+    public string ThemePrimary { get; set; }
+    public string ThemeSecondary { get; set; }
+    public string ThemeTertiary { get; set; }
+    public string LogoSymbol { get; set; }
+    public string Tagline { get; set; }
   }
 
   public class User {

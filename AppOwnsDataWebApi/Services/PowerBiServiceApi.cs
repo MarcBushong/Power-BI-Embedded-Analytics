@@ -56,11 +56,15 @@ namespace AppOwnsDataWebApi.Services {
 
       AppOwnsDataModels.User currentUser = this.appOwnsDataDBService.GetUser(user);
 
-      if (currentUser.TenantName == null || currentUser.TenantName == "") {
+      if (currentUser == null || currentUser.TenantName == null || currentUser.TenantName == "") {
         return new EmbeddedViewModel { tenantName = "" };
       }
 
       AppOwnsDataModels.PowerBiTenant currentTenant = appOwnsDataDBService.GetTenant(currentUser.TenantName);
+
+      if (currentTenant == null) {
+        return new EmbeddedViewModel { tenantName = "" };
+      }
 
       SetCallingContext(currentTenant.ProfileId);
 
@@ -127,7 +131,14 @@ namespace AppOwnsDataWebApi.Services {
         embedTokenExpiration = EmbedTokenResult.Expiration,
         user = currentUser.LoginId,
         userCanEdit = currentUser.CanEdit,
-        userCanCreate = currentUser.CanCreate
+        userCanCreate = currentUser.CanCreate,
+        theme = new TenantTheme {
+          primary   = currentTenant.ThemePrimary   ?? "#37474F",
+          secondary = currentTenant.ThemeSecondary ?? "#78909C",
+          tertiary  = currentTenant.ThemeTertiary  ?? "#FF6F00",
+          logoSymbol = currentTenant.LogoSymbol    ?? currentUser.TenantName.Substring(0, Math.Min(2, currentUser.TenantName.Length)).ToUpper(),
+          tagline   = currentTenant.Tagline        ?? ""
+        }
       };
 
     }
@@ -136,11 +147,15 @@ namespace AppOwnsDataWebApi.Services {
 
       AppOwnsDataModels.User currentUser = this.appOwnsDataDBService.GetUser(user);
 
-      if (currentUser.TenantName == null || currentUser.TenantName == "") {
+      if (currentUser == null || currentUser.TenantName == null || currentUser.TenantName == "") {
         throw new ApplicationException("User not assigned to tenant");
       }
 
       AppOwnsDataModels.PowerBiTenant currentTenant = appOwnsDataDBService.GetTenant(currentUser.TenantName);
+
+      if (currentTenant == null) {
+        throw new ApplicationException($"Tenant '{currentUser.TenantName}' not found");
+      }
 
       Guid workspaceId = new Guid(currentTenant.WorkspaceId);
 
@@ -188,11 +203,15 @@ namespace AppOwnsDataWebApi.Services {
 
       AppOwnsDataModels.User currentUser = this.appOwnsDataDBService.GetUser(user);
 
-      if (currentUser.TenantName == null || currentUser.TenantName == "") {
+      if (currentUser == null || currentUser.TenantName == null || currentUser.TenantName == "") {
         throw new ApplicationException("User not assigned to tenant");
       }
 
       AppOwnsDataModels.PowerBiTenant currentTenant = appOwnsDataDBService.GetTenant(currentUser.TenantName);
+
+      if (currentTenant == null) {
+        throw new ApplicationException($"Tenant '{currentUser.TenantName}' not found");
+      }
 
       Guid workspaceId = new Guid(currentTenant.WorkspaceId);
       Guid reportId = new Guid(request.ReportId);

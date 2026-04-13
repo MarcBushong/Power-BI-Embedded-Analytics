@@ -22,9 +22,11 @@ namespace AppOwnsDataWebApi.Controllers {
     }
 
     [HttpGet]
-    public async Task<EmbeddedViewModel> Get() {
-      string user = this.User.FindFirst("preferred_username").Value;
-      return await this.powerBiServiceApi.GetEmbeddedViewModel(user);
+    public async Task<IActionResult> Get() {
+      var usernameClaim = this.User.FindFirst("preferred_username");
+      if (usernameClaim == null) return Unauthorized();
+      var result = await this.powerBiServiceApi.GetEmbeddedViewModel(usernameClaim.Value);
+      return Ok(result);
     }
 
   }

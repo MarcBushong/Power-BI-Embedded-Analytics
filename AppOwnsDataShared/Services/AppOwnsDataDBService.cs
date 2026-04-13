@@ -29,6 +29,7 @@ namespace AppOwnsDataShared.Services {
     }
 
     public void OnboardNewTenant(PowerBiTenant tenant) {
+      TenantBrandingService.ApplyBrandingToTenant(tenant);
       tenant.Created = DateTime.Now;
       dbContext.Tenants.Add(tenant);
       dbContext.SaveChanges();
@@ -42,8 +43,7 @@ namespace AppOwnsDataShared.Services {
     }
 
     public PowerBiTenant GetTenant(string TenantName) {
-      var tenant = dbContext.Tenants.Where(tenant => tenant.Name == TenantName).First();
-      return tenant;
+      return dbContext.Tenants.FirstOrDefault(t => t.Name == TenantName);
     }
 
     public void DeleteTenant(PowerBiTenant tenant) {
@@ -70,19 +70,11 @@ namespace AppOwnsDataShared.Services {
     }
 
     public User GetUser(string LoginId) {
-      var user = dbContext.Users.Where(user => user.LoginId == LoginId).First();
-      return user;
+      return dbContext.Users.FirstOrDefault(u => u.LoginId == LoginId);
     }
 
     public User UpdateUser(User currentUser) {
-      var users = dbContext.Users.Where(user => user.LoginId == currentUser.LoginId);
-      User user;
-      if (users.Count() > 0) {
-        user = users.First();
-      }
-      else {
-        user = new User();
-      }
+      User user = dbContext.Users.FirstOrDefault(u => u.LoginId == currentUser.LoginId) ?? new User();
       user.UserName = currentUser.UserName;
       user.CanEdit = currentUser.CanEdit;
       user.CanCreate = currentUser.CanCreate;
@@ -130,7 +122,8 @@ namespace AppOwnsDataShared.Services {
 
     public ActivityLogEntry PostActivityLogEntry(ActivityLogEntry activityLogEntry) {
       activityLogEntry.Created = DateTime.Now;
-      activityLogEntry.WorkspaceId = (dbContext.Tenants.Where(tenant => tenant.Name == activityLogEntry.Tenant).First()).WorkspaceId;
+      var tenant = dbContext.Tenants.FirstOrDefault(t => t.Name == activityLogEntry.Tenant);
+      activityLogEntry.WorkspaceId = tenant?.WorkspaceId ?? string.Empty;
       dbContext.ActivityLog.Add(activityLogEntry);
       dbContext.SaveChanges();
       return activityLogEntry;

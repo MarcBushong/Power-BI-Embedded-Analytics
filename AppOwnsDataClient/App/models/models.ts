@@ -1,5 +1,13 @@
 ﻿
 
+export class TenantTheme {
+  primary: string;
+  secondary: string;
+  tertiary: string;se
+  logoSymbol: string;
+  tagline: string;
+}
+
 export class Report {
   id: string;
   name: string;
@@ -25,6 +33,7 @@ export class ViewModel {
   user: string;
   userCanEdit: boolean;
   userCanCreate: boolean;
+  theme: TenantTheme;
 }
 
 export class ActivityLogEntry {

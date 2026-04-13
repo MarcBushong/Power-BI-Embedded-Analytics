@@ -1,6 +1,6 @@
 @model IList<AppOwnsDataShared.Models.PowerBiTenant>
 
-<H2>Customer Tenants</H2>
+<h2><i class="fa fa-building-o"></i> Customer Tenants</h2>
 
 <div class="toolbar">
   <a id="create-workspace-button" class="btn btn-primary" asp-action="OnboardTenant">
@@ -16,7 +16,7 @@
       <th>Created</th>
       <th>Workspace ID</th>
       <th style="text-align:center;">Embed</th>
-      <th style="text-align:center;">Web URL</th>
+      <th style="text-align:center;">PBI Web</th>
       <th style="text-align:center;">View</th>
       <th style="text-align:center;">Delete</th>
     </tr>
@@ -26,10 +26,10 @@
       <td>@tenant.Name</td>
       <td>@tenant.Created.ToString("yyyy-MM-dd 'at' hh:mm tt")</td>
       <td>@tenant.WorkspaceId</td>
-      <td style="text-align:center"><a href="~/Home/Embed/?TenantName=@tenant.Name" class="nav nav-link" target="_blank"><i class="fa fa-bar-chart"></a></td>
-      <td style="text-align:center"><a href="@tenant.WorkspaceUrl" class="nav nav-link" target="_blank"><i class="fa fa-line-chart"></a></td>
-      <td style="text-align:center"><a href="Tenant/?Name=@tenant.Name" class="nav nav-link"><i class="fa fa-binoculars"></i></a></td>
-      <td style="text-align:center"><a href="DeleteTenant/?TenantName=@tenant.Name" class="nav nav-link"><i class="fa fa-remove"></i></a></td>
+      <td style="text-align:center"><a href="~/Home/Embed/?TenantName=@tenant.Name" class="nav nav-link btn-action-embed" target="_blank" title="Embed"><i class="fa fa-bar-chart"></i></a></td>
+      <td style="text-align:center"><a href="@tenant.WorkspaceUrl" class="nav nav-link btn-action-web" target="_blank" title="Open in Power BI"><i class="fa fa-external-link"></i></a></td>
+      <td style="text-align:center"><a href="Tenant/?Name=@tenant.Name" class="nav nav-link" title="View Details"><i class="fa fa-binoculars"></i></a></td>
+      <td style="text-align:center"><a href="DeleteTenant/?TenantName=@tenant.Name" class="nav nav-link btn-action-delete" title="Delete"><i class="fa fa-trash"></i></a></td>
     </tr>
   }
 </table>

@@ -54992,6 +54992,7 @@ var App = /** @class */ (function () {
         App.toggleEditButton = $("#toggle-edit");
         App.fullScreenButton = $("#full-screen");
         App.embedContainer = $("#embed-container");
+        App.brandBanner = $("#brand-banner");
         // set up authentication callback
         SpaAuthService_1.default.uiUpdateCallback = App.onAuthenticationCompleted;
         App.login.on("click", function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -55080,6 +55081,7 @@ var App = /** @class */ (function () {
             App.viewUnassigned.hide();
             App.powerbi.reset(App.embedContainer[0]);
             App.tenantName.text(viewModel.tenantName);
+            App.applyBranding(viewModel);
             App.reportsList = App.reportsList.empty();
             App.datasetsList = App.datasetsList.empty();
             if (viewModel.reports.length == 0) {
@@ -55176,6 +55178,7 @@ var App = /** @class */ (function () {
                     return __generator(this, function (_b) {
                         loadDuration = Date.now() - timerStart;
                         App.setReportLayout();
+                        App.applyPowerBiTheme(App.currentReport, App.viewModel);
                         return [2 /*return*/];
                     });
                 }); });
@@ -55476,6 +55479,48 @@ var App = /** @class */ (function () {
             return [2 /*return*/];
         });
     }); };
+    /* ── Per-tenant branding ── */
+    App.buildLogoSvg = function (logoSymbol, primary, secondary, tertiary) {
+        var sym = (logoSymbol || 'T').toUpperCase();
+        var logos = {
+            'WT': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/><path d="M5 18 C14 11 30 9 41 14 L37 21 C26 17 12 19 7 25 Z" fill="rgba(255,255,255,0.95)"/><path d="M7 25 C11 27 17 26 21 23 L19 30 C13 32 6 30 7 27 Z" fill="rgba(255,255,255,0.55)"/><line x1="22" y1="28" x2="22" y2="39" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/><circle cx="38" cy="10" r="2.5" fill="rgba(255,255,255,0.4)"/></svg>',
+            'CO': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/><path d="M35 13 A17 17 0 1 0 35 31 L29 27 A10 10 0 1 1 29 17 Z" fill="rgba(255,255,255,0.95)"/><path d="M30 18 L37 14 L36 22 L30 26 Z" fill="rgba(255,255,255,0.35)"/><circle cx="22" cy="22" r="2.5" fill="rgba(255,255,255,0.25)"/></svg>',
+            'MC': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/><rect x="5"  y="30" width="6"  height="9"  rx="1.5" fill="rgba(255,255,255,0.65)"/><rect x="13" y="22" width="6"  height="17" rx="1.5" fill="rgba(255,255,255,0.8)"/><rect x="21" y="13" width="6"  height="26" rx="1.5" fill="rgba(255,255,255,0.95)"/><rect x="29" y="19" width="6"  height="20" rx="1.5" fill="rgba(255,255,255,0.75)"/><line x1="24" y1="13" x2="24" y2="6" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/><circle cx="24" cy="5" r="2" fill="rgba(255,255,255,0.6)"/></svg>',
+            'AC': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/><path d="M22 7 L34 36 L22 30 L10 36 Z" fill="none" stroke="rgba(255,255,255,0.95)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><line x1="15" y1="27" x2="29" y2="27" stroke="rgba(255,255,255,0.95)" stroke-width="2" stroke-linecap="round"/><circle cx="22" cy="17" r="2" fill="rgba(255,255,255,0.75)"/><circle cx="36" cy="11" r="3.5" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/><circle cx="36" cy="11" r="1.2" fill="rgba(255,255,255,0.6)"/></svg>'
+        };
+        if (logos[sym]) return logos[sym];
+        var fs = sym.length > 1 ? '13' : '17';
+        return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><circle cx="22" cy="22" r="17" fill="rgba(255,255,255,0.1)"/><text x="22" y="28" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="' + fs + '" font-weight="800" fill="white" letter-spacing="-0.5">' + sym + '</text></svg>';
+    };
+    App.applyBranding = function (viewModel) {
+        var t = viewModel.theme;
+        if (!t) return;
+        var primary   = t.primary   || '#37474F';
+        var secondary = t.secondary || '#546E7A';
+        var tertiary  = t.tertiary  || '#FF6F00';
+        document.documentElement.style.setProperty('--theme-primary',   primary);
+        document.documentElement.style.setProperty('--theme-secondary', secondary);
+        document.documentElement.style.setProperty('--theme-tertiary',  tertiary);
+        App.brandBanner.css('background', 'linear-gradient(135deg,' + primary + ' 0%,' + secondary + ' 100%)');
+        $("#brand-logo").html(App.buildLogoSvg(t.logoSymbol, primary, secondary, tertiary));
+        $("#brand-company-name").text(viewModel.tenantName);
+        $("#brand-tagline").text(t.tagline || '');
+    };
+    App.applyPowerBiTheme = function (report, viewModel) {
+        if (!viewModel || !viewModel.theme) return;
+        var t = viewModel.theme;
+        var themeJson = {
+            name: viewModel.tenantName + ' Theme',
+            dataColors: [t.primary, t.secondary, t.tertiary, '#546E7A', '#90A4AE', '#FF8F00', '#00897B', '#5C6BC0', '#F06292'],
+            tableAccent: t.primary,
+            foreground: '#1e293b',
+            background: '#ffffff',
+            visualStyles: {
+                page: { '*': { background: [{ properties: { color: { solid: { color: '#f8fafc' } } } }] } }
+            }
+        };
+        report.applyTheme({ themeJson: themeJson }).catch(function(e) { console.warn('PBI theme apply failed:', e); });
+    };
     return App;
 }());
 exports["default"] = App;
@@ -55803,7 +55848,7 @@ var SpaAuthService = /** @class */ (function () {
         },
         cache: {
             cacheLocation: "localStorage",
-            storeAuthStateInCookie: true
+            storeAuthStateInCookie: false
         }
     };
     SpaAuthService.publicApplication = new msal.PublicClientApplication(SpaAuthService.msalConfig);
@@ -55820,29 +55865,37 @@ var SpaAuthService = /** @class */ (function () {
             return [2 /*return*/];
         });
     }); };
-    SpaAuthService.login = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var loginRequest, loginResult, userInfo;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    loginRequest = { scopes: appSettings_1.default.apiScopes };
-                    return [4 /*yield*/, SpaAuthService.publicApplication.loginPopup(loginRequest)];
-                case 1:
-                    loginResult = _b.sent();
-                    userInfo = loginResult.account;
-                    SpaAuthService.userName = userInfo.username;
-                    SpaAuthService.userDisplayName = userInfo.name;
-                    SpaAuthService.userIsAuthenticated = true;
-                    SpaAuthService.uiUpdateCallback();
-                    return [2 /*return*/];
-            }
-        });
-    }); };
+    SpaAuthService.login = function () {
+        return SpaAuthService.publicApplication.loginPopup({ scopes: appSettings_1.default.apiScopes })
+            .then(function (loginResult) {
+                var userInfo = loginResult.account;
+                SpaAuthService.userName = userInfo.username;
+                SpaAuthService.userDisplayName = userInfo.name;
+                SpaAuthService.userIsAuthenticated = true;
+                SpaAuthService.uiUpdateCallback();
+            })
+            .catch(function (error) {
+                console.error("Login failed:", error);
+                if (error && error.errorCode === "interaction_in_progress") {
+                    sessionStorage.clear();
+                    localStorage.clear();
+                    document.cookie = 'msal.interaction.status=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+                    location.reload();
+                } else if (error && error.errorCode === "popup_window_error") {
+                    alert("The login popup was blocked. Please allow popups for this site in your browser settings and try again.");
+                } else if (error && error.errorCode !== "user_cancelled") {
+                    alert("Login failed: " + (error.message || "Unknown error. Check the browser console for details."));
+                }
+            });
+    };
     SpaAuthService.logout = function () {
         SpaAuthService.userName = "";
         SpaAuthService.userDisplayName = "";
         SpaAuthService.userIsAuthenticated = false;
-        SpaAuthService.publicApplication.logout();
+        sessionStorage.clear();
+        localStorage.clear();
+        document.cookie = 'msal.interaction.status=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+        location.reload();
     };
     return SpaAuthService;
 }());

@@ -4,38 +4,50 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>App-Owns-Data Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom">
-      <div class="container">
-        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">App-Owns-Data Admin</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-sm navbar-dark admin-navbar">
+      <div class="container-fluid admin-nav-inner">
+        <a class="navbar-brand admin-brand" asp-area="" asp-controller="Home" asp-action="Index">
+          <span class="brand-icon"><i class="fa fa-bolt"></i></span>
+          <span class="brand-text">PowerBI <span class="brand-highlight">Admin</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-          <partial name="_LoginPartial" />
-          <ul class="navbar-nav flex-grow-1">
-            <li class="nav-item top-nav-item">
-              <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Tenants">Tenants</a>
+        <div class="navbar-collapse collapse">
+          <ul class="navbar-nav admin-nav-links mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Tenants">
+                <i class="fa fa-building-o"></i> Tenants
+              </a>
             </li>
-            <li class="nav-item top-nav-item">
-              <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Users">Users</a>
+            <li class="nav-item">
+              <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Users">
+                <i class="fa fa-users"></i> Users
+              </a>
             </li>
-            <li class="nav-item top-nav-item">
-              <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ActivityLog">Activity Log</a>
+            <li class="nav-item">
+              <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ActivityLog">
+                <i class="fa fa-list-alt"></i> Activity Log
+              </a>
             </li>
           </ul>
+          <partial name="_LoginPartial" />
         </div>
       </div>
     </nav>
   </header>
-  <div class="container">
-    <main role="main" class="pb-3">
+  <div class="container admin-page-container">
+    <main role="main" class="pb-4">
       @RenderBody()
     </main>
   </div>

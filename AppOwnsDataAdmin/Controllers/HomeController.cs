@@ -36,6 +36,7 @@ namespace AppOwnsDataAdmin.Controllers {
 
     public IActionResult Tenant(string Name) {
       var model = AppOwnsDataDBService.GetTenant(Name);
+      if (model == null) return NotFound();
       var modelWithDetails = powerBiServiceApi.GetTenantDetails(model);
       return View(modelWithDetails);
     }
@@ -84,6 +85,7 @@ namespace AppOwnsDataAdmin.Controllers {
 
     public IActionResult DeleteTenant(string TenantName) {
       var tenant = this.AppOwnsDataDBService.GetTenant(TenantName);
+      if (tenant == null) return NotFound();
       this.powerBiServiceApi.DeleteTenant(tenant);
       this.AppOwnsDataDBService.DeleteTenant(tenant);
       return RedirectToAction("Tenants");
@@ -91,6 +93,7 @@ namespace AppOwnsDataAdmin.Controllers {
 
     public IActionResult Embed(string TenantName) {
       var tenant = this.AppOwnsDataDBService.GetTenant(TenantName);
+      if (tenant == null) return NotFound();
       var viewModel = this.powerBiServiceApi.GetReportEmbeddingData(tenant).Result;
       return View(viewModel);
     }
@@ -102,6 +105,7 @@ namespace AppOwnsDataAdmin.Controllers {
    
     public IActionResult GetUser(string LoginId) {
       var model = AppOwnsDataDBService.GetUser(LoginId);
+      if (model == null) return NotFound();
       return View(model);
     }
 

@@ -18,7 +18,7 @@ export default class SpaAuthService {
     },
     cache: {
       cacheLocation: "localStorage",
-      storeAuthStateInCookie: true
+      storeAuthStateInCookie: false
     }
   };
 
@@ -36,20 +36,38 @@ export default class SpaAuthService {
   }
 
   static login = async () => {
-    var loginRequest: msal.PopupRequest = { scopes: AppSettings.apiScopes }
-    var loginResult: msal.AuthenticationResult = await SpaAuthService.publicApplication.loginPopup(loginRequest);
-    var userInfo: msal.AccountInfo = loginResult.account;
-    SpaAuthService.userName = userInfo.username;
-    SpaAuthService.userDisplayName = userInfo.name;
-    SpaAuthService.userIsAuthenticated = true;
-    SpaAuthService.uiUpdateCallback();
+    try {
+      var loginRequest: msal.PopupRequest = { scopes: AppSettings.apiScopes }
+      var loginResult: msal.AuthenticationResult = await SpaAuthService.publicApplication.loginPopup(loginRequest);
+      var userInfo: msal.AccountInfo = loginResult.account;
+      SpaAuthService.userName = userInfo.username;
+      SpaAuthService.userDisplayName = userInfo.name;
+      SpaAuthService.userIsAuthenticated = true;
+      SpaAuthService.uiUpdateCallback();
+    }
+    catch (error: any) {
+      console.error("Login failed:", error);
+      if (error instanceof msal.BrowserAuthError && error.errorCode === "interaction_in_progress") {
+        localStorage.clear();
+        sessionStorage.clear();
+        document.cookie = 'msal.interaction.status=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+        location.reload();
+      } else if (error instanceof msal.BrowserAuthError && error.errorCode === "popup_window_error") {
+        alert("The login popup was blocked. Please allow popups for this site in your browser settings and try again.");
+      } else if (!(error instanceof msal.BrowserAuthError && error.errorCode === "user_cancelled")) {
+        alert("Login failed: " + (error.message || "Unknown error. Check the browser console for details."));
+      }
+    }
   }
 
   static logout = () => {
     SpaAuthService.userName = "";
     SpaAuthService.userDisplayName = "";
     SpaAuthService.userIsAuthenticated = false;
-    SpaAuthService.publicApplication.logout();
+    sessionStorage.clear();
+    localStorage.clear();
+    document.cookie = 'msal.interaction.status=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+    location.reload();
   }
 
   static async getAccessToken(): Promise<string> {

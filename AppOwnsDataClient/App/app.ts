@@ -11,7 +11,7 @@ require('powerbi-client');
 import SpaAuthService from './services/SpaAuthService';
 import AppOwnsDataWebApi from './services/AppOwnsDataWebApi'
 
-import { Report, Dataset, ViewModel, ActivityLogEntry } from './models/models';
+import { Report, Dataset, ViewModel, TenantTheme, ActivityLogEntry } from './models/models';
 
 export default class App {
 
@@ -109,35 +109,46 @@ export default class App {
   }
 
   private static onAuthenticationCompleted = async () => {
-    App.loadingSpinnerMessage.text("Processing user login...");
-    App.loadingSpinner.show(250);
-    App.viewAnonymous.hide();
-    await AppOwnsDataWebApi.LoginUser(SpaAuthService.userName, SpaAuthService.userDisplayName);
-    App.loadingSpinner.hide();
-    App.refreshUi();
-    App.initializeAppData();
+    try {
+      App.loadingSpinnerMessage.text("Processing user login...");
+      App.loadingSpinner.show(250);
+      App.viewAnonymous.hide();
+      await AppOwnsDataWebApi.LoginUser(SpaAuthService.userName, SpaAuthService.userDisplayName);
+      App.loadingSpinner.hide();
+      App.refreshUi();
+      App.initializeAppData();
+    } catch (error) {
+      console.error("Login processing failed:", error);
+      App.loadingSpinner.hide();
+      App.viewAnonymous.show();
+    }
   }
 
   private static initializeAppData = async () => {
-
-    App.loadingSpinnerMessage.text("Getting report embedding data...");
-    App.loadingSpinner.show();
-    App.viewAnonymous.hide();
-
-    App.viewModel = await AppOwnsDataWebApi.GetEmbeddingData(); 
-
-    if (App.viewModel.tenantName == "") {
+    try {
+      App.loadingSpinnerMessage.text("Getting report embedding data...");
+      App.loadingSpinner.show();
       App.viewAnonymous.hide();
-      App.viewAuthenticated.hide();
+
+      App.viewModel = await AppOwnsDataWebApi.GetEmbeddingData();
+
+      if (App.viewModel.tenantName == "") {
+        App.viewAnonymous.hide();
+        App.viewAuthenticated.hide();
+        App.loadingSpinner.hide();
+        App.viewUnassigned.show(500);
+      }
+      else {
+        console.log("Loading View Model", App.viewModel);
+        App.loadViewModel(App.viewModel);
+      }
+
+      window.setInterval(App.reportOnExpiration, 10000);
+    } catch (error) {
+      console.error("Failed to load embedding data:", error);
       App.loadingSpinner.hide();
       App.viewUnassigned.show(500);
     }
-    else {
-      console.log("Loading View Model", App.viewModel);
-      App.loadViewModel(App.viewModel);
-    }
-
-    window.setInterval(App.reportOnExpiration, 10000);
   }
 
   private static loadViewModel = async (viewModel: ViewModel, reportId?: string) => {
@@ -148,7 +159,7 @@ export default class App {
     App.powerbi.reset(App.embedContainer[0]);
 
     App.tenantName.text(viewModel.tenantName);
-    App.applyBranding(viewModel.tenantName);
+    App.applyBranding(viewModel);
     App.reportsList = App.reportsList.empty();
     App.datasetsList = App.datasetsList.empty();
 
@@ -256,6 +267,7 @@ export default class App {
     App.currentReport.on("loaded", async (event: any) => {
       loadDuration = Date.now() - timerStart;
       App.setReportLayout();
+      App.applyPowerBiTheme(App.currentReport, App.viewModel);
     });
 
     App.currentReport.off("rendered");
@@ -471,37 +483,39 @@ export default class App {
     });
   }
 
-  private static getTenantBranding = (tenantName: string): { color: string; gradientEnd: string; tagline: string; logoSvg: string } => {
-    const n = tenantName.toLowerCase().replace(/\s/g, '');
-    if (n.includes('wingtip')) return {
-      color: '#1565C0', gradientEnd: '#0D47A1',
-      tagline: 'Soaring beyond expectations',
-      logoSvg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 70"><path d="M4,54 C26,42 58,26 96,14 L88,28 C62,36 32,48 18,60 Z" fill="rgba(255,255,255,0.95)"/><path d="M4,54 C14,56 26,55 34,49 L30,59 C18,62 8,59 4,56 Z" fill="rgba(255,255,255,0.6)"/></svg>`
-    };
-    if (n.includes('mega')) return {
-      color: '#455A64', gradientEnd: '#263238',
-      tagline: 'Enterprise solutions at scale',
-      logoSvg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 76"><rect x="4" y="44" width="14" height="32" fill="rgba(255,255,255,0.75)"/><rect x="22" y="28" width="18" height="48" fill="rgba(255,255,255,0.9)"/><rect x="44" y="12" width="20" height="64" fill="rgba(255,255,255,0.95)"/><rect x="68" y="32" width="16" height="44" fill="rgba(255,255,255,0.8)"/><rect x="88" y="48" width="10" height="28" fill="rgba(255,255,255,0.65)"/><rect x="47" y="18" width="4" height="4" fill="#455A64"/><rect x="56" y="18" width="4" height="4" fill="#455A64"/><rect x="47" y="28" width="4" height="4" fill="#455A64"/><rect x="56" y="28" width="4" height="4" fill="#455A64"/><rect x="47" y="38" width="4" height="4" fill="#455A64"/><rect x="56" y="38" width="4" height="4" fill="#455A64"/><line x1="54" y1="12" x2="54" y2="2" stroke="rgba(255,255,255,0.8)" stroke-width="2"/></svg>`
-    };
-    if (n.includes('contoso')) return {
-      color: '#C62828', gradientEnd: '#7F0000',
-      tagline: 'Innovation meets elegance',
-      logoSvg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><path d="M64,20 A30,30 0 1,0 64,60 L53,52 A17,17 0 1,1 53,28 Z" fill="rgba(255,255,255,0.95)"/><path d="M53,36 L70,31 L68,40 L53,44 Z" fill="rgba(255,255,255,0.4)"/></svg>`
-    };
-    if (n.includes('acme')) return {
-      color: '#2E7D32', gradientEnd: '#1B5E20',
-      tagline: 'Building tomorrow, today',
-      logoSvg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 96"><path d="M40,5 C53,5 57,22 57,38 L57,65 L40,72 L23,65 L23,38 C23,22 27,5 40,5 Z" fill="rgba(255,255,255,0.95)"/><path d="M23,52 L11,70 L23,64 Z" fill="rgba(255,255,255,0.7)"/><path d="M57,52 L69,70 L57,64 Z" fill="rgba(255,255,255,0.7)"/><circle cx="40" cy="38" r="7" fill="rgba(46,125,50,0.5)" stroke="rgba(255,255,255,0.65)" stroke-width="2"/><path d="M29,72 Q34,86 40,78 Q46,90 51,72 Q45,78 40,75 Q35,78 29,72 Z" fill="#FFD600"/><circle cx="16" cy="20" r="3" fill="rgba(255,255,255,0.55)"/><circle cx="64" cy="16" r="2" fill="rgba(255,255,255,0.45)"/></svg>`
-    };
-    return { color: '#37474F', gradientEnd: '#263238', tagline: 'Your data, your insights', logoSvg: '' };
+  private static applyBranding = (viewModel: ViewModel) => {
+    const t = viewModel.theme;
+    if (!t) return;
+    const primary   = t.primary   || '#37474F';
+    const secondary = t.secondary || '#78909C';
+    const tertiary  = t.tertiary  || '#FF6F00';
+    document.documentElement.style.setProperty('--theme-primary',   primary);
+    document.documentElement.style.setProperty('--theme-secondary', secondary);
+    document.documentElement.style.setProperty('--theme-tertiary',  tertiary);
+    App.brandBanner.css('background',
+      `linear-gradient(135deg, ${primary} 0%, ${secondary} 100%)`);
+    const sym = t.logoSymbol || viewModel.tenantName.substring(0, 2).toUpperCase();
+    $("#brand-logo").html(
+      `<span style="font-size:2em;font-weight:900;color:white;font-family:sans-serif;` +
+      `letter-spacing:-1px;text-shadow:0 1px 3px rgba(0,0,0,0.4)">${sym}</span>`);
+    $("#brand-company-name").text(viewModel.tenantName);
+    $("#brand-tagline").text(t.tagline || '');
   };
 
-  private static applyBranding = (tenantName: string) => {
-    const b = App.getTenantBranding(tenantName);
-    App.brandBanner.css('background', `linear-gradient(135deg, ${b.color} 0%, ${b.gradientEnd} 100%)`);
-    $("#brand-logo").html(b.logoSvg);
-    $("#brand-company-name").text(tenantName);
-    $("#brand-tagline").text(b.tagline);
+  private static applyPowerBiTheme = (report: powerbi.Report, viewModel: ViewModel) => {
+    if (!viewModel?.theme) return;
+    const t = viewModel.theme;
+    const themeJson = {
+      name: viewModel.tenantName + ' Theme',
+      dataColors: [
+        t.primary, t.secondary, t.tertiary,
+        '#546E7A', '#90A4AE', '#FF8F00', '#00897B', '#5C6BC0', '#F06292'
+      ],
+      tableAccent: t.primary,
+      foreground: '#212121',
+      background: '#FFFFFF'
+    };
+    report.applyTheme({ themeJson }).catch(e => console.warn('PBI theme apply failed:', e));
   };
 
   private static reportOnExpiration = async () => {
