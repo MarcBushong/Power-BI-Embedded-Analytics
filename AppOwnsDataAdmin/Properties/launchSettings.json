@@ -14,7 +14,8 @@
       "launchBrowser": true,
       "applicationUrl": "https://localhost:44300;http://localhost:47047",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_Kestrel__EndpointDefaults__Protocols": "Http1"
       }
     },
     "IIS Express": {
