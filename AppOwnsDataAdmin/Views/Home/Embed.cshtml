@@ -31,7 +31,23 @@
   </div>
 </div>
 
-<div id="report-container"></div>
+<div class="embed-layout">
+  <div id="embed-sidebar">
+    <div id="embed-sidebar-header">Reports</div>
+    @if (Model.Reports != null) {
+      foreach (var r in Model.Reports) {
+        <a href="#" class="embed-report-link @(r.Id == Model.ReportId ? "active" : "")"
+           data-report-id="@r.Id"
+           data-embed-url="@r.EmbedUrl"
+           data-report-type="@r.ReportType">
+          <i class="fa @(r.ReportType == "PaginatedReport" ? "fa-file-text-o" : "fa-bar-chart")"></i>
+          @r.Name
+        </a>
+      }
+    }
+  </div>
+  <div id="report-container"></div>
+</div>
 
 @section Scripts {
 
@@ -73,54 +89,73 @@
         $('#brand-banner').css('background', 'linear-gradient(135deg,' + brand.primary + ' 0%,' + brand.secondary + ' 100%)');
 
         // ── Power BI Embed ────────────────────────────────────────────────────
-        var reportEmbedData = {
-            ReportId:   "@Model.ReportId",
-            EmbedUrl:   "@Model.EmbedUrl",
-            EmbedToken: "@Model.Token"
-        };
-
-        var models = window["powerbi-client"].models;
+        var accessToken     = "@Model.Token";
+        var models          = window["powerbi-client"].models;
         var reportContainer = $("#report-container").get(0);
 
-        var reportLoadConfig = {
-            type: "report",
-            id: reportEmbedData.ReportId,
-            embedUrl: reportEmbedData.EmbedUrl,
-            accessToken: reportEmbedData.EmbedToken,
-            tokenType: models.TokenType.Embed,
-            settings: {
-                panes: {
-                    filters:        { visible: false, expanded: false },
-                    pageNavigation: { visible: true, position: models.PageNavigationPosition.Left }
-                }
-            }
-        };
-
-        var report = powerbi.embed(reportContainer, reportLoadConfig);
-
-        report.off("loaded");
-        report.on("loaded", function() {
-            var themeJson = {
-                name: brand.tenant + ' Theme',
-                dataColors: [brand.primary, brand.secondary, brand.tertiary,
-                             '#546E7A', '#90A4AE', '#FF8F00', '#00897B', '#5C6BC0', '#F06292'],
-                tableAccent: brand.primary,
-                foreground:  '#1e293b',
-                background:  '#ffffff',
-                visualStyles: {
-                    page: { '*': { background: [{ properties: { color: { solid: { color: '#f8fafc' } } } }] } }
-                }
+        function getEmbedConfig(id, url, type) {
+            var config = {
+                type: "report",
+                id: id,
+                embedUrl: url,
+                accessToken: accessToken,
+                tokenType: models.TokenType.Embed
             };
-            report.applyTheme({ themeJson: themeJson }).catch(function(e) {
-                console.warn('PBI theme apply failed:', e);
+            if (type !== "PaginatedReport") {
+                config.settings = {
+                    panes: {
+                        filters:        { visible: false, expanded: false },
+                        pageNavigation: { visible: true, position: models.PageNavigationPosition.Left }
+                    }
+                };
+            }
+            return config;
+        }
+
+        function applyPbiTheme(rpt) {
+            rpt.off("loaded");
+            rpt.on("loaded", function() {
+                var themeJson = {
+                    name: brand.tenant + ' Theme',
+                    dataColors: [brand.primary, brand.secondary, brand.tertiary,
+                                 '#546E7A', '#90A4AE', '#FF8F00', '#00897B', '#5C6BC0', '#F06292'],
+                    tableAccent: brand.primary,
+                    foreground:  '#1e293b',
+                    background:  '#ffffff',
+                    visualStyles: {
+                        page: { '*': { background: [{ properties: { color: { solid: { color: '#f8fafc' } } } }] } }
+                    }
+                };
+                rpt.applyTheme({ themeJson: themeJson }).catch(function(e) {
+                    console.warn('PBI theme apply failed:', e);
+                });
             });
+        }
+
+        // Initial embed
+        var initialType   = '@Html.Raw(Model.ReportType ?? "PowerBIReport")';
+        var currentReport = powerbi.embed(reportContainer, getEmbedConfig("@Model.ReportId", "@Model.EmbedUrl", initialType));
+        if (initialType !== "PaginatedReport") { applyPbiTheme(currentReport); }
+
+        currentReport.off("rendered");
+        currentReport.on("rendered", function() { console.log("Report render successful"); });
+        currentReport.off("error");
+        currentReport.on("error", function(event) { console.error(event.detail); });
+
+        // ── Report Switcher ───────────────────────────────────────────────────
+        $(document).on('click', '.embed-report-link', function(e) {
+            e.preventDefault();
+            var id   = $(this).data('report-id');
+            var url  = $(this).data('embed-url');
+            var type = $(this).data('report-type');
+            powerbi.reset(reportContainer);
+            currentReport = powerbi.embed(reportContainer, getEmbedConfig(id, url, type));
+            if (type !== "PaginatedReport") { applyPbiTheme(currentReport); }
+            currentReport.off("error");
+            currentReport.on("error", function(event) { console.error(event.detail); });
+            $('.embed-report-link').removeClass('active');
+            $(this).addClass('active');
         });
-
-        report.off("rendered");
-        report.on("rendered", function() { console.log("Report render successful"); });
-
-        report.off("error");
-        report.on("error", function(event) { console.error(event.detail); });
 
     });
   </script>

@@ -20,6 +20,13 @@ using System.Text;
 
 namespace AppOwnsDataAdmin.Services {
 
+  public class EmbeddedReportItem {
+    public string Id;
+    public string Name;
+    public string EmbedUrl;
+    public string ReportType;
+  }
+
   public class EmbeddedReportViewModel {
     public string ReportId;
     public string Name;
@@ -31,6 +38,8 @@ namespace AppOwnsDataAdmin.Services {
     public string ThemeTertiary;
     public string LogoSymbol;
     public string Tagline;
+    public string ReportType;
+    public List<EmbeddedReportItem> Reports;
   }
 
   public class PowerBiTenantDetails : PowerBiTenant {
@@ -591,27 +600,39 @@ namespace AppOwnsDataAdmin.Services {
       SetCallingContext(Tenant.ProfileId);
 
       Guid workspaceId = new Guid(Tenant.WorkspaceId);
-      var reports = (await pbiClient.Reports.GetReportsInGroupAsync(workspaceId)).Value;
+      var allReports = (await pbiClient.Reports.GetReportsInGroupAsync(workspaceId)).Value;
+      var datasets   = (await pbiClient.Datasets.GetDatasetsInGroupAsync(workspaceId)).Value;
 
-      var report = reports.Where(report => report.Name.Equals("Sales")).First();
+      // Default: first regular report; fall back to first of any type
+      var defaultReport = allReports.FirstOrDefault(r => r.ReportType.Equals("PowerBIReport"))
+                       ?? allReports.First();
 
-      GenerateTokenRequest generateTokenRequestParameters = new GenerateTokenRequest(accessLevel: "View");
+      // Multi-resource V2 token covering all reports and datasets
+      var datasetRequests = datasets.Select(d => new GenerateTokenRequestV2Dataset(d.Id)).ToList();
+      var reportRequests  = allReports.Select(r => new GenerateTokenRequestV2Report(r.Id, allowEdit: false)).ToList();
+      var tokenRequest    = new GenerateTokenRequestV2 { Datasets = datasetRequests, Reports = reportRequests };
+      var embedTokenResult = pbiClient.EmbedToken.GenerateToken(tokenRequest);
 
-      // call to Power BI Service API and pass GenerateTokenRequest object to generate embed token
-      string embedToken = pbiClient.Reports.GenerateTokenInGroup(workspaceId, report.Id,
-                                                                 generateTokenRequestParameters).Token;
+      var reportItems = allReports.Select(r => new EmbeddedReportItem {
+        Id         = r.Id.ToString(),
+        Name       = r.Name,
+        EmbedUrl   = r.EmbedUrl,
+        ReportType = r.ReportType
+      }).ToList();
 
       return new EmbeddedReportViewModel {
-        ReportId       = report.Id.ToString(),
-        Name           = report.Name,
-        EmbedUrl       = report.EmbedUrl,
-        Token          = embedToken,
+        ReportId       = defaultReport.Id.ToString(),
+        Name           = defaultReport.Name,
+        EmbedUrl       = defaultReport.EmbedUrl,
+        ReportType     = defaultReport.ReportType,
+        Token          = embedTokenResult.Token,
         TenantName     = Tenant.Name,
         ThemePrimary   = Tenant.ThemePrimary   ?? "#37474F",
         ThemeSecondary = Tenant.ThemeSecondary ?? "#546E7A",
         ThemeTertiary  = Tenant.ThemeTertiary  ?? "#FF6F00",
         LogoSymbol     = Tenant.LogoSymbol     ?? "T",
-        Tagline        = Tenant.Tagline        ?? ""
+        Tagline        = Tenant.Tagline        ?? "",
+        Reports        = reportItems
       };
 
     }
