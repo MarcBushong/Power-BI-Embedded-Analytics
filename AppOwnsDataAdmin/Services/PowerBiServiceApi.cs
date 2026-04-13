@@ -25,6 +25,7 @@ namespace AppOwnsDataAdmin.Services {
     public string Name;
     public string EmbedUrl;
     public string ReportType;
+    public string Token;
   }
 
   public class EmbeddedReportViewModel {
@@ -601,31 +602,35 @@ namespace AppOwnsDataAdmin.Services {
 
       Guid workspaceId = new Guid(Tenant.WorkspaceId);
       var allReports = (await pbiClient.Reports.GetReportsInGroupAsync(workspaceId)).Value;
-      var datasets   = (await pbiClient.Datasets.GetDatasetsInGroupAsync(workspaceId)).Value;
 
-      // Default: first regular report; fall back to first of any type
-      var defaultReport = allReports.FirstOrDefault(r => r.ReportType.Equals("PowerBIReport"))
-                       ?? allReports.First();
+      // Generate individual V1 tokens per report — works on any capacity tier
+      var viewTokenReq = new GenerateTokenRequest(accessLevel: "View");
+      var reportItems  = new List<EmbeddedReportItem>();
+      foreach (var r in allReports) {
+        try {
+          string tok = pbiClient.Reports.GenerateTokenInGroup(workspaceId, r.Id, viewTokenReq).Token;
+          reportItems.Add(new EmbeddedReportItem {
+            Id         = r.Id.ToString(),
+            Name       = r.Name,
+            EmbedUrl   = r.EmbedUrl,
+            ReportType = r.ReportType,
+            Token      = tok
+          });
+        }
+        catch (Exception ex) {
+          Console.WriteLine($"⚠️ Skipping report '{r.Name}': {ex.Message}");
+        }
+      }
 
-      // Multi-resource V2 token covering all reports and datasets
-      var datasetRequests = datasets.Select(d => new GenerateTokenRequestV2Dataset(d.Id)).ToList();
-      var reportRequests  = allReports.Select(r => new GenerateTokenRequestV2Report(r.Id, allowEdit: false)).ToList();
-      var tokenRequest    = new GenerateTokenRequestV2 { Datasets = datasetRequests, Reports = reportRequests };
-      var embedTokenResult = pbiClient.EmbedToken.GenerateToken(tokenRequest);
-
-      var reportItems = allReports.Select(r => new EmbeddedReportItem {
-        Id         = r.Id.ToString(),
-        Name       = r.Name,
-        EmbedUrl   = r.EmbedUrl,
-        ReportType = r.ReportType
-      }).ToList();
+      var defaultReport = reportItems.FirstOrDefault(r => r.ReportType.Equals("PowerBIReport"))
+                       ?? reportItems.FirstOrDefault();
 
       return new EmbeddedReportViewModel {
-        ReportId       = defaultReport.Id.ToString(),
-        Name           = defaultReport.Name,
-        EmbedUrl       = defaultReport.EmbedUrl,
-        ReportType     = defaultReport.ReportType,
-        Token          = embedTokenResult.Token,
+        ReportId       = defaultReport?.Id       ?? "",
+        Name           = defaultReport?.Name     ?? "",
+        EmbedUrl       = defaultReport?.EmbedUrl ?? "",
+        ReportType     = defaultReport?.ReportType ?? "PowerBIReport",
+        Token          = defaultReport?.Token    ?? "",
         TenantName     = Tenant.Name,
         ThemePrimary   = Tenant.ThemePrimary   ?? "#37474F",
         ThemeSecondary = Tenant.ThemeSecondary ?? "#546E7A",

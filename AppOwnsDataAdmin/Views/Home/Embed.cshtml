@@ -39,7 +39,8 @@
         <a href="#" class="embed-report-link @(r.Id == Model.ReportId ? "active" : "")"
            data-report-id="@r.Id"
            data-embed-url="@r.EmbedUrl"
-           data-report-type="@r.ReportType">
+           data-report-type="@r.ReportType"
+           data-token="@r.Token">
           <i class="fa @(r.ReportType == "PaginatedReport" ? "fa-file-text-o" : "fa-bar-chart")"></i>
           @r.Name
         </a>
@@ -89,16 +90,15 @@
         $('#brand-banner').css('background', 'linear-gradient(135deg,' + brand.primary + ' 0%,' + brand.secondary + ' 100%)');
 
         // ── Power BI Embed ────────────────────────────────────────────────────
-        var accessToken     = "@Model.Token";
         var models          = window["powerbi-client"].models;
         var reportContainer = $("#report-container").get(0);
 
-        function getEmbedConfig(id, url, type) {
+        function getEmbedConfig(id, url, type, token) {
             var config = {
                 type: "report",
                 id: id,
                 embedUrl: url,
-                accessToken: accessToken,
+                accessToken: token,
                 tokenType: models.TokenType.Embed
             };
             if (type !== "PaginatedReport") {
@@ -134,7 +134,7 @@
 
         // Initial embed
         var initialType   = '@Html.Raw(Model.ReportType ?? "PowerBIReport")';
-        var currentReport = powerbi.embed(reportContainer, getEmbedConfig("@Model.ReportId", "@Model.EmbedUrl", initialType));
+        var currentReport = powerbi.embed(reportContainer, getEmbedConfig("@Model.ReportId", "@Model.EmbedUrl", initialType, "@Model.Token"));
         if (initialType !== "PaginatedReport") { applyPbiTheme(currentReport); }
 
         currentReport.off("rendered");
@@ -148,8 +148,9 @@
             var id   = $(this).data('report-id');
             var url  = $(this).data('embed-url');
             var type = $(this).data('report-type');
+            var token = $(this).data('token');
             powerbi.reset(reportContainer);
-            currentReport = powerbi.embed(reportContainer, getEmbedConfig(id, url, type));
+            currentReport = powerbi.embed(reportContainer, getEmbedConfig(id, url, type, token));
             if (type !== "PaginatedReport") { applyPbiTheme(currentReport); }
             currentReport.off("error");
             currentReport.on("error", function(event) { console.error(event.detail); });
