@@ -601,40 +601,48 @@ namespace AppOwnsDataAdmin.Services {
       SetCallingContext(Tenant.ProfileId);
 
       Guid workspaceId = new Guid(Tenant.WorkspaceId);
-      var allReports = (await pbiClient.Reports.GetReportsInGroupAsync(workspaceId)).Value;
+      var allReports  = (await pbiClient.Reports.GetReportsInGroupAsync(workspaceId)).Value;
       var allDatasets = (await pbiClient.Datasets.GetDatasetsInGroupAsync(workspaceId)).Value;
 
-      // Log workspace inventory so failures are visible in the Kestrel console
-      Console.WriteLine($"[Embed] {Tenant.Name} | workspace={workspaceId} | {allReports.Count} reports, {allDatasets.Count} datasets");
+      Console.WriteLine($"[Embed] {Tenant.Name} workspace={workspaceId} | {allReports.Count} reports, {allDatasets.Count} datasets");
       foreach (var r in allReports)
         Console.WriteLine($"  report: '{r.Name}'  type={r.ReportType}  datasetId={r.DatasetId ?? "null"}");
 
-      // Fallback dataset ID — used when the paginated report's metadata lacks its own
-      string workspaceDatasetId = allDatasets.FirstOrDefault()?.Id;
-
       var reportItems = new List<EmbeddedReportItem>();
-      foreach (var r in allReports) {
-        try {
-          string tok = null;
 
-          if (r.ReportType == "PaginatedReport") {
-            // Paginated reports must have the datasetId in the token request.
-            // Try the report's own datasetId first; fall back to the first workspace dataset.
-            string dsId = !string.IsNullOrEmpty(r.DatasetId) ? r.DatasetId : workspaceDatasetId;
-            if (!string.IsNullOrEmpty(dsId)) {
-              tok = pbiClient.Reports.GenerateTokenInGroup(workspaceId, r.Id,
-                      new GenerateTokenRequest(accessLevel: "View", datasetId: dsId)).Token;
-            }
-            else {
-              Console.WriteLine($"  ⚠️ '{r.Name}': no datasetId available — skipping paginated token");
-            }
-          }
-          else {
-            tok = pbiClient.Reports.GenerateTokenInGroup(workspaceId, r.Id,
-                    new GenerateTokenRequest(accessLevel: "View")).Token;
-          }
+      // ── V2 token — the ONLY option for paginated reports using Power BI datasets ──
+      // The workspace must be on Premium/Fabric capacity (which it is if it contains a
+      // paginated report). If the workspace has no paginated reports and is not on
+      // Premium, V2 will fail and we fall back to V1 per-report for PowerBIReport only.
+      try {
+        var datasetRequests = allDatasets
+          .Select(d => new GenerateTokenRequestV2Dataset(d.Id, xmlaPermissions: XmlaPermissions.ReadOnly))
+          .ToList();
+        var reportRequests = allReports
+          .Select(r => new GenerateTokenRequestV2Report(r.Id, allowEdit: false))
+          .ToList();
+        var tokenRequest = new GenerateTokenRequestV2 { Datasets = datasetRequests, Reports = reportRequests };
+        string sharedToken = pbiClient.EmbedToken.GenerateToken(tokenRequest).Token;
+        Console.WriteLine($"  ✅ V2 token OK — covers all {allReports.Count} reports");
 
-          if (tok != null) {
+        foreach (var r in allReports) {
+          reportItems.Add(new EmbeddedReportItem {
+            Id         = r.Id.ToString(),
+            Name       = r.Name,
+            EmbedUrl   = r.EmbedUrl,
+            ReportType = r.ReportType,
+            Token      = sharedToken   // single V2 token is valid for all reports
+          });
+        }
+      }
+      catch (Microsoft.Rest.HttpOperationException hex) {
+        Console.WriteLine($"  ⚠️ V2 token failed (status={hex.Response?.StatusCode}): {hex.Response?.Content}");
+        Console.WriteLine($"  → Falling back to V1 per-report (PowerBIReport only — V1 cannot embed paginated reports)");
+
+        foreach (var r in allReports.Where(r => r.ReportType == "PowerBIReport")) {
+          try {
+            string tok = pbiClient.Reports.GenerateTokenInGroup(workspaceId, r.Id,
+                           new GenerateTokenRequest(accessLevel: "View")).Token;
             reportItems.Add(new EmbeddedReportItem {
               Id         = r.Id.ToString(),
               Name       = r.Name,
@@ -642,14 +650,11 @@ namespace AppOwnsDataAdmin.Services {
               ReportType = r.ReportType,
               Token      = tok
             });
-            Console.WriteLine($"  ✅ token OK: '{r.Name}'");
+            Console.WriteLine($"  ✅ V1 token OK: '{r.Name}'");
           }
-        }
-        catch (Microsoft.Rest.HttpOperationException hex) {
-          Console.WriteLine($"  ❌ token FAILED: '{r.Name}' ({r.ReportType}) status={hex.Response?.StatusCode} body={hex.Response?.Content}");
-        }
-        catch (Exception ex) {
-          Console.WriteLine($"  ❌ token FAILED: '{r.Name}' ({r.ReportType}) {ex.GetType().Name}: {ex.Message}");
+          catch (Exception ex) {
+            Console.WriteLine($"  ❌ V1 token failed: '{r.Name}': {ex.Message}");
+          }
         }
       }
 
