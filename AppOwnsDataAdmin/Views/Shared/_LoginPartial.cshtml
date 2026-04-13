@@ -3,7 +3,7 @@
 <ul class="navbar-nav admin-user-nav">
   @if (User.Identity.IsAuthenticated) {
     <li class="nav-item admin-user-item">
-      <span class="admin-user-avatar"><i class="fa-solid fa-user-circle"></i></span>
+      <span class="admin-user-avatar"><i class="fa-solid fa-circle-user"></i></span>
       <span class="admin-user-name">@User.FindFirst("name").Value</span>
     </li>
     <li class="nav-item">
