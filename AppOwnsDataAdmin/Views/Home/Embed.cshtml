@@ -41,7 +41,7 @@
            data-embed-url="@r.EmbedUrl"
            data-report-type="@r.ReportType"
            data-token="@r.Token">
-          <i class="fa @(r.ReportType == "PaginatedReport" ? "fa-file-text-o" : "fa-bar-chart")"></i>
+          <i class="fa-solid @(r.ReportType == "PaginatedReport" ? "fa-file-lines" : "fa-chart-bar")"></i>
           @r.Name
         </a>
       }
@@ -52,6 +52,8 @@
 
 @section Scripts {
 
+  @* jQuery is required by the Power BI embed JavaScript on this page *@
+  <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
   <script src="~/lib/powerbi-client/dist/powerbi.min.js" asp-append-version="true"></script>
 
   <script type="text/javascript">
