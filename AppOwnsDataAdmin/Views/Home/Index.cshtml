@@ -1,9 +1,10 @@
 ﻿@using System.Security.Principal
+@{ var custName = _config["DemoSettings:CustomerName"] ?? "Customer"; }
 
 @if (User.Identity.IsAuthenticated) {
   <div class="jumbotron">
-    <h1>Welcome @User.FindFirst("name").Value</h1>
-    <p>Now that you have logged into this application, you can now create new customer tenants and manage user permissions.</p>
+    <h1>Welcome, @custName Administrator! <i class="fa fa-bolt" style="color:var(--admin-accent)"></i></h1>
+    <p>You're in the command center — provision new @custName customers, manage user access, and explore embedded Power BI analytics all from one place. Let's build something great.</p>
   </div>
 }
 else {
@@ -12,12 +13,11 @@ else {
     <h1>Welcome to the App-Owns-Data Starter Kit</h1>
 
     <p>
-      This application was created to demonstrate managing a multitenant environment with
-      Power BI embedding. This application automates the provisioning of Power BI workspaces and allows an adminstrators
-      to assign permissions to users .
+      The <strong>@custName Admin Portal</strong> is your mission control for multi-tenant Power BI embedding —
+      spin up customer workspaces, assign user permissions, and deliver stunning analytics experiences at scale.
     </p>
 
-    <p>Click the <strong>sign in</strong> link in the upper right to get started.</p>
+    <p>Hit the <strong>sign in</strong> link in the upper right and let's get started.</p>
 
   </div>
 }
