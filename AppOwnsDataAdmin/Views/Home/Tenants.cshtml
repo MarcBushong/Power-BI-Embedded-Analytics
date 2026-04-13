@@ -1,7 +1,10 @@
 @model IList<AppOwnsDataShared.Models.PowerBiTenant>
 @{ var custName = _config["DemoSettings:CustomerName"] ?? "Customer"; }
 
-<h2><i class="fa fa-building-o"></i> @custName's Customers</h2>
+<h2>
+  <a class="btn btn-sm h2-backarrow" asp-action="Index" title="Back to Home"><i class="fa fa-arrow-left"></i></a>
+  <i class="fa fa-building-o"></i> @custName's Customers
+</h2>
 
 <div class="toolbar">
   <a id="create-workspace-button" class="btn btn-primary" asp-action="OnboardTenant">

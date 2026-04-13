@@ -1,6 +1,9 @@
 @model IList<AppOwnsDataShared.Models.User>
 
-<h2><i class="fa fa-users"></i> Users</h2>
+<h2>
+  <a class="btn btn-sm h2-backarrow" asp-action="Index" title="Back to Home"><i class="fa fa-arrow-left"></i></a>
+  <i class="fa fa-users"></i> Users
+</h2>
 
 <div class="toolbar">
   <a id="create-workspace-button" class="btn btn-primary" asp-action="CreateUser">
