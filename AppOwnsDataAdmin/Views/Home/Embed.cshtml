@@ -8,9 +8,18 @@
   var tagline   = Model.Tagline        ?? "";
 }
 
-<h2>
+<style>
+  body { background-color: @primary !important; }
+  .admin-page-container { padding-top: 0.65rem; }
+  h2.embed-heading { color: rgba(255,255,255,0.88) !important; text-shadow: 0 1px 4px rgba(0,0,0,0.35); }
+  h2.embed-heading .h2-backarrow { color: rgba(255,255,255,0.8) !important; background: rgba(255,255,255,0.12) !important; border: 1px solid rgba(255,255,255,0.22) !important; }
+  h2.embed-heading .h2-backarrow:hover { background: rgba(255,255,255,0.22) !important; }
+  h2.embed-heading .fa-bar-chart { color: rgba(255,255,255,0.45) !important; }
+</style>
+
+<h2 class="embed-heading">
   <a class="btn btn-sm h2-backarrow" asp-action="Tenants" title="Back to Tenants"><i class="fa fa-arrow-left"></i></a>
-  <i class="fa fa-bar-chart" style="font-size:1.1rem;color:var(--admin-text-muted)"></i>
+  <i class="fa fa-bar-chart" style="font-size:1.1rem"></i>
   @Model.TenantName — Sales Report
 </h2>
 
