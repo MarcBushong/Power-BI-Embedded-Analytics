@@ -57999,6 +57999,10 @@ App.embedReport = (report_1, ...args_1) => __awaiter(void 0, [report_1, ...args_
         }
     };
     _a.powerbi.reset(_a.embedContainer[0]);
+    // ── Size the container BEFORE embed so the PBI SDK reads the correct
+    // clientHeight. The SDK locks in the iframe height at embed() time and
+    // will not resize it later even if CSS changes. ──────────────────────────
+    _a.resizeEmbedContainer();
     var timerStart = Date.now();
     var initialLoadComplete = false;
     var loadDuration;
@@ -58097,6 +58101,17 @@ App.setLayoutMode = () => {
     let useMobileLayout = (_a.mainBody.width() < _a.breakPointWidth);
     _a.layoutMode = useMobileLayout ? "mobile" : "master";
 };
+// ── Resize the embed container to fill available viewport height ──────────
+// Must be called BEFORE powerbi.embed() — the SDK reads clientHeight once
+// at embed time and never resizes itself.
+App.resizeEmbedContainer = () => {
+    const winH = $(window).height() || window.innerHeight;
+    const topH = _a.topBanner[0] ? _a.topBanner[0].offsetHeight : 0;
+    const banH = _a.brandBanner[0] ? _a.brandBanner[0].offsetHeight : 0;
+    const hdrH = _a.viewAuthenticatedHeader[0] ? _a.viewAuthenticatedHeader[0].offsetHeight : 0;
+    const height = Math.max(winH - topH - banH - hdrH - 8, 300);
+    _a.embedContainer.css({ height: height + 'px', 'min-height': '300px' });
+};
 App.setReportLayout = () => __awaiter(void 0, void 0, void 0, function* () {
     let useMobileLayout = (_a.mainBody.width() < _a.breakPointWidth);
     // check to see if layout mode switches between master and mobile
@@ -58121,7 +58136,7 @@ App.setReportLayout = () => __awaiter(void 0, void 0, void 0, function* () {
         else {
             // CSS flex layout (height: calc(100vh - 196px) on #embed-layout)
             // handles the container height exactly like the admin portal.
-            // Do NOT set inline height here — it overrides CSS and causes sizing bugs.
+            // Also resize the container so any already-embedded report updates.
             _a.tenantName.show();
             _a.fullScreenButton.show();
             if (_a.viewModel && _a.viewModel.userCanCreate) {
@@ -58129,6 +58144,10 @@ App.setReportLayout = () => __awaiter(void 0, void 0, void 0, function* () {
             }
             else {
                 _a.datasetsListContainer.hide();
+            }
+            _a.resizeEmbedContainer();
+            if (_a.currentReport) {
+                _a.currentReport.reload();
             }
         }
     }

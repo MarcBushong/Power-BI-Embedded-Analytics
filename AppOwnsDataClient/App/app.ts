@@ -271,6 +271,11 @@ export default class App {
 
     App.powerbi.reset(App.embedContainer[0]);
 
+    // ── Size the container BEFORE embed so the PBI SDK reads the correct
+    // clientHeight. The SDK locks in the iframe height at embed() time and
+    // will not resize it later even if CSS changes. ──────────────────────────
+    App.resizeEmbedContainer();
+
     var timerStart: number = Date.now();
     var initialLoadComplete: boolean = false;
     var loadDuration: number;
@@ -390,6 +395,18 @@ export default class App {
     App.layoutMode = useMobileLayout ? "mobile" : "master";
   };
 
+  // ── Resize the embed container to fill available viewport height ──────────
+  // Must be called BEFORE powerbi.embed() — the SDK reads clientHeight once
+  // at embed time and never resizes itself.
+  private static resizeEmbedContainer = () => {
+    const winH   = $(window).height()  || window.innerHeight;
+    const topH   = App.topBanner[0]   ? App.topBanner[0].offsetHeight   : 0;
+    const banH   = App.brandBanner[0] ? App.brandBanner[0].offsetHeight : 0;
+    const hdrH   = App.viewAuthenticatedHeader[0] ? App.viewAuthenticatedHeader[0].offsetHeight : 0;
+    const height = Math.max(winH - topH - banH - hdrH - 8, 300);
+    App.embedContainer.css({ height: height + 'px', 'min-height': '300px' });
+  };
+
   private static setReportLayout = async () => {
 
     let useMobileLayout: boolean = (App.mainBody.width() < App.breakPointWidth);
@@ -415,7 +432,7 @@ export default class App {
       else {
         // CSS flex layout (height: calc(100vh - 196px) on #embed-layout)
         // handles the container height exactly like the admin portal.
-        // Do NOT set inline height here — it overrides CSS and causes sizing bugs.
+        // Also resize the container so any already-embedded report updates.
         App.tenantName.show();
         App.fullScreenButton.show();
         if (App.viewModel && App.viewModel.userCanCreate) {
@@ -423,6 +440,10 @@ export default class App {
         }
         else {
           App.datasetsListContainer.hide();
+        }
+        App.resizeEmbedContainer();
+        if (App.currentReport) {
+          App.currentReport.reload();
         }
       }
     }
