@@ -25,7 +25,18 @@ export default class SpaAuthService {
   private static publicApplication: msal.PublicClientApplication =
                  new msal.PublicClientApplication(SpaAuthService.msalConfig);
 
+  // MSAL-browser 2.28+ requires explicit initialization before any auth operation
+  private static initPromise: Promise<void> | null = null;
+
+  private static ensureInitialized = (): Promise<void> => {
+    if (!SpaAuthService.initPromise) {
+      SpaAuthService.initPromise = SpaAuthService.publicApplication.initialize();
+    }
+    return SpaAuthService.initPromise;
+  };
+
   static attemptSillentLogin = async () => {
+    await SpaAuthService.ensureInitialized();
     var userInfo: msal.AccountInfo = SpaAuthService.publicApplication.getAllAccounts()[0];
     if (userInfo) {
       SpaAuthService.userName = userInfo.username;
@@ -37,6 +48,7 @@ export default class SpaAuthService {
 
   static login = async () => {
     try {
+      await SpaAuthService.ensureInitialized();
       var loginRequest: msal.PopupRequest = { scopes: AppSettings.apiScopes }
       var loginResult: msal.AuthenticationResult = await SpaAuthService.publicApplication.loginPopup(loginRequest);
       var userInfo: msal.AccountInfo = loginResult.account;

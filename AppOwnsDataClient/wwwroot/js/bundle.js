@@ -54044,17 +54044,30 @@ var SpaAuthService = /** @class */ (function () {
         }
     };
     SpaAuthService.publicApplication = new msal.PublicClientApplication(_a.msalConfig);
+    // MSAL-browser 2.28+ requires explicit initialization before any auth operation
+    SpaAuthService.initPromise = null;
+    SpaAuthService.ensureInitialized = function () {
+        if (!_a.initPromise) {
+            _a.initPromise = _a.publicApplication.initialize();
+        }
+        return _a.initPromise;
+    };
     SpaAuthService.attemptSillentLogin = function () { return __awaiter(void 0, void 0, void 0, function () {
         var userInfo;
         return __generator(_a, function (_b) {
-            userInfo = _a.publicApplication.getAllAccounts()[0];
-            if (userInfo) {
-                _a.userName = userInfo.username;
-                _a.userDisplayName = userInfo.name;
-                _a.userIsAuthenticated = true;
-                _a.uiUpdateCallback();
+            switch (_b.label) {
+                case 0: return [4 /*yield*/, _a.ensureInitialized()];
+                case 1:
+                    _b.sent();
+                    userInfo = _a.publicApplication.getAllAccounts()[0];
+                    if (userInfo) {
+                        _a.userName = userInfo.username;
+                        _a.userDisplayName = userInfo.name;
+                        _a.userIsAuthenticated = true;
+                        _a.uiUpdateCallback();
+                    }
+                    return [2 /*return*/];
             }
-            return [2 /*return*/];
         });
     }); };
     SpaAuthService.login = function () { return __awaiter(void 0, void 0, void 0, function () {
@@ -54062,18 +54075,21 @@ var SpaAuthService = /** @class */ (function () {
         return __generator(_a, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
+                    _b.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, _a.ensureInitialized()];
+                case 1:
+                    _b.sent();
                     loginRequest = { scopes: appSettings_1.default.apiScopes };
                     return [4 /*yield*/, _a.publicApplication.loginPopup(loginRequest)];
-                case 1:
+                case 2:
                     loginResult = _b.sent();
                     userInfo = loginResult.account;
                     _a.userName = userInfo.username;
                     _a.userDisplayName = userInfo.name;
                     _a.userIsAuthenticated = true;
                     _a.uiUpdateCallback();
-                    return [3 /*break*/, 3];
-                case 2:
+                    return [3 /*break*/, 4];
+                case 3:
                     error_2 = _b.sent();
                     console.error("Login failed:", error_2);
                     if (error_2 instanceof msal.BrowserAuthError && error_2.errorCode === "interaction_in_progress") {
@@ -54088,8 +54104,8 @@ var SpaAuthService = /** @class */ (function () {
                     else if (!(error_2 instanceof msal.BrowserAuthError && error_2.errorCode === "user_cancelled")) {
                         alert("Login failed: " + (error_2.message || "Unknown error. Check the browser console for details."));
                     }
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     }); };
