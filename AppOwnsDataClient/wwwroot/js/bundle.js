@@ -57795,7 +57795,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
-const $ = __importStar(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
+// Use CommonJS-style import so $ resolves to the jQuery function, not a namespace object
+const $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 const pbimodels = __importStar(__webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js"));
 __webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 __webpack_require__(/*! powerbi-client */ "./node_modules/powerbi-client/dist/powerbi.js");

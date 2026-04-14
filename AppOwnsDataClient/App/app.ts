@@ -1,6 +1,7 @@
 ﻿import 'bootstrap';
 
-import * as $ from 'jquery';
+// Use CommonJS-style import so $ resolves to the jQuery function, not a namespace object
+import $ = require('jquery');
 
 import * as powerbi from "powerbi-client";
 import * as pbimodels from "powerbi-models";
