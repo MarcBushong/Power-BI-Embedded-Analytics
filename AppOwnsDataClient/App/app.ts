@@ -171,7 +171,7 @@ export default class App {
     else {
       viewModel.reports.forEach((report: Report) => {
         var li = $("<li>");
-        li.append($("<i>").addClass("fa fa-bar-chart"));
+        li.append($("<i>").addClass("fa-solid fa-chart-bar"));
         li.append($("<a>", {
           "href": "javascript:void(0);"
         }).text(report.name).click(() => { App.embedReport(report) }));
@@ -188,7 +188,7 @@ export default class App {
       else {
         viewModel.datasets.forEach((dataset: Dataset) => {
           var li = $("<li>");
-          li.append($("<i>").addClass("fa fa-database"));
+          li.append($("<i>").addClass("fa-solid fa-database"));
           li.append($("<a>", {
             "href": "javascript:void(0);"
           }).text(dataset.name).click(() => { App.embedNewReport(dataset) }));
@@ -399,7 +399,8 @@ export default class App {
         $(App.embedContainer).height($(App.embedContainer).width() * 3);
       }
       else {
-        // set to landscape for full browser view
+        // Use available viewport height — CSS flex handles layout; just set
+        // the pixel height so the Power BI SDK can size its iframe correctly.
         App.tenantName.show();
         App.fullScreenButton.show();
         if (App.viewModel && App.viewModel.userCanCreate) {
@@ -409,9 +410,7 @@ export default class App {
           App.datasetsListContainer.hide();
         }
         let availableHeight: number = $(window).height() - (App.topBanner.height() + App.brandBanner.height() + App.viewAuthenticatedHeader.height()) - 8;
-        let heightFromWidth = $(App.embedContainer).width() * (9/16);
-        let height = Math.min(availableHeight, heightFromWidth);
-        $(App.embedContainer).height(height);
+        $(App.embedContainer).height(availableHeight);
       }
     }
 
