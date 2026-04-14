@@ -71,22 +71,34 @@ body { font-family: 'Inter', system-ui, sans-serif; background-color: var(--them
 /* ── Report / embed container ─────────────────────────────────────────────── */
 #content-box {
   flex: 1;
-  min-height: 0;           /* prevents flex child overflow */
-  display: flex;           /* make content-box a flex column */
+  min-height: 0;
+  display: flex;
   flex-direction: column;
   padding: 0;
   overflow: hidden;
   border: none;
 }
 #embed-container {
-  flex: 1;                 /* fills all remaining height in content-box */
+  flex: 1;
   min-height: 0;
   width: 100%;
+  /* Give an EXPLICIT viewport height so the PBI SDK reads the correct
+     clientHeight at embed time. Without this, two-level flex:1 chains
+     may report clientHeight=0 before the browser reflows. */
+  height: calc(100vh - 196px);
+  min-height: 540px;
+  position: relative;
   background-color: var(--theme-primary);
 }
-/* Cover Power BI SDK wrapper divs AND the iframe itself */
-#embed-container > *,
-#embed-container > * > *,
+/* Use absolute positioning to force SDK wrapper + iframe to fill container
+   regardless of any inline styles the SDK sets */
+#embed-container > div {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
 #embed-container iframe {
   width: 100% !important;
   height: 100% !important;
