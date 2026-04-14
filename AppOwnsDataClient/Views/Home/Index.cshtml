@@ -81,30 +81,26 @@
               </div>
             </div>
           </div>
-          <div class='row' style="height:100%; flex:1;">
-            <div id="left-nav" class='col-md-2' style="height:100%;">
-              <div>
-                <div class='navbar-header navbar-toggle' data-toggle='collapse' data-target='.reports-collapse'>
-                  View Report
-                </div>
-                <div id='reports-menu' class='navbar-collapse reports-collapse'>
+          <div id="embed-layout">
+            <div id="left-nav">
+              <div id="left-nav-sections">
+                <div class='nav-section-header'>View Report</div>
+                <div id='reports-menu'>
                   <ul id='reports-list' class='nav navbar-nav'></ul>
                 </div>
                 <div id='datasets-list-container'>
-                  <div class='navbar-header navbar-toggle' data-toggle='collapse' data-target='.datasets-collapse'>
-                    Create Report
-                  </div>
-                  <div id='datasets-menu' class='navbar-collapse datasets-collapse'>
+                  <div class='nav-section-header'>Create Report</div>
+                  <div id='datasets-menu'>
                     <ul id='datasets-list' class='nav navbar-nav'></ul>
                   </div>
                 </div>
-                </div>
+              </div>
               <div id="left-nav-brand">
                 <div id="left-nav-watermark"></div>
                 <div id="left-nav-tagline"></div>
               </div>
             </div>
-            <div id="content-box" class='col-md-10'>
+            <div id="content-box">
               <div id="embed-container"></div>
             </div>
           </div>
