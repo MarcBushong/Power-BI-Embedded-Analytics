@@ -52966,6 +52966,4779 @@ else {
 
 /***/ },
 
+/***/ "./node_modules/powerbi-models/dist/models.js"
+/*!****************************************************!*\
+  !*** ./node_modules/powerbi-models/dist/models.js ***!
+  \****************************************************/
+(module) {
+
+// powerbi-models v1.9.7
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else // removed by dead control flow
+{}
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __nested_webpack_require_651__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __nested_webpack_require_651__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__nested_webpack_require_651__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__nested_webpack_require_651__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__nested_webpack_require_651__.d = function(exports, name, getter) {
+/******/ 		if(!__nested_webpack_require_651__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__nested_webpack_require_651__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__nested_webpack_require_651__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __nested_webpack_require_651__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__nested_webpack_require_651__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __nested_webpack_require_651__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__nested_webpack_require_651__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__nested_webpack_require_651__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__nested_webpack_require_651__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__nested_webpack_require_651__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __nested_webpack_require_651__(__nested_webpack_require_651__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __nested_webpack_require_4115__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.validateZoomLevel = exports.validateCustomTheme = exports.validateCommandsSettings = exports.validateVisualSettings = exports.validateVisualHeader = exports.validateExportDataRequest = exports.validateQnaInterpretInputData = exports.validateLoadQnaConfiguration = exports.validateSaveAsParameters = exports.validateUpdateFiltersRequest = exports.validateFilter = exports.validatePage = exports.validateTileLoad = exports.validateDashboardLoad = exports.validateCreateReport = exports.validatePaginatedReportLoad = exports.validateReportLoad = exports.validateMenuGroupExtension = exports.validateExtension = exports.validateCustomPageSize = exports.validateVisualizationsPane = exports.validateSyncSlicersPane = exports.validateSelectionPane = exports.validatePageNavigationPane = exports.validateFieldsPane = exports.validateFiltersPane = exports.validateBookmarksPane = exports.validatePanes = exports.validateSettings = exports.validateCaptureBookmarkRequest = exports.validateApplyBookmarkStateRequest = exports.validateApplyBookmarkByNameRequest = exports.validateAddBookmarkRequest = exports.validatePlayBookmarkRequest = exports.validateSlicerState = exports.validateSlicer = exports.validateVisualSelector = exports.isIExtensionArray = exports.isIExtensions = exports.isGroupedMenuExtension = exports.isFlatMenuExtension = exports.isReportFiltersArray = exports.isOnLoadFilters = exports.VisualDataRoleKindPreference = exports.VisualDataRoleKind = exports.CommandDisplayOption = exports.SlicerTargetSelector = exports.VisualTypeSelector = exports.VisualSelector = exports.PageSelector = exports.Selector = exports.SortDirection = exports.LegendPosition = exports.TextAlignment = exports.CommonErrorCodes = exports.BookmarksPlayMode = exports.ExportDataType = exports.QnaMode = exports.PageNavigationPosition = exports.isColumnAggr = exports.isHierarchyLevelAggr = exports.isHierarchyLevel = exports.isColumn = exports.isMeasure = exports.getFilterType = exports.isBasicFilterWithKeys = exports.isFilterKeyColumnsTarget = exports.AdvancedFilter = exports.TupleFilter = exports.IdentityFilter = exports.BasicFilterWithKeys = exports.BasicFilter = exports.RelativeTimeFilter = exports.RelativeDateFilter = exports.TopNFilter = exports.IncludeExcludeFilter = exports.NotSupportedFilter = exports.Filter = exports.RelativeDateOperators = exports.RelativeDateFilterTimeUnit = exports.FilterType = exports.FiltersLevel = exports.FiltersOperations = exports.MenuLocation = exports.ContrastMode = exports.TokenType = exports.ViewMode = exports.Permissions = exports.SectionVisibility = exports.ReportAlignment = exports.HyperlinkClickBehavior = exports.LayoutType = exports.VisualContainerDisplayMode = exports.BackgroundType = exports.DisplayOption = exports.PageSizeType = exports.TraceType = void 0;
+var validator_1 = __nested_webpack_require_4115__(1);
+var TraceType;
+(function (TraceType) {
+    TraceType[TraceType["Information"] = 0] = "Information";
+    TraceType[TraceType["Verbose"] = 1] = "Verbose";
+    TraceType[TraceType["Warning"] = 2] = "Warning";
+    TraceType[TraceType["Error"] = 3] = "Error";
+    TraceType[TraceType["ExpectedError"] = 4] = "ExpectedError";
+    TraceType[TraceType["UnexpectedError"] = 5] = "UnexpectedError";
+    TraceType[TraceType["Fatal"] = 6] = "Fatal";
+})(TraceType = exports.TraceType || (exports.TraceType = {}));
+var PageSizeType;
+(function (PageSizeType) {
+    PageSizeType[PageSizeType["Widescreen"] = 0] = "Widescreen";
+    PageSizeType[PageSizeType["Standard"] = 1] = "Standard";
+    PageSizeType[PageSizeType["Cortana"] = 2] = "Cortana";
+    PageSizeType[PageSizeType["Letter"] = 3] = "Letter";
+    PageSizeType[PageSizeType["Custom"] = 4] = "Custom";
+    PageSizeType[PageSizeType["Mobile"] = 5] = "Mobile";
+})(PageSizeType = exports.PageSizeType || (exports.PageSizeType = {}));
+var DisplayOption;
+(function (DisplayOption) {
+    DisplayOption[DisplayOption["FitToPage"] = 0] = "FitToPage";
+    DisplayOption[DisplayOption["FitToWidth"] = 1] = "FitToWidth";
+    DisplayOption[DisplayOption["ActualSize"] = 2] = "ActualSize";
+})(DisplayOption = exports.DisplayOption || (exports.DisplayOption = {}));
+var BackgroundType;
+(function (BackgroundType) {
+    BackgroundType[BackgroundType["Default"] = 0] = "Default";
+    BackgroundType[BackgroundType["Transparent"] = 1] = "Transparent";
+})(BackgroundType = exports.BackgroundType || (exports.BackgroundType = {}));
+var VisualContainerDisplayMode;
+(function (VisualContainerDisplayMode) {
+    VisualContainerDisplayMode[VisualContainerDisplayMode["Visible"] = 0] = "Visible";
+    VisualContainerDisplayMode[VisualContainerDisplayMode["Hidden"] = 1] = "Hidden";
+})(VisualContainerDisplayMode = exports.VisualContainerDisplayMode || (exports.VisualContainerDisplayMode = {}));
+var LayoutType;
+(function (LayoutType) {
+    LayoutType[LayoutType["Master"] = 0] = "Master";
+    LayoutType[LayoutType["Custom"] = 1] = "Custom";
+    LayoutType[LayoutType["MobilePortrait"] = 2] = "MobilePortrait";
+    LayoutType[LayoutType["MobileLandscape"] = 3] = "MobileLandscape";
+})(LayoutType = exports.LayoutType || (exports.LayoutType = {}));
+var HyperlinkClickBehavior;
+(function (HyperlinkClickBehavior) {
+    HyperlinkClickBehavior[HyperlinkClickBehavior["Navigate"] = 0] = "Navigate";
+    HyperlinkClickBehavior[HyperlinkClickBehavior["NavigateAndRaiseEvent"] = 1] = "NavigateAndRaiseEvent";
+    HyperlinkClickBehavior[HyperlinkClickBehavior["RaiseEvent"] = 2] = "RaiseEvent";
+})(HyperlinkClickBehavior = exports.HyperlinkClickBehavior || (exports.HyperlinkClickBehavior = {}));
+var ReportAlignment;
+(function (ReportAlignment) {
+    ReportAlignment[ReportAlignment["Left"] = 0] = "Left";
+    ReportAlignment[ReportAlignment["Center"] = 1] = "Center";
+    ReportAlignment[ReportAlignment["Right"] = 2] = "Right";
+    ReportAlignment[ReportAlignment["None"] = 3] = "None";
+})(ReportAlignment = exports.ReportAlignment || (exports.ReportAlignment = {}));
+var SectionVisibility;
+(function (SectionVisibility) {
+    SectionVisibility[SectionVisibility["AlwaysVisible"] = 0] = "AlwaysVisible";
+    SectionVisibility[SectionVisibility["HiddenInViewMode"] = 1] = "HiddenInViewMode";
+})(SectionVisibility = exports.SectionVisibility || (exports.SectionVisibility = {}));
+var Permissions;
+(function (Permissions) {
+    Permissions[Permissions["Read"] = 0] = "Read";
+    Permissions[Permissions["ReadWrite"] = 1] = "ReadWrite";
+    Permissions[Permissions["Copy"] = 2] = "Copy";
+    Permissions[Permissions["Create"] = 4] = "Create";
+    Permissions[Permissions["All"] = 7] = "All";
+})(Permissions = exports.Permissions || (exports.Permissions = {}));
+var ViewMode;
+(function (ViewMode) {
+    ViewMode[ViewMode["View"] = 0] = "View";
+    ViewMode[ViewMode["Edit"] = 1] = "Edit";
+})(ViewMode = exports.ViewMode || (exports.ViewMode = {}));
+var TokenType;
+(function (TokenType) {
+    TokenType[TokenType["Aad"] = 0] = "Aad";
+    TokenType[TokenType["Embed"] = 1] = "Embed";
+})(TokenType = exports.TokenType || (exports.TokenType = {}));
+var ContrastMode;
+(function (ContrastMode) {
+    ContrastMode[ContrastMode["None"] = 0] = "None";
+    ContrastMode[ContrastMode["HighContrast1"] = 1] = "HighContrast1";
+    ContrastMode[ContrastMode["HighContrast2"] = 2] = "HighContrast2";
+    ContrastMode[ContrastMode["HighContrastBlack"] = 3] = "HighContrastBlack";
+    ContrastMode[ContrastMode["HighContrastWhite"] = 4] = "HighContrastWhite";
+})(ContrastMode = exports.ContrastMode || (exports.ContrastMode = {}));
+var MenuLocation;
+(function (MenuLocation) {
+    MenuLocation[MenuLocation["Bottom"] = 0] = "Bottom";
+    MenuLocation[MenuLocation["Top"] = 1] = "Top";
+})(MenuLocation = exports.MenuLocation || (exports.MenuLocation = {}));
+var FiltersOperations;
+(function (FiltersOperations) {
+    FiltersOperations[FiltersOperations["RemoveAll"] = 0] = "RemoveAll";
+    FiltersOperations[FiltersOperations["ReplaceAll"] = 1] = "ReplaceAll";
+    FiltersOperations[FiltersOperations["Add"] = 2] = "Add";
+    FiltersOperations[FiltersOperations["Replace"] = 3] = "Replace";
+})(FiltersOperations = exports.FiltersOperations || (exports.FiltersOperations = {}));
+var FiltersLevel;
+(function (FiltersLevel) {
+    FiltersLevel[FiltersLevel["Report"] = 0] = "Report";
+    FiltersLevel[FiltersLevel["Page"] = 1] = "Page";
+    FiltersLevel[FiltersLevel["Visual"] = 2] = "Visual";
+})(FiltersLevel = exports.FiltersLevel || (exports.FiltersLevel = {}));
+var FilterType;
+(function (FilterType) {
+    FilterType[FilterType["Advanced"] = 0] = "Advanced";
+    FilterType[FilterType["Basic"] = 1] = "Basic";
+    FilterType[FilterType["Unknown"] = 2] = "Unknown";
+    FilterType[FilterType["IncludeExclude"] = 3] = "IncludeExclude";
+    FilterType[FilterType["RelativeDate"] = 4] = "RelativeDate";
+    FilterType[FilterType["TopN"] = 5] = "TopN";
+    FilterType[FilterType["Tuple"] = 6] = "Tuple";
+    FilterType[FilterType["RelativeTime"] = 7] = "RelativeTime";
+    FilterType[FilterType["Identity"] = 8] = "Identity";
+})(FilterType = exports.FilterType || (exports.FilterType = {}));
+var RelativeDateFilterTimeUnit;
+(function (RelativeDateFilterTimeUnit) {
+    RelativeDateFilterTimeUnit[RelativeDateFilterTimeUnit["Days"] = 0] = "Days";
+    RelativeDateFilterTimeUnit[RelativeDateFilterTimeUnit["Weeks"] = 1] = "Weeks";
+    RelativeDateFilterTimeUnit[RelativeDateFilterTimeUnit["CalendarWeeks"] = 2] = "CalendarWeeks";
+    RelativeDateFilterTimeUnit[RelativeDateFilterTimeUnit["Months"] = 3] = "Months";
+    RelativeDateFilterTimeUnit[RelativeDateFilterTimeUnit["CalendarMonths"] = 4] = "CalendarMonths";
+    RelativeDateFilterTimeUnit[RelativeDateFilterTimeUnit["Years"] = 5] = "Years";
+    RelativeDateFilterTimeUnit[RelativeDateFilterTimeUnit["CalendarYears"] = 6] = "CalendarYears";
+    RelativeDateFilterTimeUnit[RelativeDateFilterTimeUnit["Minutes"] = 7] = "Minutes";
+    RelativeDateFilterTimeUnit[RelativeDateFilterTimeUnit["Hours"] = 8] = "Hours";
+})(RelativeDateFilterTimeUnit = exports.RelativeDateFilterTimeUnit || (exports.RelativeDateFilterTimeUnit = {}));
+var RelativeDateOperators;
+(function (RelativeDateOperators) {
+    RelativeDateOperators[RelativeDateOperators["InLast"] = 0] = "InLast";
+    RelativeDateOperators[RelativeDateOperators["InThis"] = 1] = "InThis";
+    RelativeDateOperators[RelativeDateOperators["InNext"] = 2] = "InNext";
+})(RelativeDateOperators = exports.RelativeDateOperators || (exports.RelativeDateOperators = {}));
+var Filter = /** @class */ (function () {
+    function Filter(target, filterType) {
+        this.target = target;
+        this.filterType = filterType;
+    }
+    Filter.prototype.toJSON = function () {
+        var filter = {
+            $schema: this.schemaUrl,
+            target: this.target,
+            filterType: this.filterType
+        };
+        // Add displaySettings only when defined
+        if (this.displaySettings !== undefined) {
+            filter.displaySettings = this.displaySettings;
+        }
+        return filter;
+    };
+    return Filter;
+}());
+exports.Filter = Filter;
+var NotSupportedFilter = /** @class */ (function (_super) {
+    __extends(NotSupportedFilter, _super);
+    function NotSupportedFilter(target, message, notSupportedTypeName) {
+        var _this = _super.call(this, target, FilterType.Unknown) || this;
+        _this.message = message;
+        _this.notSupportedTypeName = notSupportedTypeName;
+        _this.schemaUrl = NotSupportedFilter.schemaUrl;
+        return _this;
+    }
+    NotSupportedFilter.prototype.toJSON = function () {
+        var filter = _super.prototype.toJSON.call(this);
+        filter.message = this.message;
+        filter.notSupportedTypeName = this.notSupportedTypeName;
+        return filter;
+    };
+    NotSupportedFilter.schemaUrl = "http://powerbi.com/product/schema#notSupported";
+    return NotSupportedFilter;
+}(Filter));
+exports.NotSupportedFilter = NotSupportedFilter;
+var IncludeExcludeFilter = /** @class */ (function (_super) {
+    __extends(IncludeExcludeFilter, _super);
+    function IncludeExcludeFilter(target, isExclude, values) {
+        var _this = _super.call(this, target, FilterType.IncludeExclude) || this;
+        _this.values = values;
+        _this.isExclude = isExclude;
+        _this.schemaUrl = IncludeExcludeFilter.schemaUrl;
+        return _this;
+    }
+    IncludeExcludeFilter.prototype.toJSON = function () {
+        var filter = _super.prototype.toJSON.call(this);
+        filter.isExclude = this.isExclude;
+        filter.values = this.values;
+        return filter;
+    };
+    IncludeExcludeFilter.schemaUrl = "http://powerbi.com/product/schema#includeExclude";
+    return IncludeExcludeFilter;
+}(Filter));
+exports.IncludeExcludeFilter = IncludeExcludeFilter;
+var TopNFilter = /** @class */ (function (_super) {
+    __extends(TopNFilter, _super);
+    function TopNFilter(target, operator, itemCount, orderBy) {
+        var _this = _super.call(this, target, FilterType.TopN) || this;
+        _this.operator = operator;
+        _this.itemCount = itemCount;
+        _this.schemaUrl = TopNFilter.schemaUrl;
+        _this.orderBy = orderBy;
+        return _this;
+    }
+    TopNFilter.prototype.toJSON = function () {
+        var filter = _super.prototype.toJSON.call(this);
+        filter.operator = this.operator;
+        filter.itemCount = this.itemCount;
+        filter.orderBy = this.orderBy;
+        return filter;
+    };
+    TopNFilter.schemaUrl = "http://powerbi.com/product/schema#topN";
+    return TopNFilter;
+}(Filter));
+exports.TopNFilter = TopNFilter;
+var RelativeDateFilter = /** @class */ (function (_super) {
+    __extends(RelativeDateFilter, _super);
+    function RelativeDateFilter(target, operator, timeUnitsCount, timeUnitType, includeToday) {
+        var _this = _super.call(this, target, FilterType.RelativeDate) || this;
+        _this.operator = operator;
+        _this.timeUnitsCount = timeUnitsCount;
+        _this.timeUnitType = timeUnitType;
+        _this.includeToday = includeToday;
+        _this.schemaUrl = RelativeDateFilter.schemaUrl;
+        return _this;
+    }
+    RelativeDateFilter.prototype.toJSON = function () {
+        var filter = _super.prototype.toJSON.call(this);
+        filter.operator = this.operator;
+        filter.timeUnitsCount = this.timeUnitsCount;
+        filter.timeUnitType = this.timeUnitType;
+        filter.includeToday = this.includeToday;
+        return filter;
+    };
+    RelativeDateFilter.schemaUrl = "http://powerbi.com/product/schema#relativeDate";
+    return RelativeDateFilter;
+}(Filter));
+exports.RelativeDateFilter = RelativeDateFilter;
+var RelativeTimeFilter = /** @class */ (function (_super) {
+    __extends(RelativeTimeFilter, _super);
+    function RelativeTimeFilter(target, operator, timeUnitsCount, timeUnitType) {
+        var _this = _super.call(this, target, FilterType.RelativeTime) || this;
+        _this.operator = operator;
+        _this.timeUnitsCount = timeUnitsCount;
+        _this.timeUnitType = timeUnitType;
+        _this.schemaUrl = RelativeTimeFilter.schemaUrl;
+        return _this;
+    }
+    RelativeTimeFilter.prototype.toJSON = function () {
+        var filter = _super.prototype.toJSON.call(this);
+        filter.operator = this.operator;
+        filter.timeUnitsCount = this.timeUnitsCount;
+        filter.timeUnitType = this.timeUnitType;
+        return filter;
+    };
+    RelativeTimeFilter.schemaUrl = "http://powerbi.com/product/schema#relativeTime";
+    return RelativeTimeFilter;
+}(Filter));
+exports.RelativeTimeFilter = RelativeTimeFilter;
+var BasicFilter = /** @class */ (function (_super) {
+    __extends(BasicFilter, _super);
+    function BasicFilter(target, operator) {
+        var values = [];
+        for (var _i = 2; _i < arguments.length; _i++) {
+            values[_i - 2] = arguments[_i];
+        }
+        var _this = _super.call(this, target, FilterType.Basic) || this;
+        _this.operator = operator;
+        _this.schemaUrl = BasicFilter.schemaUrl;
+        if (values.length === 0 && operator !== "All") {
+            throw new Error("values must be a non-empty array unless your operator is \"All\".");
+        }
+        /**
+         * Accept values as array instead of as individual arguments
+         * new BasicFilter('a', 'b', 1, 2);
+         * new BasicFilter('a', 'b', [1,2]);
+         */
+        if (Array.isArray(values[0])) {
+            _this.values = values[0];
+        }
+        else {
+            _this.values = values;
+        }
+        return _this;
+    }
+    BasicFilter.prototype.toJSON = function () {
+        var filter = _super.prototype.toJSON.call(this);
+        filter.operator = this.operator;
+        filter.values = this.values;
+        filter.requireSingleSelection = !!this.requireSingleSelection;
+        return filter;
+    };
+    BasicFilter.schemaUrl = "http://powerbi.com/product/schema#basic";
+    return BasicFilter;
+}(Filter));
+exports.BasicFilter = BasicFilter;
+var BasicFilterWithKeys = /** @class */ (function (_super) {
+    __extends(BasicFilterWithKeys, _super);
+    function BasicFilterWithKeys(target, operator, values, keyValues) {
+        var _this = _super.call(this, target, operator, values) || this;
+        _this.keyValues = keyValues;
+        _this.target = target;
+        var numberOfKeys = target.keys ? target.keys.length : 0;
+        if (numberOfKeys > 0 && !keyValues) {
+            throw new Error("You should pass the values to be filtered for each key. You passed: no values and " + numberOfKeys + " keys");
+        }
+        if (numberOfKeys === 0 && keyValues && keyValues.length > 0) {
+            throw new Error("You passed key values but your target object doesn't contain the keys to be filtered");
+        }
+        for (var _i = 0, _a = _this.keyValues; _i < _a.length; _i++) {
+            var keyValue = _a[_i];
+            if (keyValue) {
+                var lengthOfArray = keyValue.length;
+                if (lengthOfArray !== numberOfKeys) {
+                    throw new Error("Each tuple of key values should contain a value for each of the keys. You passed: " + lengthOfArray + " values and " + numberOfKeys + " keys");
+                }
+            }
+        }
+        return _this;
+    }
+    BasicFilterWithKeys.prototype.toJSON = function () {
+        var filter = _super.prototype.toJSON.call(this);
+        filter.keyValues = this.keyValues;
+        return filter;
+    };
+    return BasicFilterWithKeys;
+}(BasicFilter));
+exports.BasicFilterWithKeys = BasicFilterWithKeys;
+var IdentityFilter = /** @class */ (function (_super) {
+    __extends(IdentityFilter, _super);
+    function IdentityFilter(target, operator) {
+        var _this = _super.call(this, target, FilterType.Identity) || this;
+        _this.operator = operator;
+        _this.schemaUrl = IdentityFilter.schemaUrl;
+        return _this;
+    }
+    IdentityFilter.prototype.toJSON = function () {
+        var filter = _super.prototype.toJSON.call(this);
+        filter.operator = this.operator;
+        filter.target = this.target;
+        return filter;
+    };
+    IdentityFilter.schemaUrl = "http://powerbi.com/product/schema#identity";
+    return IdentityFilter;
+}(Filter));
+exports.IdentityFilter = IdentityFilter;
+var TupleFilter = /** @class */ (function (_super) {
+    __extends(TupleFilter, _super);
+    function TupleFilter(target, operator, values) {
+        var _this = _super.call(this, target, FilterType.Tuple) || this;
+        _this.operator = operator;
+        _this.schemaUrl = TupleFilter.schemaUrl;
+        _this.values = values;
+        return _this;
+    }
+    TupleFilter.prototype.toJSON = function () {
+        var filter = _super.prototype.toJSON.call(this);
+        filter.operator = this.operator;
+        filter.values = this.values;
+        filter.target = this.target;
+        return filter;
+    };
+    TupleFilter.schemaUrl = "http://powerbi.com/product/schema#tuple";
+    return TupleFilter;
+}(Filter));
+exports.TupleFilter = TupleFilter;
+var AdvancedFilter = /** @class */ (function (_super) {
+    __extends(AdvancedFilter, _super);
+    function AdvancedFilter(target, logicalOperator) {
+        var conditions = [];
+        for (var _i = 2; _i < arguments.length; _i++) {
+            conditions[_i - 2] = arguments[_i];
+        }
+        var _this = _super.call(this, target, FilterType.Advanced) || this;
+        _this.schemaUrl = AdvancedFilter.schemaUrl;
+        // Guard statements
+        if (typeof logicalOperator !== "string" || logicalOperator.length === 0) {
+            // TODO: It would be nicer to list out the possible logical operators.
+            throw new Error("logicalOperator must be a valid operator, You passed: " + logicalOperator);
+        }
+        _this.logicalOperator = logicalOperator;
+        var extractedConditions;
+        /**
+         * Accept conditions as array instead of as individual arguments
+         * new AdvancedFilter('a', 'b', "And", { value: 1, operator: "Equals" }, { value: 2, operator: "IsGreaterThan" });
+         * new AdvancedFilter('a', 'b', "And", [{ value: 1, operator: "Equals" }, { value: 2, operator: "IsGreaterThan" }]);
+         */
+        if (Array.isArray(conditions[0])) {
+            extractedConditions = conditions[0];
+        }
+        else {
+            extractedConditions = conditions;
+        }
+        if (extractedConditions.length > 2) {
+            throw new Error("AdvancedFilters may not have more than two conditions. You passed: " + conditions.length);
+        }
+        if (extractedConditions.length === 1 && logicalOperator !== "And") {
+            throw new Error("Logical Operator must be \"And\" when there is only one condition provided");
+        }
+        _this.conditions = extractedConditions;
+        return _this;
+    }
+    AdvancedFilter.prototype.toJSON = function () {
+        var filter = _super.prototype.toJSON.call(this);
+        filter.logicalOperator = this.logicalOperator;
+        filter.conditions = this.conditions;
+        return filter;
+    };
+    AdvancedFilter.schemaUrl = "http://powerbi.com/product/schema#advanced";
+    return AdvancedFilter;
+}(Filter));
+exports.AdvancedFilter = AdvancedFilter;
+function isFilterKeyColumnsTarget(target) {
+    return isColumn(target) && !!target.keys;
+}
+exports.isFilterKeyColumnsTarget = isFilterKeyColumnsTarget;
+function isBasicFilterWithKeys(filter) {
+    return getFilterType(filter) === FilterType.Basic && !!filter.keyValues;
+}
+exports.isBasicFilterWithKeys = isBasicFilterWithKeys;
+function getFilterType(filter) {
+    if (filter.filterType) {
+        return filter.filterType;
+    }
+    var basicFilter = filter;
+    var advancedFilter = filter;
+    if ((typeof basicFilter.operator === "string")
+        && (Array.isArray(basicFilter.values))) {
+        return FilterType.Basic;
+    }
+    else if ((typeof advancedFilter.logicalOperator === "string")
+        && (Array.isArray(advancedFilter.conditions))) {
+        return FilterType.Advanced;
+    }
+    else {
+        return FilterType.Unknown;
+    }
+}
+exports.getFilterType = getFilterType;
+function isMeasure(arg) {
+    return arg.table !== undefined && arg.measure !== undefined;
+}
+exports.isMeasure = isMeasure;
+function isColumn(arg) {
+    return !!(arg.table && arg.column && !arg.aggregationFunction);
+}
+exports.isColumn = isColumn;
+function isHierarchyLevel(arg) {
+    return !!(arg.table && arg.hierarchy && arg.hierarchyLevel && !arg.aggregationFunction);
+}
+exports.isHierarchyLevel = isHierarchyLevel;
+function isHierarchyLevelAggr(arg) {
+    return !!(arg.table && arg.hierarchy && arg.hierarchyLevel && arg.aggregationFunction);
+}
+exports.isHierarchyLevelAggr = isHierarchyLevelAggr;
+function isColumnAggr(arg) {
+    return !!(arg.table && arg.column && arg.aggregationFunction);
+}
+exports.isColumnAggr = isColumnAggr;
+var PageNavigationPosition;
+(function (PageNavigationPosition) {
+    PageNavigationPosition[PageNavigationPosition["Bottom"] = 0] = "Bottom";
+    PageNavigationPosition[PageNavigationPosition["Left"] = 1] = "Left";
+})(PageNavigationPosition = exports.PageNavigationPosition || (exports.PageNavigationPosition = {}));
+var QnaMode;
+(function (QnaMode) {
+    QnaMode[QnaMode["Interactive"] = 0] = "Interactive";
+    QnaMode[QnaMode["ResultOnly"] = 1] = "ResultOnly";
+})(QnaMode = exports.QnaMode || (exports.QnaMode = {}));
+var ExportDataType;
+(function (ExportDataType) {
+    ExportDataType[ExportDataType["Summarized"] = 0] = "Summarized";
+    ExportDataType[ExportDataType["Underlying"] = 1] = "Underlying";
+})(ExportDataType = exports.ExportDataType || (exports.ExportDataType = {}));
+var BookmarksPlayMode;
+(function (BookmarksPlayMode) {
+    BookmarksPlayMode[BookmarksPlayMode["Off"] = 0] = "Off";
+    BookmarksPlayMode[BookmarksPlayMode["Presentation"] = 1] = "Presentation";
+})(BookmarksPlayMode = exports.BookmarksPlayMode || (exports.BookmarksPlayMode = {}));
+// This is not an enum because enum strings require
+// us to upgrade typeScript version and change SDK build definition
+exports.CommonErrorCodes = {
+    TokenExpired: 'TokenExpired',
+    NotFound: 'PowerBIEntityNotFound',
+    InvalidParameters: 'Invalid parameters',
+    LoadReportFailed: 'LoadReportFailed',
+    NotAuthorized: 'PowerBINotAuthorizedException',
+    FailedToLoadModel: 'ExplorationContainer_FailedToLoadModel_DefaultDetails',
+};
+exports.TextAlignment = {
+    Left: 'left',
+    Center: 'center',
+    Right: 'right',
+};
+exports.LegendPosition = {
+    Top: 'Top',
+    Bottom: 'Bottom',
+    Right: 'Right',
+    Left: 'Left',
+    TopCenter: 'TopCenter',
+    BottomCenter: 'BottomCenter',
+    RightCenter: 'RightCenter',
+    LeftCenter: 'LeftCenter',
+};
+var SortDirection;
+(function (SortDirection) {
+    SortDirection[SortDirection["Ascending"] = 1] = "Ascending";
+    SortDirection[SortDirection["Descending"] = 2] = "Descending";
+})(SortDirection = exports.SortDirection || (exports.SortDirection = {}));
+var Selector = /** @class */ (function () {
+    function Selector(schema) {
+        this.$schema = schema;
+    }
+    Selector.prototype.toJSON = function () {
+        return {
+            $schema: this.$schema
+        };
+    };
+    return Selector;
+}());
+exports.Selector = Selector;
+var PageSelector = /** @class */ (function (_super) {
+    __extends(PageSelector, _super);
+    function PageSelector(pageName) {
+        var _this = _super.call(this, PageSelector.schemaUrl) || this;
+        _this.pageName = pageName;
+        return _this;
+    }
+    PageSelector.prototype.toJSON = function () {
+        var selector = _super.prototype.toJSON.call(this);
+        selector.pageName = this.pageName;
+        return selector;
+    };
+    PageSelector.schemaUrl = "http://powerbi.com/product/schema#pageSelector";
+    return PageSelector;
+}(Selector));
+exports.PageSelector = PageSelector;
+var VisualSelector = /** @class */ (function (_super) {
+    __extends(VisualSelector, _super);
+    function VisualSelector(visualName) {
+        var _this = _super.call(this, VisualSelector.schemaUrl) || this;
+        _this.visualName = visualName;
+        return _this;
+    }
+    VisualSelector.prototype.toJSON = function () {
+        var selector = _super.prototype.toJSON.call(this);
+        selector.visualName = this.visualName;
+        return selector;
+    };
+    VisualSelector.schemaUrl = "http://powerbi.com/product/schema#visualSelector";
+    return VisualSelector;
+}(Selector));
+exports.VisualSelector = VisualSelector;
+var VisualTypeSelector = /** @class */ (function (_super) {
+    __extends(VisualTypeSelector, _super);
+    function VisualTypeSelector(visualType) {
+        var _this = _super.call(this, VisualSelector.schemaUrl) || this;
+        _this.visualType = visualType;
+        return _this;
+    }
+    VisualTypeSelector.prototype.toJSON = function () {
+        var selector = _super.prototype.toJSON.call(this);
+        selector.visualType = this.visualType;
+        return selector;
+    };
+    VisualTypeSelector.schemaUrl = "http://powerbi.com/product/schema#visualTypeSelector";
+    return VisualTypeSelector;
+}(Selector));
+exports.VisualTypeSelector = VisualTypeSelector;
+var SlicerTargetSelector = /** @class */ (function (_super) {
+    __extends(SlicerTargetSelector, _super);
+    function SlicerTargetSelector(target) {
+        var _this = _super.call(this, VisualSelector.schemaUrl) || this;
+        _this.target = target;
+        return _this;
+    }
+    SlicerTargetSelector.prototype.toJSON = function () {
+        var selector = _super.prototype.toJSON.call(this);
+        selector.target = this.target;
+        return selector;
+    };
+    SlicerTargetSelector.schemaUrl = "http://powerbi.com/product/schema#slicerTargetSelector";
+    return SlicerTargetSelector;
+}(Selector));
+exports.SlicerTargetSelector = SlicerTargetSelector;
+var CommandDisplayOption;
+(function (CommandDisplayOption) {
+    CommandDisplayOption[CommandDisplayOption["Enabled"] = 0] = "Enabled";
+    CommandDisplayOption[CommandDisplayOption["Disabled"] = 1] = "Disabled";
+    CommandDisplayOption[CommandDisplayOption["Hidden"] = 2] = "Hidden";
+})(CommandDisplayOption = exports.CommandDisplayOption || (exports.CommandDisplayOption = {}));
+/*
+ * Visual CRUD
+ */
+var VisualDataRoleKind;
+(function (VisualDataRoleKind) {
+    // Indicates that the role should be bound to something that evaluates to a grouping of values.
+    VisualDataRoleKind[VisualDataRoleKind["Grouping"] = 0] = "Grouping";
+    // Indicates that the role should be bound to something that evaluates to a single value in a scope.
+    VisualDataRoleKind[VisualDataRoleKind["Measure"] = 1] = "Measure";
+    // Indicates that the role can be bound to either Grouping or Measure.
+    VisualDataRoleKind[VisualDataRoleKind["GroupingOrMeasure"] = 2] = "GroupingOrMeasure";
+})(VisualDataRoleKind = exports.VisualDataRoleKind || (exports.VisualDataRoleKind = {}));
+// Indicates the visual preference on Grouping or Measure. Only applicable if kind is GroupingOrMeasure.
+var VisualDataRoleKindPreference;
+(function (VisualDataRoleKindPreference) {
+    VisualDataRoleKindPreference[VisualDataRoleKindPreference["Measure"] = 0] = "Measure";
+    VisualDataRoleKindPreference[VisualDataRoleKindPreference["Grouping"] = 1] = "Grouping";
+})(VisualDataRoleKindPreference = exports.VisualDataRoleKindPreference || (exports.VisualDataRoleKindPreference = {}));
+function isOnLoadFilters(filters) {
+    return filters && !isReportFiltersArray(filters);
+}
+exports.isOnLoadFilters = isOnLoadFilters;
+function isReportFiltersArray(filters) {
+    return Array.isArray(filters);
+}
+exports.isReportFiltersArray = isReportFiltersArray;
+function isFlatMenuExtension(menuExtension) {
+    return menuExtension && !isGroupedMenuExtension(menuExtension);
+}
+exports.isFlatMenuExtension = isFlatMenuExtension;
+function isGroupedMenuExtension(menuExtension) {
+    return menuExtension && !!menuExtension.groupName;
+}
+exports.isGroupedMenuExtension = isGroupedMenuExtension;
+function isIExtensions(extensions) {
+    return extensions && !isIExtensionArray(extensions);
+}
+exports.isIExtensions = isIExtensions;
+function isIExtensionArray(extensions) {
+    return Array.isArray(extensions);
+}
+exports.isIExtensionArray = isIExtensionArray;
+function normalizeError(error) {
+    var message = error.message;
+    if (!message) {
+        message = error.path + " is invalid. Not meeting " + error.keyword + " constraint";
+    }
+    return {
+        message: message
+    };
+}
+function validateVisualSelector(input) {
+    var errors = validator_1.Validators.visualSelectorValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateVisualSelector = validateVisualSelector;
+function validateSlicer(input) {
+    var errors = validator_1.Validators.slicerValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateSlicer = validateSlicer;
+function validateSlicerState(input) {
+    var errors = validator_1.Validators.slicerStateValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateSlicerState = validateSlicerState;
+function validatePlayBookmarkRequest(input) {
+    var errors = validator_1.Validators.playBookmarkRequestValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validatePlayBookmarkRequest = validatePlayBookmarkRequest;
+function validateAddBookmarkRequest(input) {
+    var errors = validator_1.Validators.addBookmarkRequestValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateAddBookmarkRequest = validateAddBookmarkRequest;
+function validateApplyBookmarkByNameRequest(input) {
+    var errors = validator_1.Validators.applyBookmarkByNameRequestValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateApplyBookmarkByNameRequest = validateApplyBookmarkByNameRequest;
+function validateApplyBookmarkStateRequest(input) {
+    var errors = validator_1.Validators.applyBookmarkStateRequestValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateApplyBookmarkStateRequest = validateApplyBookmarkStateRequest;
+function validateCaptureBookmarkRequest(input) {
+    var errors = validator_1.Validators.captureBookmarkRequestValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateCaptureBookmarkRequest = validateCaptureBookmarkRequest;
+function validateSettings(input) {
+    var errors = validator_1.Validators.settingsValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateSettings = validateSettings;
+function validatePanes(input) {
+    var errors = validator_1.Validators.reportPanesValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validatePanes = validatePanes;
+function validateBookmarksPane(input) {
+    var errors = validator_1.Validators.bookmarksPaneValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateBookmarksPane = validateBookmarksPane;
+function validateFiltersPane(input) {
+    var errors = validator_1.Validators.filtersPaneValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateFiltersPane = validateFiltersPane;
+function validateFieldsPane(input) {
+    var errors = validator_1.Validators.fieldsPaneValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateFieldsPane = validateFieldsPane;
+function validatePageNavigationPane(input) {
+    var errors = validator_1.Validators.pageNavigationPaneValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validatePageNavigationPane = validatePageNavigationPane;
+function validateSelectionPane(input) {
+    var errors = validator_1.Validators.selectionPaneValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateSelectionPane = validateSelectionPane;
+function validateSyncSlicersPane(input) {
+    var errors = validator_1.Validators.syncSlicersPaneValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateSyncSlicersPane = validateSyncSlicersPane;
+function validateVisualizationsPane(input) {
+    var errors = validator_1.Validators.visualizationsPaneValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateVisualizationsPane = validateVisualizationsPane;
+function validateCustomPageSize(input) {
+    var errors = validator_1.Validators.customPageSizeValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateCustomPageSize = validateCustomPageSize;
+function validateExtension(input) {
+    var errors = validator_1.Validators.extensionValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateExtension = validateExtension;
+function validateMenuGroupExtension(input) {
+    var errors = validator_1.Validators.menuGroupExtensionValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateMenuGroupExtension = validateMenuGroupExtension;
+function validateReportLoad(input) {
+    var errors = validator_1.Validators.reportLoadValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateReportLoad = validateReportLoad;
+function validatePaginatedReportLoad(input) {
+    var errors = validator_1.Validators.paginatedReportLoadValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validatePaginatedReportLoad = validatePaginatedReportLoad;
+function validateCreateReport(input) {
+    var errors = validator_1.Validators.reportCreateValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateCreateReport = validateCreateReport;
+function validateDashboardLoad(input) {
+    var errors = validator_1.Validators.dashboardLoadValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateDashboardLoad = validateDashboardLoad;
+function validateTileLoad(input) {
+    var errors = validator_1.Validators.tileLoadValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateTileLoad = validateTileLoad;
+function validatePage(input) {
+    var errors = validator_1.Validators.pageValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validatePage = validatePage;
+function validateFilter(input) {
+    var errors = validator_1.Validators.filterValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateFilter = validateFilter;
+function validateUpdateFiltersRequest(input) {
+    var errors = validator_1.Validators.updateFiltersRequestValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateUpdateFiltersRequest = validateUpdateFiltersRequest;
+function validateSaveAsParameters(input) {
+    var errors = validator_1.Validators.saveAsParametersValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateSaveAsParameters = validateSaveAsParameters;
+function validateLoadQnaConfiguration(input) {
+    var errors = validator_1.Validators.loadQnaValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateLoadQnaConfiguration = validateLoadQnaConfiguration;
+function validateQnaInterpretInputData(input) {
+    var errors = validator_1.Validators.qnaInterpretInputDataValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateQnaInterpretInputData = validateQnaInterpretInputData;
+function validateExportDataRequest(input) {
+    var errors = validator_1.Validators.exportDataRequestValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateExportDataRequest = validateExportDataRequest;
+function validateVisualHeader(input) {
+    var errors = validator_1.Validators.visualHeaderValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateVisualHeader = validateVisualHeader;
+function validateVisualSettings(input) {
+    var errors = validator_1.Validators.visualSettingsValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateVisualSettings = validateVisualSettings;
+function validateCommandsSettings(input) {
+    var errors = validator_1.Validators.commandsSettingsValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateCommandsSettings = validateCommandsSettings;
+function validateCustomTheme(input) {
+    var errors = validator_1.Validators.customThemeValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateCustomTheme = validateCustomTheme;
+function validateZoomLevel(input) {
+    var errors = validator_1.Validators.zoomLevelValidator.validate(input);
+    return errors ? errors.map(normalizeError) : undefined;
+}
+exports.validateZoomLevel = validateZoomLevel;
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __nested_webpack_require_45903__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Validators = void 0;
+var barsValidator_1 = __nested_webpack_require_45903__(2);
+var bookmarkValidator_1 = __nested_webpack_require_45903__(5);
+var commandsSettingsValidator_1 = __nested_webpack_require_45903__(6);
+var customThemeValidator_1 = __nested_webpack_require_45903__(7);
+var dashboardLoadValidator_1 = __nested_webpack_require_45903__(8);
+var datasetBindingValidator_1 = __nested_webpack_require_45903__(9);
+var exportDataValidator_1 = __nested_webpack_require_45903__(10);
+var extensionsValidator_1 = __nested_webpack_require_45903__(11);
+var filtersValidator_1 = __nested_webpack_require_45903__(12);
+var layoutValidator_1 = __nested_webpack_require_45903__(13);
+var pageValidator_1 = __nested_webpack_require_45903__(14);
+var panesValidator_1 = __nested_webpack_require_45903__(15);
+var qnaValidator_1 = __nested_webpack_require_45903__(16);
+var reportCreateValidator_1 = __nested_webpack_require_45903__(17);
+var reportLoadValidator_1 = __nested_webpack_require_45903__(18);
+var paginatedReportLoadValidator_1 = __nested_webpack_require_45903__(19);
+var saveAsParametersValidator_1 = __nested_webpack_require_45903__(20);
+var selectorsValidator_1 = __nested_webpack_require_45903__(21);
+var settingsValidator_1 = __nested_webpack_require_45903__(22);
+var slicersValidator_1 = __nested_webpack_require_45903__(23);
+var tileLoadValidator_1 = __nested_webpack_require_45903__(24);
+var visualSettingsValidator_1 = __nested_webpack_require_45903__(25);
+var anyOfValidator_1 = __nested_webpack_require_45903__(26);
+var fieldForbiddenValidator_1 = __nested_webpack_require_45903__(27);
+var fieldRequiredValidator_1 = __nested_webpack_require_45903__(28);
+var mapValidator_1 = __nested_webpack_require_45903__(29);
+var typeValidator_1 = __nested_webpack_require_45903__(4);
+var parameterPanelValidator_1 = __nested_webpack_require_45903__(30);
+exports.Validators = {
+    addBookmarkRequestValidator: new bookmarkValidator_1.AddBookmarkRequestValidator(),
+    advancedFilterTypeValidator: new typeValidator_1.EnumValidator([0]),
+    advancedFilterValidator: new filtersValidator_1.AdvancedFilterValidator(),
+    anyArrayValidator: new typeValidator_1.ArrayValidator([new anyOfValidator_1.AnyOfValidator([new typeValidator_1.StringValidator(), new typeValidator_1.NumberValidator(), new typeValidator_1.BooleanValidator()])]),
+    anyFilterValidator: new anyOfValidator_1.AnyOfValidator([new filtersValidator_1.BasicFilterValidator(), new filtersValidator_1.AdvancedFilterValidator(), new filtersValidator_1.IncludeExcludeFilterValidator(), new filtersValidator_1.NotSupportedFilterValidator(), new filtersValidator_1.RelativeDateFilterValidator(), new filtersValidator_1.TopNFilterValidator(), new filtersValidator_1.RelativeTimeFilterValidator()]),
+    anyValueValidator: new anyOfValidator_1.AnyOfValidator([new typeValidator_1.StringValidator(), new typeValidator_1.NumberValidator(), new typeValidator_1.BooleanValidator()]),
+    actionBarValidator: new barsValidator_1.ActionBarValidator(),
+    applyBookmarkByNameRequestValidator: new bookmarkValidator_1.ApplyBookmarkByNameRequestValidator(),
+    applyBookmarkStateRequestValidator: new bookmarkValidator_1.ApplyBookmarkStateRequestValidator(),
+    applyBookmarkValidator: new anyOfValidator_1.AnyOfValidator([new bookmarkValidator_1.ApplyBookmarkByNameRequestValidator(), new bookmarkValidator_1.ApplyBookmarkStateRequestValidator()]),
+    backgroundValidator: new typeValidator_1.EnumValidator([0, 1]),
+    basicFilterTypeValidator: new typeValidator_1.EnumValidator([1]),
+    basicFilterValidator: new filtersValidator_1.BasicFilterValidator(),
+    booleanArrayValidator: new typeValidator_1.BooleanArrayValidator(),
+    booleanValidator: new typeValidator_1.BooleanValidator(),
+    bookmarksPaneValidator: new panesValidator_1.BookmarksPaneValidator(),
+    captureBookmarkOptionsValidator: new bookmarkValidator_1.CaptureBookmarkOptionsValidator(),
+    captureBookmarkRequestValidator: new bookmarkValidator_1.CaptureBookmarkRequestValidator(),
+    commandDisplayOptionValidator: new typeValidator_1.EnumValidator([0, 1, 2]),
+    commandExtensionSelectorValidator: new anyOfValidator_1.AnyOfValidator([new selectorsValidator_1.VisualSelectorValidator(), new selectorsValidator_1.VisualTypeSelectorValidator()]),
+    commandExtensionArrayValidator: new typeValidator_1.ArrayValidator([new extensionsValidator_1.CommandExtensionValidator()]),
+    commandExtensionValidator: new extensionsValidator_1.CommandExtensionValidator(),
+    commandsSettingsArrayValidator: new typeValidator_1.ArrayValidator([new commandsSettingsValidator_1.CommandsSettingsValidator()]),
+    commandsSettingsValidator: new commandsSettingsValidator_1.CommandsSettingsValidator(),
+    conditionItemValidator: new filtersValidator_1.ConditionItemValidator(),
+    contrastModeValidator: new typeValidator_1.EnumValidator([0, 1, 2, 3, 4]),
+    customLayoutDisplayOptionValidator: new typeValidator_1.EnumValidator([0, 1, 2]),
+    customLayoutValidator: new layoutValidator_1.CustomLayoutValidator(),
+    customPageSizeValidator: new pageValidator_1.CustomPageSizeValidator(),
+    customThemeValidator: new customThemeValidator_1.CustomThemeValidator(),
+    dashboardLoadValidator: new dashboardLoadValidator_1.DashboardLoadValidator(),
+    datasetBindingValidator: new datasetBindingValidator_1.DatasetBindingValidator(),
+    displayStateModeValidator: new typeValidator_1.EnumValidator([0, 1]),
+    displayStateValidator: new layoutValidator_1.DisplayStateValidator(),
+    exportDataRequestValidator: new exportDataValidator_1.ExportDataRequestValidator(),
+    extensionArrayValidator: new typeValidator_1.ArrayValidator([new extensionsValidator_1.ExtensionValidator()]),
+    extensionsValidator: new anyOfValidator_1.AnyOfValidator([new typeValidator_1.ArrayValidator([new extensionsValidator_1.ExtensionValidator()]), new extensionsValidator_1.ExtensionsValidator()]),
+    extensionPointsValidator: new extensionsValidator_1.ExtensionPointsValidator(),
+    extensionValidator: new extensionsValidator_1.ExtensionValidator(),
+    fieldForbiddenValidator: new fieldForbiddenValidator_1.FieldForbiddenValidator(),
+    fieldRequiredValidator: new fieldRequiredValidator_1.FieldRequiredValidator(),
+    fieldsPaneValidator: new panesValidator_1.FieldsPaneValidator(),
+    filterColumnTargetValidator: new filtersValidator_1.FilterColumnTargetValidator(),
+    filterDisplaySettingsValidator: new filtersValidator_1.FilterDisplaySettingsValidator(),
+    filterConditionsValidator: new typeValidator_1.ArrayValidator([new filtersValidator_1.ConditionItemValidator()]),
+    filterHierarchyTargetValidator: new filtersValidator_1.FilterHierarchyTargetValidator(),
+    filterMeasureTargetValidator: new filtersValidator_1.FilterMeasureTargetValidator(),
+    filterTargetValidator: new anyOfValidator_1.AnyOfValidator([new filtersValidator_1.FilterColumnTargetValidator(), new filtersValidator_1.FilterHierarchyTargetValidator(), new filtersValidator_1.FilterMeasureTargetValidator()]),
+    filterValidator: new filtersValidator_1.FilterValidator(),
+    filterTypeValidator: new typeValidator_1.EnumValidator([0, 1, 2, 3, 4, 5, 6, 7]),
+    filtersArrayValidator: new typeValidator_1.ArrayValidator([new filtersValidator_1.FilterValidator()]),
+    filtersOperationsUpdateValidator: new typeValidator_1.EnumValidator([1, 2, 3]),
+    filtersOperationsRemoveAllValidator: new typeValidator_1.EnumValidator([0]),
+    filtersPaneValidator: new panesValidator_1.FiltersPaneValidator(),
+    hyperlinkClickBehaviorValidator: new typeValidator_1.EnumValidator([0, 1, 2]),
+    includeExcludeFilterValidator: new filtersValidator_1.IncludeExcludeFilterValidator(),
+    includeExludeFilterTypeValidator: new typeValidator_1.EnumValidator([3]),
+    layoutTypeValidator: new typeValidator_1.EnumValidator([0, 1, 2, 3]),
+    loadQnaValidator: new qnaValidator_1.LoadQnaValidator(),
+    menuExtensionValidator: new anyOfValidator_1.AnyOfValidator([new extensionsValidator_1.FlatMenuExtensionValidator(), new extensionsValidator_1.GroupedMenuExtensionValidator()]),
+    menuGroupExtensionArrayValidator: new typeValidator_1.ArrayValidator([new extensionsValidator_1.MenuGroupExtensionValidator()]),
+    menuGroupExtensionValidator: new extensionsValidator_1.MenuGroupExtensionValidator(),
+    menuLocationValidator: new typeValidator_1.EnumValidator([0, 1]),
+    notSupportedFilterTypeValidator: new typeValidator_1.EnumValidator([2]),
+    notSupportedFilterValidator: new filtersValidator_1.NotSupportedFilterValidator(),
+    numberArrayValidator: new typeValidator_1.NumberArrayValidator(),
+    numberValidator: new typeValidator_1.NumberValidator(),
+    onLoadFiltersBaseValidator: new anyOfValidator_1.AnyOfValidator([new filtersValidator_1.OnLoadFiltersBaseValidator(), new filtersValidator_1.OnLoadFiltersBaseRemoveOperationValidator()]),
+    pageLayoutValidator: new mapValidator_1.MapValidator([new typeValidator_1.StringValidator()], [new layoutValidator_1.VisualLayoutValidator()]),
+    pageNavigationPaneValidator: new panesValidator_1.PageNavigationPaneValidator(),
+    pageNavigationPositionValidator: new typeValidator_1.EnumValidator([0, 1]),
+    pageSizeTypeValidator: new typeValidator_1.EnumValidator([0, 1, 2, 3, 4, 5]),
+    pageSizeValidator: new pageValidator_1.PageSizeValidator(),
+    pageValidator: new pageValidator_1.PageValidator(),
+    pageViewFieldValidator: new pageValidator_1.PageViewFieldValidator(),
+    pagesLayoutValidator: new mapValidator_1.MapValidator([new typeValidator_1.StringValidator()], [new layoutValidator_1.PageLayoutValidator()]),
+    paginatedReportCommandsValidator: new commandsSettingsValidator_1.PaginatedReportCommandsValidator(),
+    paginatedReportLoadValidator: new paginatedReportLoadValidator_1.PaginatedReportLoadValidator(),
+    paginatedReportsettingsValidator: new settingsValidator_1.PaginatedReportSettingsValidator(),
+    parametersPanelValidator: new parameterPanelValidator_1.ParametersPanelValidator(),
+    permissionsValidator: new typeValidator_1.EnumValidator([0, 1, 2, 4, 7]),
+    playBookmarkRequestValidator: new bookmarkValidator_1.PlayBookmarkRequestValidator(),
+    qnaInterpretInputDataValidator: new qnaValidator_1.QnaInterpretInputDataValidator(),
+    qnaPanesValidator: new panesValidator_1.QnaPanesValidator(),
+    qnaSettingValidator: new qnaValidator_1.QnaSettingsValidator(),
+    relativeDateFilterOperatorValidator: new typeValidator_1.EnumValidator([0, 1, 2]),
+    relativeDateFilterTimeUnitTypeValidator: new typeValidator_1.EnumValidator([0, 1, 2, 3, 4, 5, 6]),
+    relativeDateFilterTypeValidator: new typeValidator_1.EnumValidator([4]),
+    relativeDateFilterValidator: new filtersValidator_1.RelativeDateFilterValidator(),
+    relativeDateTimeFilterTypeValidator: new typeValidator_1.EnumValidator([4, 7]),
+    relativeDateTimeFilterUnitTypeValidator: new typeValidator_1.EnumValidator([0, 1, 2, 3, 4, 5, 6, 7, 8]),
+    relativeTimeFilterTimeUnitTypeValidator: new typeValidator_1.EnumValidator([7, 8]),
+    relativeTimeFilterTypeValidator: new typeValidator_1.EnumValidator([7]),
+    relativeTimeFilterValidator: new filtersValidator_1.RelativeTimeFilterValidator(),
+    reportBarsValidator: new barsValidator_1.ReportBarsValidator(),
+    reportCreateValidator: new reportCreateValidator_1.ReportCreateValidator(),
+    reportLoadFiltersValidator: new anyOfValidator_1.AnyOfValidator([new typeValidator_1.ArrayValidator([new filtersValidator_1.FilterValidator()]), new filtersValidator_1.OnLoadFiltersValidator()]),
+    reportLoadValidator: new reportLoadValidator_1.ReportLoadValidator(),
+    reportPanesValidator: new panesValidator_1.ReportPanesValidator(),
+    saveAsParametersValidator: new saveAsParametersValidator_1.SaveAsParametersValidator(),
+    selectionPaneValidator: new panesValidator_1.SelectionPaneValidator(),
+    settingsValidator: new settingsValidator_1.SettingsValidator(),
+    singleCommandSettingsValidator: new commandsSettingsValidator_1.SingleCommandSettingsValidator(),
+    slicerSelectorValidator: new anyOfValidator_1.AnyOfValidator([new selectorsValidator_1.VisualSelectorValidator(), new selectorsValidator_1.SlicerTargetSelectorValidator()]),
+    slicerStateValidator: new slicersValidator_1.SlicerStateValidator(),
+    slicerTargetValidator: new anyOfValidator_1.AnyOfValidator([new filtersValidator_1.FilterColumnTargetValidator(), new filtersValidator_1.FilterHierarchyTargetValidator(), new filtersValidator_1.FilterMeasureTargetValidator(), new filtersValidator_1.FilterKeyColumnsTargetValidator(), new filtersValidator_1.FilterKeyHierarchyTargetValidator()]),
+    slicerValidator: new slicersValidator_1.SlicerValidator(),
+    stringArrayValidator: new typeValidator_1.StringArrayValidator(),
+    stringValidator: new typeValidator_1.StringValidator(),
+    syncSlicersPaneValidator: new panesValidator_1.SyncSlicersPaneValidator(),
+    tileLoadValidator: new tileLoadValidator_1.TileLoadValidator(),
+    tokenTypeValidator: new typeValidator_1.EnumValidator([0, 1]),
+    topNFilterTypeValidator: new typeValidator_1.EnumValidator([5]),
+    topNFilterValidator: new filtersValidator_1.TopNFilterValidator(),
+    updateFiltersRequestValidator: new anyOfValidator_1.AnyOfValidator([new filtersValidator_1.UpdateFiltersRequestValidator(), new filtersValidator_1.RemoveFiltersRequestValidator()]),
+    viewModeValidator: new typeValidator_1.EnumValidator([0, 1]),
+    visualCommandSelectorValidator: new anyOfValidator_1.AnyOfValidator([new selectorsValidator_1.VisualSelectorValidator(), new selectorsValidator_1.VisualTypeSelectorValidator()]),
+    visualHeaderSelectorValidator: new anyOfValidator_1.AnyOfValidator([new selectorsValidator_1.VisualSelectorValidator(), new selectorsValidator_1.VisualTypeSelectorValidator()]),
+    visualHeaderSettingsValidator: new visualSettingsValidator_1.VisualHeaderSettingsValidator(),
+    visualHeaderValidator: new visualSettingsValidator_1.VisualHeaderValidator(),
+    visualHeadersValidator: new typeValidator_1.ArrayValidator([new visualSettingsValidator_1.VisualHeaderValidator()]),
+    visualizationsPaneValidator: new panesValidator_1.VisualizationsPaneValidator(),
+    visualLayoutValidator: new layoutValidator_1.VisualLayoutValidator(),
+    visualSelectorValidator: new selectorsValidator_1.VisualSelectorValidator(),
+    visualSettingsValidator: new visualSettingsValidator_1.VisualSettingsValidator(),
+    visualTypeSelectorValidator: new selectorsValidator_1.VisualTypeSelectorValidator(),
+    zoomLevelValidator: new typeValidator_1.RangeValidator(0.25, 4),
+};
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __nested_webpack_require_60477__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ActionBarValidator = exports.ReportBarsValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_60477__(3);
+var typeValidator_1 = __nested_webpack_require_60477__(4);
+var validator_1 = __nested_webpack_require_60477__(1);
+var ReportBarsValidator = /** @class */ (function (_super) {
+    __extends(ReportBarsValidator, _super);
+    function ReportBarsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ReportBarsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "actionBar",
+                validators: [validator_1.Validators.actionBarValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ReportBarsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ReportBarsValidator = ReportBarsValidator;
+var ActionBarValidator = /** @class */ (function (_super) {
+    __extends(ActionBarValidator, _super);
+    function ActionBarValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ActionBarValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "visible",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ActionBarValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ActionBarValidator = ActionBarValidator;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MultipleFieldsValidator = void 0;
+var MultipleFieldsValidator = /** @class */ (function () {
+    function MultipleFieldsValidator(fieldValidatorsPairs) {
+        this.fieldValidatorsPairs = fieldValidatorsPairs;
+    }
+    MultipleFieldsValidator.prototype.validate = function (input, path, field) {
+        if (!this.fieldValidatorsPairs) {
+            return null;
+        }
+        var fieldsPath = path ? path + "." + field : field;
+        for (var _i = 0, _a = this.fieldValidatorsPairs; _i < _a.length; _i++) {
+            var fieldValidators = _a[_i];
+            for (var _b = 0, _c = fieldValidators.validators; _b < _c.length; _b++) {
+                var validator = _c[_b];
+                var errors = validator.validate(input[fieldValidators.field], fieldsPath, fieldValidators.field);
+                if (errors) {
+                    return errors;
+                }
+            }
+        }
+        return null;
+    };
+    return MultipleFieldsValidator;
+}());
+exports.MultipleFieldsValidator = MultipleFieldsValidator;
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.RangeValidator = exports.NumberArrayValidator = exports.BooleanArrayValidator = exports.StringArrayValidator = exports.EnumValidator = exports.SchemaValidator = exports.ValueValidator = exports.NumberValidator = exports.BooleanValidator = exports.StringValidator = exports.TypeValidator = exports.ArrayValidator = exports.ObjectValidator = void 0;
+var ObjectValidator = /** @class */ (function () {
+    function ObjectValidator() {
+    }
+    ObjectValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        if (typeof input !== "object" || Array.isArray(input)) {
+            return [{
+                    message: field !== undefined ? field + " must be an object" : "input must be an object",
+                    path: path,
+                    keyword: "type"
+                }];
+        }
+        return null;
+    };
+    return ObjectValidator;
+}());
+exports.ObjectValidator = ObjectValidator;
+var ArrayValidator = /** @class */ (function () {
+    function ArrayValidator(itemValidators) {
+        this.itemValidators = itemValidators;
+    }
+    ArrayValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        if (!(Array.isArray(input))) {
+            return [{
+                    message: field + " property is invalid",
+                    path: (path ? path + "." : "") + field,
+                    keyword: "type"
+                }];
+        }
+        for (var i = 0; i < input.length; i++) {
+            var fieldsPath = (path ? path + "." : "") + field + "." + i;
+            for (var _i = 0, _a = this.itemValidators; _i < _a.length; _i++) {
+                var validator = _a[_i];
+                var errors = validator.validate(input[i], fieldsPath, field);
+                if (errors) {
+                    return [{
+                            message: field + " property is invalid",
+                            path: (path ? path + "." : "") + field,
+                            keyword: "type"
+                        }];
+                }
+            }
+        }
+        return null;
+    };
+    return ArrayValidator;
+}());
+exports.ArrayValidator = ArrayValidator;
+var TypeValidator = /** @class */ (function () {
+    function TypeValidator(expectedType) {
+        this.expectedType = expectedType;
+    }
+    TypeValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        if (!(typeof input === this.expectedType)) {
+            return [{
+                    message: field + " must be a " + this.expectedType,
+                    path: (path ? path + "." : "") + field,
+                    keyword: "type"
+                }];
+        }
+        return null;
+    };
+    return TypeValidator;
+}());
+exports.TypeValidator = TypeValidator;
+var StringValidator = /** @class */ (function (_super) {
+    __extends(StringValidator, _super);
+    function StringValidator() {
+        return _super.call(this, "string") || this;
+    }
+    return StringValidator;
+}(TypeValidator));
+exports.StringValidator = StringValidator;
+var BooleanValidator = /** @class */ (function (_super) {
+    __extends(BooleanValidator, _super);
+    function BooleanValidator() {
+        return _super.call(this, "boolean") || this;
+    }
+    return BooleanValidator;
+}(TypeValidator));
+exports.BooleanValidator = BooleanValidator;
+var NumberValidator = /** @class */ (function (_super) {
+    __extends(NumberValidator, _super);
+    function NumberValidator() {
+        return _super.call(this, "number") || this;
+    }
+    return NumberValidator;
+}(TypeValidator));
+exports.NumberValidator = NumberValidator;
+var ValueValidator = /** @class */ (function () {
+    function ValueValidator(possibleValues) {
+        this.possibleValues = possibleValues;
+    }
+    ValueValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        if (this.possibleValues.indexOf(input) < 0) {
+            return [{
+                    message: field + " property is invalid",
+                    path: (path ? path + "." : "") + field,
+                    keyword: "invalid"
+                }];
+        }
+        return null;
+    };
+    return ValueValidator;
+}());
+exports.ValueValidator = ValueValidator;
+var SchemaValidator = /** @class */ (function (_super) {
+    __extends(SchemaValidator, _super);
+    function SchemaValidator(schemaValue) {
+        var _this = _super.call(this, [schemaValue]) || this;
+        _this.schemaValue = schemaValue;
+        return _this;
+    }
+    SchemaValidator.prototype.validate = function (input, path, field) {
+        return _super.prototype.validate.call(this, input, path, field);
+    };
+    return SchemaValidator;
+}(ValueValidator));
+exports.SchemaValidator = SchemaValidator;
+var EnumValidator = /** @class */ (function (_super) {
+    __extends(EnumValidator, _super);
+    function EnumValidator(possibleValues) {
+        var _this = _super.call(this) || this;
+        _this.possibleValues = possibleValues;
+        return _this;
+    }
+    EnumValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var valueValidator = new ValueValidator(this.possibleValues);
+        return valueValidator.validate(input, path, field);
+    };
+    return EnumValidator;
+}(NumberValidator));
+exports.EnumValidator = EnumValidator;
+var StringArrayValidator = /** @class */ (function (_super) {
+    __extends(StringArrayValidator, _super);
+    function StringArrayValidator() {
+        return _super.call(this, [new StringValidator()]) || this;
+    }
+    StringArrayValidator.prototype.validate = function (input, path, field) {
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return [{
+                    message: field + " must be an array of strings",
+                    path: (path ? path + "." : "") + field,
+                    keyword: "type"
+                }];
+        }
+        return null;
+    };
+    return StringArrayValidator;
+}(ArrayValidator));
+exports.StringArrayValidator = StringArrayValidator;
+var BooleanArrayValidator = /** @class */ (function (_super) {
+    __extends(BooleanArrayValidator, _super);
+    function BooleanArrayValidator() {
+        return _super.call(this, [new BooleanValidator()]) || this;
+    }
+    BooleanArrayValidator.prototype.validate = function (input, path, field) {
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return [{
+                    message: field + " must be an array of booleans",
+                    path: (path ? path + "." : "") + field,
+                    keyword: "type"
+                }];
+        }
+        return null;
+    };
+    return BooleanArrayValidator;
+}(ArrayValidator));
+exports.BooleanArrayValidator = BooleanArrayValidator;
+var NumberArrayValidator = /** @class */ (function (_super) {
+    __extends(NumberArrayValidator, _super);
+    function NumberArrayValidator() {
+        return _super.call(this, [new NumberValidator()]) || this;
+    }
+    NumberArrayValidator.prototype.validate = function (input, path, field) {
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return [{
+                    message: field + " must be an array of numbers",
+                    path: (path ? path + "." : "") + field,
+                    keyword: "type"
+                }];
+        }
+        return null;
+    };
+    return NumberArrayValidator;
+}(ArrayValidator));
+exports.NumberArrayValidator = NumberArrayValidator;
+var RangeValidator = /** @class */ (function (_super) {
+    __extends(RangeValidator, _super);
+    function RangeValidator(minValue, maxValue) {
+        var _this = _super.call(this) || this;
+        _this.minValue = minValue;
+        _this.maxValue = maxValue;
+        return _this;
+    }
+    RangeValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        // input is a number, now check if it's in the given range
+        if (input > this.maxValue || input < this.minValue) {
+            return [{
+                    message: field + " must be a number between " + this.minValue + " and " + this.maxValue,
+                    path: (path ? path + "." : "") + field,
+                    keyword: "range"
+                }];
+        }
+        return null;
+    };
+    return RangeValidator;
+}(NumberValidator));
+exports.RangeValidator = RangeValidator;
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __nested_webpack_require_74761__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CaptureBookmarkRequestValidator = exports.CaptureBookmarkOptionsValidator = exports.ApplyBookmarkStateRequestValidator = exports.ApplyBookmarkByNameRequestValidator = exports.AddBookmarkRequestValidator = exports.PlayBookmarkRequestValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_74761__(3);
+var typeValidator_1 = __nested_webpack_require_74761__(4);
+var validator_1 = __nested_webpack_require_74761__(1);
+var PlayBookmarkRequestValidator = /** @class */ (function (_super) {
+    __extends(PlayBookmarkRequestValidator, _super);
+    function PlayBookmarkRequestValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PlayBookmarkRequestValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "playMode",
+                validators: [validator_1.Validators.fieldRequiredValidator, new typeValidator_1.EnumValidator([0, 1])]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return PlayBookmarkRequestValidator;
+}(typeValidator_1.ObjectValidator));
+exports.PlayBookmarkRequestValidator = PlayBookmarkRequestValidator;
+var AddBookmarkRequestValidator = /** @class */ (function (_super) {
+    __extends(AddBookmarkRequestValidator, _super);
+    function AddBookmarkRequestValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    AddBookmarkRequestValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "state",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "displayName",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "apply",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return AddBookmarkRequestValidator;
+}(typeValidator_1.ObjectValidator));
+exports.AddBookmarkRequestValidator = AddBookmarkRequestValidator;
+var ApplyBookmarkByNameRequestValidator = /** @class */ (function (_super) {
+    __extends(ApplyBookmarkByNameRequestValidator, _super);
+    function ApplyBookmarkByNameRequestValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ApplyBookmarkByNameRequestValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "name",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ApplyBookmarkByNameRequestValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ApplyBookmarkByNameRequestValidator = ApplyBookmarkByNameRequestValidator;
+var ApplyBookmarkStateRequestValidator = /** @class */ (function (_super) {
+    __extends(ApplyBookmarkStateRequestValidator, _super);
+    function ApplyBookmarkStateRequestValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ApplyBookmarkStateRequestValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "state",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ApplyBookmarkStateRequestValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ApplyBookmarkStateRequestValidator = ApplyBookmarkStateRequestValidator;
+var CaptureBookmarkOptionsValidator = /** @class */ (function (_super) {
+    __extends(CaptureBookmarkOptionsValidator, _super);
+    function CaptureBookmarkOptionsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CaptureBookmarkOptionsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "personalizeVisuals",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "allPages",
+                validators: [validator_1.Validators.booleanValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return CaptureBookmarkOptionsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.CaptureBookmarkOptionsValidator = CaptureBookmarkOptionsValidator;
+var CaptureBookmarkRequestValidator = /** @class */ (function (_super) {
+    __extends(CaptureBookmarkRequestValidator, _super);
+    function CaptureBookmarkRequestValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CaptureBookmarkRequestValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "options",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.captureBookmarkOptionsValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return CaptureBookmarkRequestValidator;
+}(typeValidator_1.ObjectValidator));
+exports.CaptureBookmarkRequestValidator = CaptureBookmarkRequestValidator;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __nested_webpack_require_83039__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PaginatedReportCommandsValidator = exports.SingleCommandSettingsValidator = exports.CommandsSettingsValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_83039__(3);
+var typeValidator_1 = __nested_webpack_require_83039__(4);
+var validator_1 = __nested_webpack_require_83039__(1);
+var CommandsSettingsValidator = /** @class */ (function (_super) {
+    __extends(CommandsSettingsValidator, _super);
+    function CommandsSettingsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CommandsSettingsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "copy",
+                validators: [validator_1.Validators.singleCommandSettingsValidator]
+            },
+            {
+                field: "drill",
+                validators: [validator_1.Validators.singleCommandSettingsValidator]
+            },
+            {
+                field: "drillthrough",
+                validators: [validator_1.Validators.singleCommandSettingsValidator]
+            },
+            {
+                field: "expandCollapse",
+                validators: [validator_1.Validators.singleCommandSettingsValidator]
+            },
+            {
+                field: "exportData",
+                validators: [validator_1.Validators.singleCommandSettingsValidator]
+            },
+            {
+                field: "includeExclude",
+                validators: [validator_1.Validators.singleCommandSettingsValidator]
+            },
+            {
+                field: "removeVisual",
+                validators: [validator_1.Validators.singleCommandSettingsValidator]
+            },
+            {
+                field: "search",
+                validators: [validator_1.Validators.singleCommandSettingsValidator]
+            },
+            {
+                field: "seeData",
+                validators: [validator_1.Validators.singleCommandSettingsValidator]
+            },
+            {
+                field: "sort",
+                validators: [validator_1.Validators.singleCommandSettingsValidator]
+            },
+            {
+                field: "spotlight",
+                validators: [validator_1.Validators.singleCommandSettingsValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return CommandsSettingsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.CommandsSettingsValidator = CommandsSettingsValidator;
+var SingleCommandSettingsValidator = /** @class */ (function (_super) {
+    __extends(SingleCommandSettingsValidator, _super);
+    function SingleCommandSettingsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SingleCommandSettingsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "displayOption",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.commandDisplayOptionValidator]
+            },
+            {
+                field: "selector",
+                validators: [validator_1.Validators.visualCommandSelectorValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return SingleCommandSettingsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.SingleCommandSettingsValidator = SingleCommandSettingsValidator;
+var PaginatedReportCommandsValidator = /** @class */ (function (_super) {
+    __extends(PaginatedReportCommandsValidator, _super);
+    function PaginatedReportCommandsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PaginatedReportCommandsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "parameterPanel",
+                validators: [validator_1.Validators.parametersPanelValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return PaginatedReportCommandsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.PaginatedReportCommandsValidator = PaginatedReportCommandsValidator;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __nested_webpack_require_89085__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CustomThemeValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_89085__(3);
+var typeValidator_1 = __nested_webpack_require_89085__(4);
+var CustomThemeValidator = /** @class */ (function (_super) {
+    __extends(CustomThemeValidator, _super);
+    function CustomThemeValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CustomThemeValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "themeJson",
+                validators: [new typeValidator_1.ObjectValidator()]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return CustomThemeValidator;
+}(typeValidator_1.ObjectValidator));
+exports.CustomThemeValidator = CustomThemeValidator;
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __nested_webpack_require_91041__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DashboardLoadValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_91041__(3);
+var typeValidator_1 = __nested_webpack_require_91041__(4);
+var validator_1 = __nested_webpack_require_91041__(1);
+var DashboardLoadValidator = /** @class */ (function (_super) {
+    __extends(DashboardLoadValidator, _super);
+    function DashboardLoadValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    DashboardLoadValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "accessToken",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "id",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "groupId",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "pageView",
+                validators: [validator_1.Validators.pageViewFieldValidator]
+            },
+            {
+                field: "tokenType",
+                validators: [validator_1.Validators.tokenTypeValidator]
+            },
+            {
+                field: "embedUrl",
+                validators: [validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return DashboardLoadValidator;
+}(typeValidator_1.ObjectValidator));
+exports.DashboardLoadValidator = DashboardLoadValidator;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __nested_webpack_require_93842__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DatasetBindingValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_93842__(3);
+var typeValidator_1 = __nested_webpack_require_93842__(4);
+var validator_1 = __nested_webpack_require_93842__(1);
+var DatasetBindingValidator = /** @class */ (function (_super) {
+    __extends(DatasetBindingValidator, _super);
+    function DatasetBindingValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    DatasetBindingValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "datasetId",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return DatasetBindingValidator;
+}(typeValidator_1.ObjectValidator));
+exports.DatasetBindingValidator = DatasetBindingValidator;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __nested_webpack_require_95914__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExportDataRequestValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_95914__(3);
+var typeValidator_1 = __nested_webpack_require_95914__(4);
+var ExportDataRequestValidator = /** @class */ (function (_super) {
+    __extends(ExportDataRequestValidator, _super);
+    function ExportDataRequestValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ExportDataRequestValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "rows",
+                validators: [new typeValidator_1.NumberValidator()]
+            },
+            {
+                field: "exportDataType",
+                validators: [new typeValidator_1.EnumValidator([0, 1])]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ExportDataRequestValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ExportDataRequestValidator = ExportDataRequestValidator;
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __nested_webpack_require_98060__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExtensionsValidator = exports.MenuGroupExtensionValidator = exports.ExtensionValidator = exports.CommandExtensionValidator = exports.ExtensionItemValidator = exports.ExtensionPointsValidator = exports.GroupedMenuExtensionValidator = exports.FlatMenuExtensionValidator = exports.MenuExtensionBaseValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_98060__(3);
+var typeValidator_1 = __nested_webpack_require_98060__(4);
+var validator_1 = __nested_webpack_require_98060__(1);
+var MenuExtensionBaseValidator = /** @class */ (function (_super) {
+    __extends(MenuExtensionBaseValidator, _super);
+    function MenuExtensionBaseValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MenuExtensionBaseValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "title",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "icon",
+                validators: [validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return MenuExtensionBaseValidator;
+}(typeValidator_1.ObjectValidator));
+exports.MenuExtensionBaseValidator = MenuExtensionBaseValidator;
+var FlatMenuExtensionValidator = /** @class */ (function (_super) {
+    __extends(FlatMenuExtensionValidator, _super);
+    function FlatMenuExtensionValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    FlatMenuExtensionValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "menuLocation",
+                validators: [validator_1.Validators.menuLocationValidator]
+            },
+            {
+                field: "groupName",
+                validators: [validator_1.Validators.fieldForbiddenValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return FlatMenuExtensionValidator;
+}(MenuExtensionBaseValidator));
+exports.FlatMenuExtensionValidator = FlatMenuExtensionValidator;
+var GroupedMenuExtensionValidator = /** @class */ (function (_super) {
+    __extends(GroupedMenuExtensionValidator, _super);
+    function GroupedMenuExtensionValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    GroupedMenuExtensionValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "groupName",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "menuLocation",
+                validators: [validator_1.Validators.fieldForbiddenValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return GroupedMenuExtensionValidator;
+}(MenuExtensionBaseValidator));
+exports.GroupedMenuExtensionValidator = GroupedMenuExtensionValidator;
+var ExtensionPointsValidator = /** @class */ (function (_super) {
+    __extends(ExtensionPointsValidator, _super);
+    function ExtensionPointsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ExtensionPointsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "visualContextMenu",
+                validators: [validator_1.Validators.menuExtensionValidator]
+            },
+            {
+                field: "visualOptionsMenu",
+                validators: [validator_1.Validators.menuExtensionValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ExtensionPointsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ExtensionPointsValidator = ExtensionPointsValidator;
+var ExtensionItemValidator = /** @class */ (function (_super) {
+    __extends(ExtensionItemValidator, _super);
+    function ExtensionItemValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ExtensionItemValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "name",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "extend",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.extensionPointsValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ExtensionItemValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ExtensionItemValidator = ExtensionItemValidator;
+var CommandExtensionValidator = /** @class */ (function (_super) {
+    __extends(CommandExtensionValidator, _super);
+    function CommandExtensionValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CommandExtensionValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "title",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "icon",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "selector",
+                validators: [validator_1.Validators.commandExtensionSelectorValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return CommandExtensionValidator;
+}(ExtensionItemValidator));
+exports.CommandExtensionValidator = CommandExtensionValidator;
+var ExtensionValidator = /** @class */ (function (_super) {
+    __extends(ExtensionValidator, _super);
+    function ExtensionValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ExtensionValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "command",
+                validators: [validator_1.Validators.commandExtensionValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ExtensionValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ExtensionValidator = ExtensionValidator;
+var MenuGroupExtensionValidator = /** @class */ (function (_super) {
+    __extends(MenuGroupExtensionValidator, _super);
+    function MenuGroupExtensionValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    MenuGroupExtensionValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "name",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "title",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "menuLocation",
+                validators: [validator_1.Validators.menuLocationValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return MenuGroupExtensionValidator;
+}(typeValidator_1.ObjectValidator));
+exports.MenuGroupExtensionValidator = MenuGroupExtensionValidator;
+var ExtensionsValidator = /** @class */ (function (_super) {
+    __extends(ExtensionsValidator, _super);
+    function ExtensionsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ExtensionsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "commands",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.commandExtensionArrayValidator]
+            },
+            {
+                field: "groups",
+                validators: [validator_1.Validators.menuGroupExtensionArrayValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ExtensionsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ExtensionsValidator = ExtensionsValidator;
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __nested_webpack_require_110353__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.OnLoadFiltersValidator = exports.OnLoadFiltersBaseRemoveOperationValidator = exports.OnLoadFiltersBaseValidator = exports.ConditionItemValidator = exports.RemoveFiltersRequestValidator = exports.UpdateFiltersRequestValidator = exports.FilterValidator = exports.IncludeExcludeFilterValidator = exports.NotSupportedFilterValidator = exports.TopNFilterValidator = exports.RelativeTimeFilterValidator = exports.RelativeDateFilterValidator = exports.RelativeDateTimeFilterValidator = exports.AdvancedFilterValidator = exports.BasicFilterValidator = exports.FilterValidatorBase = exports.FilterDisplaySettingsValidator = exports.FilterMeasureTargetValidator = exports.FilterKeyHierarchyTargetValidator = exports.FilterHierarchyTargetValidator = exports.FilterKeyColumnsTargetValidator = exports.FilterColumnTargetValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_110353__(3);
+var typeValidator_1 = __nested_webpack_require_110353__(4);
+var validator_1 = __nested_webpack_require_110353__(1);
+var FilterColumnTargetValidator = /** @class */ (function (_super) {
+    __extends(FilterColumnTargetValidator, _super);
+    function FilterColumnTargetValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    FilterColumnTargetValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "table",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "column",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return FilterColumnTargetValidator;
+}(typeValidator_1.ObjectValidator));
+exports.FilterColumnTargetValidator = FilterColumnTargetValidator;
+var FilterKeyColumnsTargetValidator = /** @class */ (function (_super) {
+    __extends(FilterKeyColumnsTargetValidator, _super);
+    function FilterKeyColumnsTargetValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    FilterKeyColumnsTargetValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "keys",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringArrayValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return FilterKeyColumnsTargetValidator;
+}(FilterColumnTargetValidator));
+exports.FilterKeyColumnsTargetValidator = FilterKeyColumnsTargetValidator;
+var FilterHierarchyTargetValidator = /** @class */ (function (_super) {
+    __extends(FilterHierarchyTargetValidator, _super);
+    function FilterHierarchyTargetValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    FilterHierarchyTargetValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "table",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "hierarchy",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "hierarchyLevel",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return FilterHierarchyTargetValidator;
+}(typeValidator_1.ObjectValidator));
+exports.FilterHierarchyTargetValidator = FilterHierarchyTargetValidator;
+var FilterKeyHierarchyTargetValidator = /** @class */ (function (_super) {
+    __extends(FilterKeyHierarchyTargetValidator, _super);
+    function FilterKeyHierarchyTargetValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    FilterKeyHierarchyTargetValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "keys",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringArrayValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return FilterKeyHierarchyTargetValidator;
+}(FilterHierarchyTargetValidator));
+exports.FilterKeyHierarchyTargetValidator = FilterKeyHierarchyTargetValidator;
+var FilterMeasureTargetValidator = /** @class */ (function (_super) {
+    __extends(FilterMeasureTargetValidator, _super);
+    function FilterMeasureTargetValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    FilterMeasureTargetValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "table",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "measure",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return FilterMeasureTargetValidator;
+}(typeValidator_1.ObjectValidator));
+exports.FilterMeasureTargetValidator = FilterMeasureTargetValidator;
+var FilterDisplaySettingsValidator = /** @class */ (function (_super) {
+    __extends(FilterDisplaySettingsValidator, _super);
+    function FilterDisplaySettingsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    FilterDisplaySettingsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "isLockedInViewMode",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "isHiddenInViewMode",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "displayName",
+                validators: [validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return FilterDisplaySettingsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.FilterDisplaySettingsValidator = FilterDisplaySettingsValidator;
+var FilterValidatorBase = /** @class */ (function (_super) {
+    __extends(FilterValidatorBase, _super);
+    function FilterValidatorBase() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    FilterValidatorBase.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "target",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.filterTargetValidator]
+            },
+            {
+                field: "$schema",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "filterType",
+                validators: [validator_1.Validators.filterTypeValidator]
+            },
+            {
+                field: "displaySettings",
+                validators: [validator_1.Validators.filterDisplaySettingsValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return FilterValidatorBase;
+}(typeValidator_1.ObjectValidator));
+exports.FilterValidatorBase = FilterValidatorBase;
+var BasicFilterValidator = /** @class */ (function (_super) {
+    __extends(BasicFilterValidator, _super);
+    function BasicFilterValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    BasicFilterValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "operator",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "values",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.anyArrayValidator]
+            },
+            {
+                field: "filterType",
+                validators: [validator_1.Validators.basicFilterTypeValidator]
+            },
+            {
+                field: "requireSingleSelection",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return BasicFilterValidator;
+}(FilterValidatorBase));
+exports.BasicFilterValidator = BasicFilterValidator;
+var AdvancedFilterValidator = /** @class */ (function (_super) {
+    __extends(AdvancedFilterValidator, _super);
+    function AdvancedFilterValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    AdvancedFilterValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "logicalOperator",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "conditions",
+                validators: [validator_1.Validators.filterConditionsValidator]
+            },
+            {
+                field: "filterType",
+                validators: [validator_1.Validators.advancedFilterTypeValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return AdvancedFilterValidator;
+}(FilterValidatorBase));
+exports.AdvancedFilterValidator = AdvancedFilterValidator;
+var RelativeDateTimeFilterValidator = /** @class */ (function (_super) {
+    __extends(RelativeDateTimeFilterValidator, _super);
+    function RelativeDateTimeFilterValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RelativeDateTimeFilterValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "operator",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.relativeDateFilterOperatorValidator]
+            },
+            {
+                field: "timeUnitsCount",
+                validators: [validator_1.Validators.numberValidator]
+            },
+            {
+                field: "timeUnitType",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.relativeDateTimeFilterUnitTypeValidator]
+            },
+            {
+                field: "filterType",
+                validators: [validator_1.Validators.relativeDateTimeFilterTypeValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return RelativeDateTimeFilterValidator;
+}(FilterValidatorBase));
+exports.RelativeDateTimeFilterValidator = RelativeDateTimeFilterValidator;
+var RelativeDateFilterValidator = /** @class */ (function (_super) {
+    __extends(RelativeDateFilterValidator, _super);
+    function RelativeDateFilterValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RelativeDateFilterValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "includeToday",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "timeUnitType",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.relativeDateFilterTimeUnitTypeValidator]
+            },
+            {
+                field: "filterType",
+                validators: [validator_1.Validators.relativeDateFilterTypeValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return RelativeDateFilterValidator;
+}(RelativeDateTimeFilterValidator));
+exports.RelativeDateFilterValidator = RelativeDateFilterValidator;
+var RelativeTimeFilterValidator = /** @class */ (function (_super) {
+    __extends(RelativeTimeFilterValidator, _super);
+    function RelativeTimeFilterValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RelativeTimeFilterValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "timeUnitType",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.relativeTimeFilterTimeUnitTypeValidator]
+            },
+            {
+                field: "filterType",
+                validators: [validator_1.Validators.relativeTimeFilterTypeValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return RelativeTimeFilterValidator;
+}(RelativeDateTimeFilterValidator));
+exports.RelativeTimeFilterValidator = RelativeTimeFilterValidator;
+var TopNFilterValidator = /** @class */ (function (_super) {
+    __extends(TopNFilterValidator, _super);
+    function TopNFilterValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    TopNFilterValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "operator",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "itemCount",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.numberValidator]
+            },
+            {
+                field: "filterType",
+                validators: [validator_1.Validators.topNFilterTypeValidator]
+            },
+            {
+                field: "orderBy",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.filterTargetValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return TopNFilterValidator;
+}(FilterValidatorBase));
+exports.TopNFilterValidator = TopNFilterValidator;
+var NotSupportedFilterValidator = /** @class */ (function (_super) {
+    __extends(NotSupportedFilterValidator, _super);
+    function NotSupportedFilterValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    NotSupportedFilterValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "message",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "notSupportedTypeName",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "filterType",
+                validators: [validator_1.Validators.notSupportedFilterTypeValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return NotSupportedFilterValidator;
+}(FilterValidatorBase));
+exports.NotSupportedFilterValidator = NotSupportedFilterValidator;
+var IncludeExcludeFilterValidator = /** @class */ (function (_super) {
+    __extends(IncludeExcludeFilterValidator, _super);
+    function IncludeExcludeFilterValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    IncludeExcludeFilterValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "isExclude",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "values",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.anyArrayValidator]
+            },
+            {
+                field: "filterType",
+                validators: [validator_1.Validators.includeExludeFilterTypeValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return IncludeExcludeFilterValidator;
+}(FilterValidatorBase));
+exports.IncludeExcludeFilterValidator = IncludeExcludeFilterValidator;
+var FilterValidator = /** @class */ (function (_super) {
+    __extends(FilterValidator, _super);
+    function FilterValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    FilterValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        return validator_1.Validators.anyFilterValidator.validate(input, path, field);
+    };
+    return FilterValidator;
+}(typeValidator_1.ObjectValidator));
+exports.FilterValidator = FilterValidator;
+var UpdateFiltersRequestValidator = /** @class */ (function (_super) {
+    __extends(UpdateFiltersRequestValidator, _super);
+    function UpdateFiltersRequestValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    UpdateFiltersRequestValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "filtersOperation",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.filtersOperationsUpdateValidator]
+            },
+            {
+                field: "filters",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.filtersArrayValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return UpdateFiltersRequestValidator;
+}(typeValidator_1.ObjectValidator));
+exports.UpdateFiltersRequestValidator = UpdateFiltersRequestValidator;
+var RemoveFiltersRequestValidator = /** @class */ (function (_super) {
+    __extends(RemoveFiltersRequestValidator, _super);
+    function RemoveFiltersRequestValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    RemoveFiltersRequestValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "filtersOperation",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.filtersOperationsRemoveAllValidator]
+            },
+            {
+                field: "filters",
+                validators: [validator_1.Validators.fieldForbiddenValidator, validator_1.Validators.filtersArrayValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return RemoveFiltersRequestValidator;
+}(typeValidator_1.ObjectValidator));
+exports.RemoveFiltersRequestValidator = RemoveFiltersRequestValidator;
+var ConditionItemValidator = /** @class */ (function (_super) {
+    __extends(ConditionItemValidator, _super);
+    function ConditionItemValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ConditionItemValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "value",
+                validators: [validator_1.Validators.anyValueValidator]
+            },
+            {
+                field: "operator",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ConditionItemValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ConditionItemValidator = ConditionItemValidator;
+var OnLoadFiltersBaseValidator = /** @class */ (function (_super) {
+    __extends(OnLoadFiltersBaseValidator, _super);
+    function OnLoadFiltersBaseValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    OnLoadFiltersBaseValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "operation",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.filtersOperationsUpdateValidator]
+            },
+            {
+                field: "filters",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.filtersArrayValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return OnLoadFiltersBaseValidator;
+}(typeValidator_1.ObjectValidator));
+exports.OnLoadFiltersBaseValidator = OnLoadFiltersBaseValidator;
+var OnLoadFiltersBaseRemoveOperationValidator = /** @class */ (function (_super) {
+    __extends(OnLoadFiltersBaseRemoveOperationValidator, _super);
+    function OnLoadFiltersBaseRemoveOperationValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    OnLoadFiltersBaseRemoveOperationValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "operation",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.filtersOperationsRemoveAllValidator]
+            },
+            {
+                field: "filters",
+                validators: [validator_1.Validators.fieldForbiddenValidator, validator_1.Validators.filtersArrayValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return OnLoadFiltersBaseRemoveOperationValidator;
+}(typeValidator_1.ObjectValidator));
+exports.OnLoadFiltersBaseRemoveOperationValidator = OnLoadFiltersBaseRemoveOperationValidator;
+var OnLoadFiltersValidator = /** @class */ (function (_super) {
+    __extends(OnLoadFiltersValidator, _super);
+    function OnLoadFiltersValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    OnLoadFiltersValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "allPages",
+                validators: [validator_1.Validators.onLoadFiltersBaseValidator]
+            },
+            {
+                field: "currentPage",
+                validators: [validator_1.Validators.onLoadFiltersBaseValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return OnLoadFiltersValidator;
+}(typeValidator_1.ObjectValidator));
+exports.OnLoadFiltersValidator = OnLoadFiltersValidator;
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __nested_webpack_require_141343__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PageLayoutValidator = exports.DisplayStateValidator = exports.VisualLayoutValidator = exports.CustomLayoutValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_141343__(3);
+var typeValidator_1 = __nested_webpack_require_141343__(4);
+var validator_1 = __nested_webpack_require_141343__(1);
+var CustomLayoutValidator = /** @class */ (function (_super) {
+    __extends(CustomLayoutValidator, _super);
+    function CustomLayoutValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CustomLayoutValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "pageSize",
+                validators: [validator_1.Validators.pageSizeValidator]
+            },
+            {
+                field: "displayOption",
+                validators: [validator_1.Validators.customLayoutDisplayOptionValidator]
+            },
+            {
+                field: "pagesLayout",
+                validators: [validator_1.Validators.pagesLayoutValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return CustomLayoutValidator;
+}(typeValidator_1.ObjectValidator));
+exports.CustomLayoutValidator = CustomLayoutValidator;
+var VisualLayoutValidator = /** @class */ (function (_super) {
+    __extends(VisualLayoutValidator, _super);
+    function VisualLayoutValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    VisualLayoutValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "x",
+                validators: [validator_1.Validators.numberValidator]
+            },
+            {
+                field: "y",
+                validators: [validator_1.Validators.numberValidator]
+            },
+            {
+                field: "z",
+                validators: [validator_1.Validators.numberValidator]
+            },
+            {
+                field: "width",
+                validators: [validator_1.Validators.numberValidator]
+            },
+            {
+                field: "height",
+                validators: [validator_1.Validators.numberValidator]
+            },
+            {
+                field: "displayState",
+                validators: [validator_1.Validators.displayStateValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return VisualLayoutValidator;
+}(typeValidator_1.ObjectValidator));
+exports.VisualLayoutValidator = VisualLayoutValidator;
+var DisplayStateValidator = /** @class */ (function (_super) {
+    __extends(DisplayStateValidator, _super);
+    function DisplayStateValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    DisplayStateValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "mode",
+                validators: [validator_1.Validators.displayStateModeValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return DisplayStateValidator;
+}(typeValidator_1.ObjectValidator));
+exports.DisplayStateValidator = DisplayStateValidator;
+var PageLayoutValidator = /** @class */ (function (_super) {
+    __extends(PageLayoutValidator, _super);
+    function PageLayoutValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PageLayoutValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "visualsLayout",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.pageLayoutValidator]
+            },
+            {
+                field: "defaultLayout",
+                validators: [validator_1.Validators.visualLayoutValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return PageLayoutValidator;
+}(typeValidator_1.ObjectValidator));
+exports.PageLayoutValidator = PageLayoutValidator;
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __nested_webpack_require_147624__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PageViewFieldValidator = exports.PageValidator = exports.CustomPageSizeValidator = exports.PageSizeValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_147624__(3);
+var typeValidator_1 = __nested_webpack_require_147624__(4);
+var validator_1 = __nested_webpack_require_147624__(1);
+var PageSizeValidator = /** @class */ (function (_super) {
+    __extends(PageSizeValidator, _super);
+    function PageSizeValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PageSizeValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "type",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.pageSizeTypeValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return PageSizeValidator;
+}(typeValidator_1.ObjectValidator));
+exports.PageSizeValidator = PageSizeValidator;
+var CustomPageSizeValidator = /** @class */ (function (_super) {
+    __extends(CustomPageSizeValidator, _super);
+    function CustomPageSizeValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CustomPageSizeValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "width",
+                validators: [validator_1.Validators.numberValidator]
+            },
+            {
+                field: "height",
+                validators: [validator_1.Validators.numberValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return CustomPageSizeValidator;
+}(PageSizeValidator));
+exports.CustomPageSizeValidator = CustomPageSizeValidator;
+var PageValidator = /** @class */ (function (_super) {
+    __extends(PageValidator, _super);
+    function PageValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PageValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "name",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return PageValidator;
+}(typeValidator_1.ObjectValidator));
+exports.PageValidator = PageValidator;
+var PageViewFieldValidator = /** @class */ (function (_super) {
+    __extends(PageViewFieldValidator, _super);
+    function PageViewFieldValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PageViewFieldValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var possibleValues = ["actualSize", "fitToWidth", "oneColumn"];
+        if (possibleValues.indexOf(input) < 0) {
+            return [{
+                    message: "pageView must be a string with one of the following values: \"actualSize\", \"fitToWidth\", \"oneColumn\""
+                }];
+        }
+        return null;
+    };
+    return PageViewFieldValidator;
+}(typeValidator_1.StringValidator));
+exports.PageViewFieldValidator = PageViewFieldValidator;
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __nested_webpack_require_152866__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.VisualizationsPaneValidator = exports.SyncSlicersPaneValidator = exports.SelectionPaneValidator = exports.PageNavigationPaneValidator = exports.FiltersPaneValidator = exports.FieldsPaneValidator = exports.BookmarksPaneValidator = exports.QnaPanesValidator = exports.ReportPanesValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_152866__(3);
+var typeValidator_1 = __nested_webpack_require_152866__(4);
+var validator_1 = __nested_webpack_require_152866__(1);
+var ReportPanesValidator = /** @class */ (function (_super) {
+    __extends(ReportPanesValidator, _super);
+    function ReportPanesValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ReportPanesValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "bookmarks",
+                validators: [validator_1.Validators.bookmarksPaneValidator]
+            },
+            {
+                field: "fields",
+                validators: [validator_1.Validators.fieldsPaneValidator]
+            },
+            {
+                field: "filters",
+                validators: [validator_1.Validators.filtersPaneValidator]
+            },
+            {
+                field: "pageNavigation",
+                validators: [validator_1.Validators.pageNavigationPaneValidator]
+            },
+            {
+                field: "selection",
+                validators: [validator_1.Validators.selectionPaneValidator]
+            },
+            {
+                field: "syncSlicers",
+                validators: [validator_1.Validators.syncSlicersPaneValidator]
+            },
+            {
+                field: "visualizations",
+                validators: [validator_1.Validators.visualizationsPaneValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ReportPanesValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ReportPanesValidator = ReportPanesValidator;
+var QnaPanesValidator = /** @class */ (function (_super) {
+    __extends(QnaPanesValidator, _super);
+    function QnaPanesValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    QnaPanesValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "filters",
+                validators: [validator_1.Validators.filtersPaneValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return QnaPanesValidator;
+}(typeValidator_1.ObjectValidator));
+exports.QnaPanesValidator = QnaPanesValidator;
+var BookmarksPaneValidator = /** @class */ (function (_super) {
+    __extends(BookmarksPaneValidator, _super);
+    function BookmarksPaneValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    BookmarksPaneValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "visible",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return BookmarksPaneValidator;
+}(typeValidator_1.ObjectValidator));
+exports.BookmarksPaneValidator = BookmarksPaneValidator;
+var FieldsPaneValidator = /** @class */ (function (_super) {
+    __extends(FieldsPaneValidator, _super);
+    function FieldsPaneValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    FieldsPaneValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "expanded",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return FieldsPaneValidator;
+}(typeValidator_1.ObjectValidator));
+exports.FieldsPaneValidator = FieldsPaneValidator;
+var FiltersPaneValidator = /** @class */ (function (_super) {
+    __extends(FiltersPaneValidator, _super);
+    function FiltersPaneValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    FiltersPaneValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "visible",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "expanded",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return FiltersPaneValidator;
+}(typeValidator_1.ObjectValidator));
+exports.FiltersPaneValidator = FiltersPaneValidator;
+var PageNavigationPaneValidator = /** @class */ (function (_super) {
+    __extends(PageNavigationPaneValidator, _super);
+    function PageNavigationPaneValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PageNavigationPaneValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "visible",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "position",
+                validators: [validator_1.Validators.pageNavigationPositionValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return PageNavigationPaneValidator;
+}(typeValidator_1.ObjectValidator));
+exports.PageNavigationPaneValidator = PageNavigationPaneValidator;
+var SelectionPaneValidator = /** @class */ (function (_super) {
+    __extends(SelectionPaneValidator, _super);
+    function SelectionPaneValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SelectionPaneValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "visible",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return SelectionPaneValidator;
+}(typeValidator_1.ObjectValidator));
+exports.SelectionPaneValidator = SelectionPaneValidator;
+var SyncSlicersPaneValidator = /** @class */ (function (_super) {
+    __extends(SyncSlicersPaneValidator, _super);
+    function SyncSlicersPaneValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SyncSlicersPaneValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "visible",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return SyncSlicersPaneValidator;
+}(typeValidator_1.ObjectValidator));
+exports.SyncSlicersPaneValidator = SyncSlicersPaneValidator;
+var VisualizationsPaneValidator = /** @class */ (function (_super) {
+    __extends(VisualizationsPaneValidator, _super);
+    function VisualizationsPaneValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    VisualizationsPaneValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "expanded",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return VisualizationsPaneValidator;
+}(typeValidator_1.ObjectValidator));
+exports.VisualizationsPaneValidator = VisualizationsPaneValidator;
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __nested_webpack_require_164414__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.QnaInterpretInputDataValidator = exports.QnaSettingsValidator = exports.LoadQnaValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_164414__(3);
+var typeValidator_1 = __nested_webpack_require_164414__(4);
+var validator_1 = __nested_webpack_require_164414__(1);
+var LoadQnaValidator = /** @class */ (function (_super) {
+    __extends(LoadQnaValidator, _super);
+    function LoadQnaValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    LoadQnaValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "accessToken",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "datasetIds",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringArrayValidator]
+            },
+            {
+                field: "question",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "viewMode",
+                validators: [validator_1.Validators.viewModeValidator]
+            },
+            {
+                field: "settings",
+                validators: [validator_1.Validators.qnaSettingValidator]
+            },
+            {
+                field: "tokenType",
+                validators: [validator_1.Validators.tokenTypeValidator]
+            },
+            {
+                field: "groupId",
+                validators: [validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return LoadQnaValidator;
+}(typeValidator_1.ObjectValidator));
+exports.LoadQnaValidator = LoadQnaValidator;
+var QnaSettingsValidator = /** @class */ (function (_super) {
+    __extends(QnaSettingsValidator, _super);
+    function QnaSettingsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    QnaSettingsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "filterPaneEnabled",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "hideErrors",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "panes",
+                validators: [validator_1.Validators.qnaPanesValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return QnaSettingsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.QnaSettingsValidator = QnaSettingsValidator;
+var QnaInterpretInputDataValidator = /** @class */ (function (_super) {
+    __extends(QnaInterpretInputDataValidator, _super);
+    function QnaInterpretInputDataValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    QnaInterpretInputDataValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "datasetIds",
+                validators: [validator_1.Validators.stringArrayValidator]
+            },
+            {
+                field: "question",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return QnaInterpretInputDataValidator;
+}(typeValidator_1.ObjectValidator));
+exports.QnaInterpretInputDataValidator = QnaInterpretInputDataValidator;
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __nested_webpack_require_169927__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReportCreateValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_169927__(3);
+var typeValidator_1 = __nested_webpack_require_169927__(4);
+var validator_1 = __nested_webpack_require_169927__(1);
+var ReportCreateValidator = /** @class */ (function (_super) {
+    __extends(ReportCreateValidator, _super);
+    function ReportCreateValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ReportCreateValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "accessToken",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "datasetId",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "groupId",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "tokenType",
+                validators: [validator_1.Validators.tokenTypeValidator]
+            },
+            {
+                field: "theme",
+                validators: [validator_1.Validators.customThemeValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ReportCreateValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ReportCreateValidator = ReportCreateValidator;
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __nested_webpack_require_172587__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ReportLoadValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_172587__(3);
+var typeValidator_1 = __nested_webpack_require_172587__(4);
+var validator_1 = __nested_webpack_require_172587__(1);
+var ReportLoadValidator = /** @class */ (function (_super) {
+    __extends(ReportLoadValidator, _super);
+    function ReportLoadValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ReportLoadValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "accessToken",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "id",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "groupId",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "settings",
+                validators: [validator_1.Validators.settingsValidator]
+            },
+            {
+                field: "pageName",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "filters",
+                validators: [validator_1.Validators.reportLoadFiltersValidator]
+            },
+            {
+                field: "permissions",
+                validators: [validator_1.Validators.permissionsValidator]
+            },
+            {
+                field: "viewMode",
+                validators: [validator_1.Validators.viewModeValidator]
+            },
+            {
+                field: "tokenType",
+                validators: [validator_1.Validators.tokenTypeValidator]
+            },
+            {
+                field: "bookmark",
+                validators: [validator_1.Validators.applyBookmarkValidator]
+            },
+            {
+                field: "theme",
+                validators: [validator_1.Validators.customThemeValidator]
+            },
+            {
+                field: "embedUrl",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "datasetBinding",
+                validators: [validator_1.Validators.datasetBindingValidator]
+            },
+            {
+                field: "contrastMode",
+                validators: [validator_1.Validators.contrastModeValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ReportLoadValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ReportLoadValidator = ReportLoadValidator;
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __nested_webpack_require_176510__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PaginatedReportLoadValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_176510__(3);
+var typeValidator_1 = __nested_webpack_require_176510__(4);
+var validator_1 = __nested_webpack_require_176510__(1);
+var PaginatedReportLoadValidator = /** @class */ (function (_super) {
+    __extends(PaginatedReportLoadValidator, _super);
+    function PaginatedReportLoadValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PaginatedReportLoadValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "accessToken",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "id",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "groupId",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "settings",
+                validators: [validator_1.Validators.paginatedReportsettingsValidator]
+            },
+            {
+                field: "tokenType",
+                validators: [validator_1.Validators.tokenTypeValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return PaginatedReportLoadValidator;
+}(typeValidator_1.ObjectValidator));
+exports.PaginatedReportLoadValidator = PaginatedReportLoadValidator;
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __nested_webpack_require_179233__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SaveAsParametersValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_179233__(3);
+var typeValidator_1 = __nested_webpack_require_179233__(4);
+var validator_1 = __nested_webpack_require_179233__(1);
+var SaveAsParametersValidator = /** @class */ (function (_super) {
+    __extends(SaveAsParametersValidator, _super);
+    function SaveAsParametersValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SaveAsParametersValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "name",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return SaveAsParametersValidator;
+}(typeValidator_1.ObjectValidator));
+exports.SaveAsParametersValidator = SaveAsParametersValidator;
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __nested_webpack_require_181316__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SlicerTargetSelectorValidator = exports.VisualTypeSelectorValidator = exports.VisualSelectorValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_181316__(3);
+var typeValidator_1 = __nested_webpack_require_181316__(4);
+var typeValidator_2 = __nested_webpack_require_181316__(4);
+var validator_1 = __nested_webpack_require_181316__(1);
+var VisualSelectorValidator = /** @class */ (function (_super) {
+    __extends(VisualSelectorValidator, _super);
+    function VisualSelectorValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    VisualSelectorValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                // Not required for this selector only - Backward compatibility
+                field: "$schema",
+                validators: [validator_1.Validators.stringValidator, new typeValidator_2.SchemaValidator("http://powerbi.com/product/schema#visualSelector")]
+            },
+            {
+                field: "visualName",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return VisualSelectorValidator;
+}(typeValidator_1.ObjectValidator));
+exports.VisualSelectorValidator = VisualSelectorValidator;
+var VisualTypeSelectorValidator = /** @class */ (function (_super) {
+    __extends(VisualTypeSelectorValidator, _super);
+    function VisualTypeSelectorValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    VisualTypeSelectorValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "$schema",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator, new typeValidator_2.SchemaValidator("http://powerbi.com/product/schema#visualTypeSelector")]
+            },
+            {
+                field: "visualType",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return VisualTypeSelectorValidator;
+}(typeValidator_1.ObjectValidator));
+exports.VisualTypeSelectorValidator = VisualTypeSelectorValidator;
+var SlicerTargetSelectorValidator = /** @class */ (function (_super) {
+    __extends(SlicerTargetSelectorValidator, _super);
+    function SlicerTargetSelectorValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SlicerTargetSelectorValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "$schema",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator, new typeValidator_2.SchemaValidator("http://powerbi.com/product/schema#slicerTargetSelector")]
+            },
+            {
+                field: "target",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.slicerTargetValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return SlicerTargetSelectorValidator;
+}(typeValidator_1.ObjectValidator));
+exports.SlicerTargetSelectorValidator = SlicerTargetSelectorValidator;
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __nested_webpack_require_186576__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PaginatedReportSettingsValidator = exports.SettingsValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_186576__(3);
+var typeValidator_1 = __nested_webpack_require_186576__(4);
+var validator_1 = __nested_webpack_require_186576__(1);
+var SettingsValidator = /** @class */ (function (_super) {
+    __extends(SettingsValidator, _super);
+    function SettingsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SettingsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "filterPaneEnabled",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "navContentPaneEnabled",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "bookmarksPaneEnabled",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "useCustomSaveAsDialog",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "extensions",
+                validators: [validator_1.Validators.extensionsValidator]
+            },
+            {
+                field: "layoutType",
+                validators: [validator_1.Validators.layoutTypeValidator]
+            },
+            {
+                field: "customLayout",
+                validators: [validator_1.Validators.customLayoutValidator]
+            },
+            {
+                field: "background",
+                validators: [validator_1.Validators.backgroundValidator]
+            },
+            {
+                field: "visualSettings",
+                validators: [validator_1.Validators.visualSettingsValidator]
+            },
+            {
+                field: "hideErrors",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "commands",
+                validators: [validator_1.Validators.commandsSettingsArrayValidator]
+            },
+            {
+                field: "hyperlinkClickBehavior",
+                validators: [validator_1.Validators.hyperlinkClickBehaviorValidator]
+            },
+            {
+                field: "bars",
+                validators: [validator_1.Validators.reportBarsValidator]
+            },
+            {
+                field: "panes",
+                validators: [validator_1.Validators.reportPanesValidator]
+            },
+            {
+                field: "personalBookmarksEnabled",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "persistentFiltersEnabled",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "visualRenderedEvents",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "authoringHintsEnabled",
+                validators: [validator_1.Validators.booleanValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return SettingsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.SettingsValidator = SettingsValidator;
+var PaginatedReportSettingsValidator = /** @class */ (function (_super) {
+    __extends(PaginatedReportSettingsValidator, _super);
+    function PaginatedReportSettingsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PaginatedReportSettingsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "commands",
+                validators: [validator_1.Validators.paginatedReportCommandsValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return PaginatedReportSettingsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.PaginatedReportSettingsValidator = PaginatedReportSettingsValidator;
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __nested_webpack_require_192225__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SlicerStateValidator = exports.SlicerValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_192225__(3);
+var typeValidator_1 = __nested_webpack_require_192225__(4);
+var validator_1 = __nested_webpack_require_192225__(1);
+var SlicerValidator = /** @class */ (function (_super) {
+    __extends(SlicerValidator, _super);
+    function SlicerValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SlicerValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "selector",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.slicerSelectorValidator]
+            },
+            {
+                field: "state",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.slicerStateValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return SlicerValidator;
+}(typeValidator_1.ObjectValidator));
+exports.SlicerValidator = SlicerValidator;
+var SlicerStateValidator = /** @class */ (function (_super) {
+    __extends(SlicerStateValidator, _super);
+    function SlicerStateValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SlicerStateValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "filters",
+                validators: [validator_1.Validators.filtersArrayValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return SlicerStateValidator;
+}(typeValidator_1.ObjectValidator));
+exports.SlicerStateValidator = SlicerStateValidator;
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __nested_webpack_require_195457__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.TileLoadValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_195457__(3);
+var typeValidator_1 = __nested_webpack_require_195457__(4);
+var validator_1 = __nested_webpack_require_195457__(1);
+var TileLoadValidator = /** @class */ (function (_super) {
+    __extends(TileLoadValidator, _super);
+    function TileLoadValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    TileLoadValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "accessToken",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "id",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "dashboardId",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.stringValidator]
+            },
+            {
+                field: "groupId",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "pageView",
+                validators: [validator_1.Validators.stringValidator]
+            },
+            {
+                field: "tokenType",
+                validators: [validator_1.Validators.tokenTypeValidator]
+            },
+            {
+                field: "width",
+                validators: [validator_1.Validators.numberValidator]
+            },
+            {
+                field: "height",
+                validators: [validator_1.Validators.numberValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return TileLoadValidator;
+}(typeValidator_1.ObjectValidator));
+exports.TileLoadValidator = TileLoadValidator;
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __nested_webpack_require_198531__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.VisualHeaderValidator = exports.VisualHeaderSettingsValidator = exports.VisualSettingsValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_198531__(3);
+var typeValidator_1 = __nested_webpack_require_198531__(4);
+var validator_1 = __nested_webpack_require_198531__(1);
+var VisualSettingsValidator = /** @class */ (function (_super) {
+    __extends(VisualSettingsValidator, _super);
+    function VisualSettingsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    VisualSettingsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "visualHeaders",
+                validators: [validator_1.Validators.visualHeadersValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return VisualSettingsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.VisualSettingsValidator = VisualSettingsValidator;
+var VisualHeaderSettingsValidator = /** @class */ (function (_super) {
+    __extends(VisualHeaderSettingsValidator, _super);
+    function VisualHeaderSettingsValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    VisualHeaderSettingsValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "visible",
+                validators: [validator_1.Validators.booleanValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return VisualHeaderSettingsValidator;
+}(typeValidator_1.ObjectValidator));
+exports.VisualHeaderSettingsValidator = VisualHeaderSettingsValidator;
+var VisualHeaderValidator = /** @class */ (function (_super) {
+    __extends(VisualHeaderValidator, _super);
+    function VisualHeaderValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    VisualHeaderValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "settings",
+                validators: [validator_1.Validators.fieldRequiredValidator, validator_1.Validators.visualHeaderSettingsValidator]
+            },
+            {
+                field: "selector",
+                validators: [validator_1.Validators.visualHeaderSelectorValidator]
+            },
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return VisualHeaderValidator;
+}(typeValidator_1.ObjectValidator));
+exports.VisualHeaderValidator = VisualHeaderValidator;
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AnyOfValidator = void 0;
+var AnyOfValidator = /** @class */ (function () {
+    function AnyOfValidator(validators) {
+        this.validators = validators;
+    }
+    AnyOfValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var valid = false;
+        for (var _i = 0, _a = this.validators; _i < _a.length; _i++) {
+            var validator = _a[_i];
+            var errors = validator.validate(input, path, field);
+            if (!errors) {
+                valid = true;
+                break;
+            }
+        }
+        if (!valid) {
+            return [{
+                    message: field + " property is invalid",
+                    path: (path ? path + "." : "") + field,
+                    keyword: "invalid"
+                }];
+        }
+        return null;
+    };
+    return AnyOfValidator;
+}());
+exports.AnyOfValidator = AnyOfValidator;
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FieldForbiddenValidator = void 0;
+var FieldForbiddenValidator = /** @class */ (function () {
+    function FieldForbiddenValidator() {
+    }
+    FieldForbiddenValidator.prototype.validate = function (input, path, field) {
+        if (input !== undefined) {
+            return [{
+                    message: field + " is forbidden",
+                    path: (path ? path + "." : "") + field,
+                    keyword: "forbidden"
+                }];
+        }
+        return null;
+    };
+    return FieldForbiddenValidator;
+}());
+exports.FieldForbiddenValidator = FieldForbiddenValidator;
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.FieldRequiredValidator = void 0;
+var FieldRequiredValidator = /** @class */ (function () {
+    function FieldRequiredValidator() {
+    }
+    FieldRequiredValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return [{
+                    message: field + " is required",
+                    path: (path ? path + "." : "") + field,
+                    keyword: "required"
+                }];
+        }
+        return null;
+    };
+    return FieldRequiredValidator;
+}());
+exports.FieldRequiredValidator = FieldRequiredValidator;
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __nested_webpack_require_205700__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MapValidator = void 0;
+var typeValidator_1 = __nested_webpack_require_205700__(4);
+var MapValidator = /** @class */ (function (_super) {
+    __extends(MapValidator, _super);
+    function MapValidator(keyValidators, valueValidators) {
+        var _this = _super.call(this) || this;
+        _this.keyValidators = keyValidators;
+        _this.valueValidators = valueValidators;
+        return _this;
+    }
+    MapValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        for (var key in input) {
+            if (input.hasOwnProperty(key)) {
+                var fieldsPath = (path ? path + "." : "") + field + "." + key;
+                for (var _i = 0, _a = this.keyValidators; _i < _a.length; _i++) {
+                    var keyValidator = _a[_i];
+                    errors = keyValidator.validate(key, fieldsPath, field);
+                    if (errors) {
+                        return errors;
+                    }
+                }
+                for (var _b = 0, _c = this.valueValidators; _b < _c.length; _b++) {
+                    var valueValidator = _c[_b];
+                    errors = valueValidator.validate(input[key], fieldsPath, field);
+                    if (errors) {
+                        return errors;
+                    }
+                }
+            }
+        }
+        return null;
+    };
+    return MapValidator;
+}(typeValidator_1.ObjectValidator));
+exports.MapValidator = MapValidator;
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __nested_webpack_require_208186__) {
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ParametersPanelValidator = void 0;
+var multipleFieldsValidator_1 = __nested_webpack_require_208186__(3);
+var typeValidator_1 = __nested_webpack_require_208186__(4);
+var validator_1 = __nested_webpack_require_208186__(1);
+var ParametersPanelValidator = /** @class */ (function (_super) {
+    __extends(ParametersPanelValidator, _super);
+    function ParametersPanelValidator() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ParametersPanelValidator.prototype.validate = function (input, path, field) {
+        if (input == null) {
+            return null;
+        }
+        var errors = _super.prototype.validate.call(this, input, path, field);
+        if (errors) {
+            return errors;
+        }
+        var fields = [
+            {
+                field: "expanded",
+                validators: [validator_1.Validators.booleanValidator]
+            },
+            {
+                field: "enabled",
+                validators: [validator_1.Validators.booleanValidator]
+            }
+        ];
+        var multipleFieldsValidator = new multipleFieldsValidator_1.MultipleFieldsValidator(fields);
+        return multipleFieldsValidator.validate(input, path, field);
+    };
+    return ParametersPanelValidator;
+}(typeValidator_1.ObjectValidator));
+exports.ParametersPanelValidator = ParametersPanelValidator;
+
+
+/***/ })
+/******/ ]);
+});
+//# sourceMappingURL=models.js.map
+
+/***/ },
+
 /***/ "./App/app.ts"
 /*!********************!*\
   !*** ./App/app.ts ***!
@@ -53016,625 +57789,446 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
-var $ = __importStar(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
-var pbimodels = __importStar(__webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'powerbi-models'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
-__webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'powerbi-models'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+const $ = __importStar(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
+const pbimodels = __importStar(__webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js"));
+__webpack_require__(/*! powerbi-models */ "./node_modules/powerbi-models/dist/models.js");
 __webpack_require__(/*! powerbi-client */ "./node_modules/powerbi-client/dist/powerbi.js");
-var SpaAuthService_1 = __importDefault(__webpack_require__(/*! ./services/SpaAuthService */ "./App/services/SpaAuthService.ts"));
-var AppOwnsDataWebApi_1 = __importDefault(__webpack_require__(/*! ./services/AppOwnsDataWebApi */ "./App/services/AppOwnsDataWebApi.ts"));
-var models_1 = __webpack_require__(/*! ./models/models */ "./App/models/models.ts");
-var App = /** @class */ (function () {
-    function App() {
-    }
-    var _a;
-    _a = App;
-    App.breakPointWidth = 576;
-    App.powerbi = window.powerbi;
-    App.onDocumentReady = function () {
-        // initialize fields for UI elemenets 
-        _a.mainBody = $("#main-body");
-        _a.topBanner = $("#top-banner");
-        _a.userGreeting = $("#user-greeting");
-        _a.login = $("#login");
-        _a.logout = $("#logout");
-        _a.viewAnonymous = $("#view-anonymous");
-        _a.viewUnassigned = $("#view-unassigned");
-        _a.loadingSpinner = $("#view-loading-spinner");
-        _a.loadingSpinnerMessage = $("#spinner-message");
-        _a.viewAuthenticated = $("#view-authenticated");
-        _a.viewAuthenticatedHeader = $("#view-authenticated-header");
-        _a.tenantName = $("#tenant-name");
-        _a.reportsList = $("#reports-list");
-        _a.datasetsList = $("#datasets-list");
-        _a.datasetsListContainer = $("#datasets-list-container");
-        _a.embedToolbar = $("#embed-toolbar");
-        _a.breadcrumb = $("#breadcrumb");
-        _a.toggleEditButton = $("#toggle-edit");
-        _a.fullScreenButton = $("#full-screen");
-        _a.embedContainer = $("#embed-container");
-        _a.brandBanner = $("#brand-banner");
-        // set up authentication callback
-        SpaAuthService_1.default.uiUpdateCallback = _a.onAuthenticationCompleted;
-        _a.login.on("click", function () { return __awaiter(void 0, void 0, void 0, function () {
-            return __generator(_a, function (_b) {
-                switch (_b.label) {
-                    case 0: return [4 /*yield*/, SpaAuthService_1.default.login()];
-                    case 1:
-                        _b.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-        _a.logout.on("click", function () {
-            SpaAuthService_1.default.logout();
-            _a.refreshUi();
-        });
-        // Comment out to disable auto-authentication on startup
-        SpaAuthService_1.default.attemptSillentLogin();
+const SpaAuthService_1 = __importDefault(__webpack_require__(/*! ./services/SpaAuthService */ "./App/services/SpaAuthService.ts"));
+const AppOwnsDataWebApi_1 = __importDefault(__webpack_require__(/*! ./services/AppOwnsDataWebApi */ "./App/services/AppOwnsDataWebApi.ts"));
+const models_1 = __webpack_require__(/*! ./models/models */ "./App/models/models.ts");
+class App {
+}
+_a = App;
+App.breakPointWidth = 576;
+App.powerbi = window.powerbi;
+App.onDocumentReady = () => {
+    // initialize fields for UI elemenets 
+    _a.mainBody = $("#main-body");
+    _a.topBanner = $("#top-banner");
+    _a.userGreeting = $("#user-greeting");
+    _a.login = $("#login");
+    _a.logout = $("#logout");
+    _a.viewAnonymous = $("#view-anonymous");
+    _a.viewUnassigned = $("#view-unassigned");
+    _a.loadingSpinner = $("#view-loading-spinner");
+    _a.loadingSpinnerMessage = $("#spinner-message");
+    _a.viewAuthenticated = $("#view-authenticated");
+    _a.viewAuthenticatedHeader = $("#view-authenticated-header");
+    _a.tenantName = $("#tenant-name");
+    _a.reportsList = $("#reports-list");
+    _a.datasetsList = $("#datasets-list");
+    _a.datasetsListContainer = $("#datasets-list-container");
+    _a.embedToolbar = $("#embed-toolbar");
+    _a.breadcrumb = $("#breadcrumb");
+    _a.toggleEditButton = $("#toggle-edit");
+    _a.fullScreenButton = $("#full-screen");
+    _a.embedContainer = $("#embed-container");
+    _a.brandBanner = $("#brand-banner");
+    // set up authentication callback
+    SpaAuthService_1.default.uiUpdateCallback = _a.onAuthenticationCompleted;
+    _a.login.on("click", () => __awaiter(void 0, void 0, void 0, function* () {
+        yield SpaAuthService_1.default.login();
+    }));
+    _a.logout.on("click", () => {
+        SpaAuthService_1.default.logout();
         _a.refreshUi();
-        _a.registerWindowResizeHandler();
-    };
-    App.refreshUi = function () {
-        if (SpaAuthService_1.default.userIsAuthenticated) {
-            _a.userGreeting.text("Welcome " + SpaAuthService_1.default.userDisplayName);
-            _a.userGreeting.prop('title', 'Email: ' + SpaAuthService_1.default.userName);
-            _a.login.hide();
-            _a.logout.show();
+    });
+    // Comment out to disable auto-authentication on startup
+    SpaAuthService_1.default.attemptSillentLogin();
+    _a.refreshUi();
+    _a.registerWindowResizeHandler();
+};
+App.refreshUi = () => {
+    if (SpaAuthService_1.default.userIsAuthenticated) {
+        _a.userGreeting.text("Welcome " + SpaAuthService_1.default.userDisplayName);
+        _a.userGreeting.prop('title', 'Email: ' + SpaAuthService_1.default.userName);
+        _a.login.hide();
+        _a.logout.show();
+        _a.viewAnonymous.hide();
+    }
+    else {
+        _a.userGreeting.text("");
+        _a.login.show();
+        _a.logout.hide();
+        _a.viewAnonymous.show();
+        _a.viewAuthenticated.hide();
+    }
+};
+App.onAuthenticationCompleted = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        _a.loadingSpinnerMessage.text("Processing user login...");
+        _a.loadingSpinner.show(250);
+        _a.viewAnonymous.hide();
+        yield AppOwnsDataWebApi_1.default.LoginUser(SpaAuthService_1.default.userName, SpaAuthService_1.default.userDisplayName);
+        _a.loadingSpinner.hide();
+        _a.refreshUi();
+        _a.initializeAppData();
+    }
+    catch (error) {
+        console.error("Login processing failed:", error);
+        _a.loadingSpinner.hide();
+        _a.viewAnonymous.show();
+    }
+});
+App.initializeAppData = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        _a.loadingSpinnerMessage.text("Getting report embedding data...");
+        _a.loadingSpinner.show();
+        _a.viewAnonymous.hide();
+        _a.viewModel = yield AppOwnsDataWebApi_1.default.GetEmbeddingData();
+        if (_a.viewModel.tenantName == "") {
             _a.viewAnonymous.hide();
+            _a.viewAuthenticated.hide();
+            _a.loadingSpinner.hide();
+            _a.viewUnassigned.show(500);
         }
         else {
-            _a.userGreeting.text("");
-            _a.login.show();
-            _a.logout.hide();
-            _a.viewAnonymous.show();
-            _a.viewAuthenticated.hide();
+            console.log("Loading View Model", _a.viewModel);
+            _a.loadViewModel(_a.viewModel);
         }
-    };
-    App.onAuthenticationCompleted = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var error_1;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 2, , 3]);
-                    _a.loadingSpinnerMessage.text("Processing user login...");
-                    _a.loadingSpinner.show(250);
-                    _a.viewAnonymous.hide();
-                    return [4 /*yield*/, AppOwnsDataWebApi_1.default.LoginUser(SpaAuthService_1.default.userName, SpaAuthService_1.default.userDisplayName)];
-                case 1:
-                    _b.sent();
-                    _a.loadingSpinner.hide();
-                    _a.refreshUi();
-                    _a.initializeAppData();
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_1 = _b.sent();
-                    console.error("Login processing failed:", error_1);
-                    _a.loadingSpinner.hide();
-                    _a.viewAnonymous.show();
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
+        window.setInterval(_a.reportOnExpiration, 10000);
+    }
+    catch (error) {
+        console.error("Failed to load embedding data:", error);
+        _a.loadingSpinner.hide();
+        _a.viewUnassigned.show(500);
+    }
+});
+App.loadViewModel = (viewModel, reportId) => __awaiter(void 0, void 0, void 0, function* () {
+    _a.viewAuthenticated.hide();
+    _a.viewUnassigned.hide();
+    _a.powerbi.reset(_a.embedContainer[0]);
+    _a.tenantName.text(viewModel.tenantName);
+    _a.applyBranding(viewModel);
+    _a.reportsList = _a.reportsList.empty();
+    _a.datasetsList = _a.datasetsList.empty();
+    if (viewModel.reports.length == 0) {
+        _a.reportsList.append($("<li>")
+            .text("no reports in workspace")
+            .addClass("no-content"));
+    }
+    else {
+        viewModel.reports.forEach((report) => {
+            var li = $("<li>");
+            li.append($("<i>").addClass("fa-solid fa-chart-bar"));
+            li.append($("<a>", {
+                "href": "javascript:void(0);"
+            }).text(report.name).click(() => { _a.embedReport(report); }));
+            _a.reportsList.append(li);
         });
-    }); };
-    App.initializeAppData = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var _b, error_2;
-        return __generator(_a, function (_c) {
-            switch (_c.label) {
-                case 0:
-                    _c.trys.push([0, 2, , 3]);
-                    _a.loadingSpinnerMessage.text("Getting report embedding data...");
-                    _a.loadingSpinner.show();
-                    _a.viewAnonymous.hide();
-                    _b = _a;
-                    return [4 /*yield*/, AppOwnsDataWebApi_1.default.GetEmbeddingData()];
-                case 1:
-                    _b.viewModel = _c.sent();
-                    if (_a.viewModel.tenantName == "") {
-                        _a.viewAnonymous.hide();
-                        _a.viewAuthenticated.hide();
-                        _a.loadingSpinner.hide();
-                        _a.viewUnassigned.show(500);
-                    }
-                    else {
-                        console.log("Loading View Model", _a.viewModel);
-                        _a.loadViewModel(_a.viewModel);
-                    }
-                    window.setInterval(_a.reportOnExpiration, 10000);
-                    return [3 /*break*/, 3];
-                case 2:
-                    error_2 = _c.sent();
-                    console.error("Failed to load embedding data:", error_2);
-                    _a.loadingSpinner.hide();
-                    _a.viewUnassigned.show(500);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
-    }); };
-    App.loadViewModel = function (viewModel, reportId) { return __awaiter(void 0, void 0, void 0, function () {
-        var newReport, newReport;
-        return __generator(_a, function (_b) {
-            _a.viewAuthenticated.hide();
-            _a.viewUnassigned.hide();
-            _a.powerbi.reset(_a.embedContainer[0]);
-            _a.tenantName.text(viewModel.tenantName);
-            _a.applyBranding(viewModel);
-            _a.reportsList = _a.reportsList.empty();
-            _a.datasetsList = _a.datasetsList.empty();
-            if (viewModel.reports.length == 0) {
-                _a.reportsList.append($("<li>")
-                    .text("no reports in workspace")
-                    .addClass("no-content"));
-            }
-            else {
-                viewModel.reports.forEach(function (report) {
-                    var li = $("<li>");
-                    li.append($("<i>").addClass("fa-solid fa-chart-bar"));
-                    li.append($("<a>", {
-                        "href": "javascript:void(0);"
-                    }).text(report.name).click(function () { _a.embedReport(report); }));
-                    _a.reportsList.append(li);
-                });
-            }
-            if (viewModel.userCanCreate) {
-                if (viewModel.datasets.length == 0) {
-                    _a.datasetsList.append($("<li>")
-                        .text("no datasets in workspace")
-                        .addClass("no-content"));
-                }
-                else {
-                    viewModel.datasets.forEach(function (dataset) {
-                        var li = $("<li>");
-                        li.append($("<i>").addClass("fa-solid fa-database"));
-                        li.append($("<a>", {
-                            "href": "javascript:void(0);"
-                        }).text(dataset.name).click(function () { _a.embedNewReport(dataset); }));
-                        _a.datasetsList.append(li);
-                    });
-                }
-            }
-            _a.loadingSpinner.hide();
-            _a.viewAuthenticated.show();
-            if (reportId !== undefined) {
-                newReport = viewModel.reports.find(function (report) { return report.id === reportId; });
-                _a.embedReport(newReport, true);
-            }
-            else {
-                newReport = viewModel.reports[0];
-                _a.embedReport(newReport, false);
-            }
-            return [2 /*return*/];
-        });
-    }); };
-    App.embedReport = function (report_1) {
-        var args_1 = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            args_1[_i - 1] = arguments[_i];
+    }
+    if (viewModel.userCanCreate) {
+        if (viewModel.datasets.length == 0) {
+            _a.datasetsList.append($("<li>")
+                .text("no datasets in workspace")
+                .addClass("no-content"));
         }
-        return __awaiter(void 0, __spreadArray([report_1], args_1, true), void 0, function (report, editMode) {
-            var models, permissions, layoutMode, config, timerStart, initialLoadComplete, loadDuration, renderDuration, viewMode;
-            if (editMode === void 0) { editMode = false; }
-            return __generator(_a, function (_b) {
-                _a.setReportLayout();
-                models = pbimodels;
-                if (_a.viewModel.userCanEdit && _a.viewModel.userCanCreate) {
-                    permissions = models.Permissions.All;
-                }
-                else if (_a.viewModel.userCanEdit && !_a.viewModel.userCanCreate) {
-                    permissions = models.Permissions.ReadWrite;
-                }
-                else if (!_a.viewModel.userCanEdit && _a.viewModel.userCanCreate) {
-                    permissions = models.Permissions.Copy;
-                }
-                else if (!_a.viewModel.userCanEdit && !_a.viewModel.userCanCreate) {
-                    permissions = models.Permissions.Read;
-                }
-                _a.setLayoutMode();
-                layoutMode = _a.layoutMode == "master" ?
-                    models.LayoutType.Master :
-                    models.LayoutType.MobilePortrait;
-                config = {
-                    type: 'report',
-                    id: report.id,
-                    embedUrl: report.embedUrl,
-                    accessToken: _a.viewModel.embedToken,
-                    tokenType: models.TokenType.Embed,
-                    permissions: permissions,
-                    viewMode: editMode ? models.ViewMode.Edit : models.ViewMode.View,
-                    settings: {
-                        layoutType: layoutMode,
-                        background: models.BackgroundType.Transparent,
-                        panes: {
-                            filters: { visible: false },
-                            pageNavigation: { visible: true, position: models.PageNavigationPosition.Left }
-                        }
-                    }
-                };
-                _a.powerbi.reset(_a.embedContainer[0]);
-                timerStart = Date.now();
-                initialLoadComplete = false;
-                _a.currentReport = _a.powerbi.embed(_a.embedContainer[0], config);
-                _a.currentReport.off("loaded");
-                _a.currentReport.on("loaded", function (event) { return __awaiter(void 0, void 0, void 0, function () {
-                    return __generator(this, function (_b) {
-                        loadDuration = Date.now() - timerStart;
-                        _a.setReportLayout();
-                        _a.applyPowerBiTheme(_a.currentReport, _a.viewModel);
-                        return [2 /*return*/];
-                    });
-                }); });
-                _a.currentReport.off("rendered");
-                _a.currentReport.on("rendered", function (event) { return __awaiter(void 0, void 0, void 0, function () {
-                    var correlationId;
-                    return __generator(this, function (_b) {
-                        switch (_b.label) {
-                            case 0:
-                                if (!!initialLoadComplete) return [3 /*break*/, 3];
-                                renderDuration = Date.now() - timerStart;
-                                return [4 /*yield*/, _a.currentReport.getCorrelationId()];
-                            case 1:
-                                correlationId = _b.sent();
-                                return [4 /*yield*/, _a.logViewReportActivity(correlationId, _a.viewModel.embedTokenId, report, loadDuration, renderDuration)];
-                            case 2:
-                                _b.sent();
-                                initialLoadComplete = true;
-                                _b.label = 3;
-                            case 3: return [2 /*return*/];
-                        }
-                    });
-                }); });
-                _a.currentReport.off("saved");
-                _a.currentReport.on("saved", function (event) { return __awaiter(void 0, void 0, void 0, function () {
-                    var orginalReportId, reportId, reportName, _b;
-                    return __generator(this, function (_c) {
-                        switch (_c.label) {
-                            case 0:
-                                if (!event.detail.saveAs) return [3 /*break*/, 3];
-                                console.log("SaveAs Event", event);
-                                orginalReportId = report.id;
-                                reportId = event.detail.reportObjectId;
-                                reportName = event.detail.reportName;
-                                return [4 /*yield*/, _a.logCopyReportActivity(report, reportId, reportName, _a.viewModel.embedTokenId)];
-                            case 1:
-                                _c.sent();
-                                _b = _a;
-                                return [4 /*yield*/, AppOwnsDataWebApi_1.default.GetEmbeddingData()];
-                            case 2:
-                                _b.viewModel = _c.sent();
-                                _a.loadViewModel(_a.viewModel, reportId);
-                                return [3 /*break*/, 5];
-                            case 3:
-                                console.log("Save Event", event);
-                                return [4 /*yield*/, _a.logEditReportActivity(report, _a.viewModel.embedTokenId)];
-                            case 4:
-                                _c.sent();
-                                _c.label = 5;
-                            case 5: return [2 /*return*/];
-                        }
-                    });
-                }); });
-                viewMode = editMode ? "edit" : "view";
-                _a.breadcrumb.text("Reports > " + report.name);
-                if (!_a.viewModel.userCanEdit || report.reportType != "PowerBIReport") {
-                    console.log("Hiding toggle edit");
-                    _a.toggleEditButton.hide();
-                }
-                else {
-                    _a.toggleEditButton.show();
-                    _a.toggleEditButton.on("click", function () {
-                        // toggle between view and edit mode
-                        viewMode = (viewMode == "view") ? "edit" : "view";
-                        _a.currentReport.switchMode(viewMode);
-                        // show filter pane when entering edit mode
-                        var showFilterPane = (viewMode == "edit");
-                        _a.currentReport.updateSettings({
-                            panes: {
-                                filters: { visible: showFilterPane, expanded: false }
-                            }
-                        });
-                    });
-                }
-                _a.fullScreenButton.on("click", function () {
-                    _a.currentReport.fullscreen();
-                });
-                return [2 /*return*/];
+        else {
+            viewModel.datasets.forEach((dataset) => {
+                var li = $("<li>");
+                li.append($("<i>").addClass("fa-solid fa-database"));
+                li.append($("<a>", {
+                    "href": "javascript:void(0);"
+                }).text(dataset.name).click(() => { _a.embedNewReport(dataset); }));
+                _a.datasetsList.append(li);
             });
-        });
+        }
+    }
+    _a.loadingSpinner.hide();
+    _a.viewAuthenticated.show();
+    if (reportId !== undefined) {
+        var newReport = viewModel.reports.find((report) => report.id === reportId);
+        _a.embedReport(newReport, true);
+    }
+    else {
+        var newReport = viewModel.reports[0];
+        _a.embedReport(newReport, false);
+    }
+});
+App.embedReport = (report_1, ...args_1) => __awaiter(void 0, [report_1, ...args_1], void 0, function* (report, editMode = false) {
+    _a.setReportLayout();
+    var models = pbimodels;
+    var permissions;
+    if (_a.viewModel.userCanEdit && _a.viewModel.userCanCreate) {
+        permissions = models.Permissions.All;
+    }
+    else if (_a.viewModel.userCanEdit && !_a.viewModel.userCanCreate) {
+        permissions = models.Permissions.ReadWrite;
+    }
+    else if (!_a.viewModel.userCanEdit && _a.viewModel.userCanCreate) {
+        permissions = models.Permissions.Copy;
+    }
+    else if (!_a.viewModel.userCanEdit && !_a.viewModel.userCanCreate) {
+        permissions = models.Permissions.Read;
+    }
+    _a.setLayoutMode();
+    var layoutMode = _a.layoutMode == "master" ?
+        models.LayoutType.Master :
+        models.LayoutType.MobilePortrait;
+    var config = {
+        type: 'report',
+        id: report.id,
+        embedUrl: report.embedUrl,
+        accessToken: _a.viewModel.embedToken,
+        tokenType: models.TokenType.Embed,
+        permissions: permissions,
+        viewMode: editMode ? models.ViewMode.Edit : models.ViewMode.View,
+        settings: {
+            layoutType: layoutMode,
+            background: models.BackgroundType.Transparent,
+            panes: {
+                filters: { visible: false },
+                pageNavigation: { visible: true, position: models.PageNavigationPosition.Left }
+            }
+        }
     };
-    App.embedNewReport = function (dataset) {
-        var models = pbimodels;
-        var config = {
-            datasetId: dataset.id,
-            embedUrl: "https://app.powerbi.com/reportEmbed",
-            accessToken: _a.viewModel.embedToken,
-            tokenType: models.TokenType.Embed,
-            settings: {
+    _a.powerbi.reset(_a.embedContainer[0]);
+    var timerStart = Date.now();
+    var initialLoadComplete = false;
+    var loadDuration;
+    var renderDuration;
+    _a.currentReport = _a.powerbi.embed(_a.embedContainer[0], config);
+    _a.currentReport.off("loaded");
+    _a.currentReport.on("loaded", (event) => __awaiter(void 0, void 0, void 0, function* () {
+        loadDuration = Date.now() - timerStart;
+        _a.setReportLayout();
+        _a.applyPowerBiTheme(_a.currentReport, _a.viewModel);
+    }));
+    _a.currentReport.off("rendered");
+    _a.currentReport.on("rendered", (event) => __awaiter(void 0, void 0, void 0, function* () {
+        if (!initialLoadComplete) {
+            renderDuration = Date.now() - timerStart;
+            var correlationId = yield _a.currentReport.getCorrelationId();
+            yield _a.logViewReportActivity(correlationId, _a.viewModel.embedTokenId, report, loadDuration, renderDuration);
+            initialLoadComplete = true;
+        }
+    }));
+    _a.currentReport.off("saved");
+    _a.currentReport.on("saved", (event) => __awaiter(void 0, void 0, void 0, function* () {
+        if (event.detail.saveAs) {
+            console.log("SaveAs Event", event);
+            var orginalReportId = report.id;
+            var reportId = event.detail.reportObjectId;
+            var reportName = event.detail.reportName;
+            yield _a.logCopyReportActivity(report, reportId, reportName, _a.viewModel.embedTokenId);
+            _a.viewModel = yield AppOwnsDataWebApi_1.default.GetEmbeddingData();
+            _a.loadViewModel(_a.viewModel, reportId);
+        }
+        else {
+            console.log("Save Event", event);
+            yield _a.logEditReportActivity(report, _a.viewModel.embedTokenId);
+        }
+    }));
+    var viewMode = editMode ? "edit" : "view";
+    _a.breadcrumb.text("Reports > " + report.name);
+    if (!_a.viewModel.userCanEdit || report.reportType != "PowerBIReport") {
+        console.log("Hiding toggle edit");
+        _a.toggleEditButton.hide();
+    }
+    else {
+        _a.toggleEditButton.show();
+        _a.toggleEditButton.on("click", () => {
+            // toggle between view and edit mode
+            viewMode = (viewMode == "view") ? "edit" : "view";
+            _a.currentReport.switchMode(viewMode);
+            // show filter pane when entering edit mode
+            var showFilterPane = (viewMode == "edit");
+            _a.currentReport.updateSettings({
                 panes: {
-                    filters: { visible: true, expanded: false }
-                }
-            }
-        };
-        // Embed the report and display it within the div container.
-        _a.powerbi.reset(_a.embedContainer[0]);
-        var embeddedReport = _a.powerbi.createReport(_a.embedContainer[0], config);
-        $("#breadcrumb").text("Datasets > " + dataset.name + " > New Report");
-        $("#embed-toolbar").show();
-        $("#toggle-edit").hide();
-        $("#full-screen").off("click");
-        $("#full-screen").on("click", function () {
-            embeddedReport.fullscreen();
-        });
-        // handle save action on new report
-        embeddedReport.on("saved", function (event) { return __awaiter(void 0, void 0, void 0, function () {
-            var reportId, reportName, _b;
-            return __generator(_a, function (_c) {
-                switch (_c.label) {
-                    case 0:
-                        console.log("Create Report Event", event);
-                        reportId = event.detail.reportObjectId;
-                        reportName = event.detail.reportName;
-                        return [4 /*yield*/, _a.logCreateReportActivity(dataset, reportId, reportName, _a.viewModel.embedTokenId)];
-                    case 1:
-                        _c.sent();
-                        _b = _a;
-                        return [4 /*yield*/, AppOwnsDataWebApi_1.default.GetEmbeddingData()];
-                    case 2:
-                        _b.viewModel = _c.sent();
-                        _a.loadViewModel(_a.viewModel, reportId);
-                        return [2 /*return*/];
+                    filters: { visible: showFilterPane, expanded: false }
                 }
             });
-        }); });
+        });
+    }
+    _a.fullScreenButton.on("click", () => {
+        _a.currentReport.fullscreen();
+    });
+});
+App.embedNewReport = (dataset) => {
+    var models = pbimodels;
+    var config = {
+        datasetId: dataset.id,
+        embedUrl: "https://app.powerbi.com/reportEmbed",
+        accessToken: _a.viewModel.embedToken,
+        tokenType: models.TokenType.Embed,
+        settings: {
+            panes: {
+                filters: { visible: true, expanded: false }
+            }
+        }
     };
-    App.setLayoutMode = function () {
-        var useMobileLayout = (_a.mainBody.width() < _a.breakPointWidth);
-        _a.layoutMode = useMobileLayout ? "mobile" : "master";
-    };
-    App.setReportLayout = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var useMobileLayout, sameReport, models, availableHeight;
-        return __generator(_a, function (_b) {
-            useMobileLayout = (_a.mainBody.width() < _a.breakPointWidth);
-            // check to see if layout mode switches between master and mobile
-            if ((useMobileLayout && _a.layoutMode == "master") ||
-                (!useMobileLayout && _a.layoutMode == "mobile")) {
-                if (_a.currentReport) {
-                    console.log("switching layout mode...");
-                    _a.layoutMode = useMobileLayout ? "mobile" : "master";
-                    sameReport = _a.viewModel.reports.find(function (report) { return __awaiter(void 0, void 0, void 0, function () { var _b; return __generator(this, function (_c) {
-                        switch (_c.label) {
-                            case 0:
-                                _b = report.id;
-                                return [4 /*yield*/, _a.currentReport.getId()];
-                            case 1: return [2 /*return*/, _b === (_c.sent())];
-                        }
-                    }); }); });
-                    _a.embedReport(sameReport);
-                }
+    // Embed the report and display it within the div container.
+    _a.powerbi.reset(_a.embedContainer[0]);
+    var embeddedReport = _a.powerbi.createReport(_a.embedContainer[0], config);
+    $("#breadcrumb").text("Datasets > " + dataset.name + " > New Report");
+    $("#embed-toolbar").show();
+    $("#toggle-edit").hide();
+    $("#full-screen").off("click");
+    $("#full-screen").on("click", () => {
+        embeddedReport.fullscreen();
+    });
+    // handle save action on new report
+    embeddedReport.on("saved", (event) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log("Create Report Event", event);
+        var reportId = event.detail.reportObjectId;
+        var reportName = event.detail.reportName;
+        yield _a.logCreateReportActivity(dataset, reportId, reportName, _a.viewModel.embedTokenId);
+        _a.viewModel = yield AppOwnsDataWebApi_1.default.GetEmbeddingData();
+        _a.loadViewModel(_a.viewModel, reportId);
+    }));
+};
+App.setLayoutMode = () => {
+    let useMobileLayout = (_a.mainBody.width() < _a.breakPointWidth);
+    _a.layoutMode = useMobileLayout ? "mobile" : "master";
+};
+App.setReportLayout = () => __awaiter(void 0, void 0, void 0, function* () {
+    let useMobileLayout = (_a.mainBody.width() < _a.breakPointWidth);
+    // check to see if layout mode switches between master and mobile
+    if ((useMobileLayout && _a.layoutMode == "master") ||
+        (!useMobileLayout && _a.layoutMode == "mobile")) {
+        if (_a.currentReport) {
+            console.log("switching layout mode...");
+            _a.layoutMode = useMobileLayout ? "mobile" : "master";
+            let sameReport = _a.viewModel.reports.find((report) => __awaiter(void 0, void 0, void 0, function* () { return report.id === (yield _a.currentReport.getId()); }));
+            _a.embedReport(sameReport);
+        }
+    }
+    else {
+        var models = pbimodels;
+        if (useMobileLayout) {
+            _a.tenantName.hide();
+            _a.toggleEditButton.hide();
+            _a.fullScreenButton.hide();
+            _a.datasetsListContainer.hide();
+            $(_a.embedContainer).height($(_a.embedContainer).width() * 3);
+        }
+        else {
+            // Use available viewport height — CSS flex handles layout; just set
+            // the pixel height so the Power BI SDK can size its iframe correctly.
+            _a.tenantName.show();
+            _a.fullScreenButton.show();
+            if (_a.viewModel && _a.viewModel.userCanCreate) {
+                _a.datasetsListContainer.show();
             }
             else {
-                models = pbimodels;
-                if (useMobileLayout) {
-                    _a.tenantName.hide();
-                    _a.toggleEditButton.hide();
-                    _a.fullScreenButton.hide();
-                    _a.datasetsListContainer.hide();
-                    $(_a.embedContainer).height($(_a.embedContainer).width() * 3);
-                }
-                else {
-                    // Use available viewport height — CSS flex handles layout; just set
-                    // the pixel height so the Power BI SDK can size its iframe correctly.
-                    _a.tenantName.show();
-                    _a.fullScreenButton.show();
-                    if (_a.viewModel && _a.viewModel.userCanCreate) {
-                        _a.datasetsListContainer.show();
-                    }
-                    else {
-                        _a.datasetsListContainer.hide();
-                    }
-                    availableHeight = $(window).height() - (_a.topBanner.height() + _a.brandBanner.height() + _a.viewAuthenticatedHeader.height()) - 8;
-                    $(_a.embedContainer).height(availableHeight);
-                }
+                _a.datasetsListContainer.hide();
             }
-            return [2 /*return*/];
-        });
-    }); };
-    App.logViewReportActivity = function (correlationId, embedTokenId, report, loadDuration, renderDuration) { return __awaiter(void 0, void 0, void 0, function () {
-        var logEntry;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    logEntry = new models_1.ActivityLogEntry();
-                    logEntry.CorrelationId = correlationId;
-                    logEntry.EmbedTokenId = embedTokenId;
-                    logEntry.Activity = "ViewReport";
-                    logEntry.LoginId = _a.viewModel.user;
-                    logEntry.Tenant = _a.viewModel.tenantName;
-                    logEntry.Report = report.name;
-                    logEntry.ReportId = report.id;
-                    logEntry.DatasetId = report.datasetId;
-                    logEntry.Dataset = (_a.viewModel.datasets.find(function (dataset) { return dataset.id === report.datasetId; })).name;
-                    logEntry.LoadDuration = loadDuration;
-                    logEntry.RenderDuration = renderDuration;
-                    return [4 /*yield*/, AppOwnsDataWebApi_1.default.LogActivity(logEntry)];
-                case 1:
-                    _b.sent();
-                    return [2 /*return*/];
-            }
-        });
-    }); };
-    App.logEditReportActivity = function (report, embedTokenId) { return __awaiter(void 0, void 0, void 0, function () {
-        var logEntry;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    logEntry = new models_1.ActivityLogEntry();
-                    logEntry.CorrelationId = "";
-                    logEntry.Activity = "EditReport";
-                    logEntry.LoginId = _a.viewModel.user;
-                    logEntry.Tenant = _a.viewModel.tenantName;
-                    logEntry.Report = report.name;
-                    logEntry.ReportId = report.id;
-                    logEntry.DatasetId = report.datasetId;
-                    logEntry.EmbedTokenId = embedTokenId;
-                    logEntry.Dataset = (_a.viewModel.datasets.find(function (dataset) { return dataset.id === report.datasetId; })).name;
-                    return [4 /*yield*/, AppOwnsDataWebApi_1.default.LogActivity(logEntry)];
-                case 1:
-                    _b.sent();
-                    return [2 /*return*/];
-            }
-        });
-    }); };
-    App.logCopyReportActivity = function (orginalReport, reportId, reportName, embedTokenId) { return __awaiter(void 0, void 0, void 0, function () {
-        var logEntry;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    logEntry = new models_1.ActivityLogEntry();
-                    logEntry.Activity = "CopyReport";
-                    logEntry.LoginId = _a.viewModel.user;
-                    logEntry.Tenant = _a.viewModel.tenantName;
-                    logEntry.Report = reportName;
-                    logEntry.ReportId = reportId;
-                    logEntry.OriginalReportId = orginalReport.id;
-                    logEntry.DatasetId = orginalReport.datasetId;
-                    logEntry.EmbedTokenId = embedTokenId;
-                    logEntry.Dataset = (_a.viewModel.datasets.find(function (dataset) { return dataset.id === orginalReport.datasetId; })).name;
-                    return [4 /*yield*/, AppOwnsDataWebApi_1.default.LogActivity(logEntry)];
-                case 1:
-                    _b.sent();
-                    return [2 /*return*/];
-            }
-        });
-    }); };
-    App.logCreateReportActivity = function (dataset, reportId, reportName, embedTokenId) { return __awaiter(void 0, void 0, void 0, function () {
-        var logEntry;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    logEntry = new models_1.ActivityLogEntry();
-                    logEntry.Activity = "CreateReport";
-                    logEntry.LoginId = _a.viewModel.user;
-                    logEntry.Tenant = _a.viewModel.tenantName;
-                    logEntry.Report = reportName;
-                    logEntry.ReportId = reportId;
-                    logEntry.DatasetId = dataset.id;
-                    logEntry.Dataset = dataset.name;
-                    logEntry.EmbedTokenId = embedTokenId;
-                    return [4 /*yield*/, AppOwnsDataWebApi_1.default.LogActivity(logEntry)];
-                case 1:
-                    _b.sent();
-                    return [2 /*return*/];
-            }
-        });
-    }); };
-    App.registerWindowResizeHandler = function () { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(_a, function (_b) {
-            $(window).resize(function () {
-                return __awaiter(this, void 0, void 0, function () {
-                    return __generator(this, function (_b) {
-                        clearTimeout(_a.resizedFinished);
-                        _a.resizedFinished = setTimeout(function () {
-                            return __awaiter(this, void 0, void 0, function () {
-                                return __generator(this, function (_b) {
-                                    _a.setReportLayout();
-                                    return [2 /*return*/];
-                                });
-                            });
-                        }, 100);
-                        return [2 /*return*/];
-                    });
+            let availableHeight = $(window).height() - (_a.topBanner.height() + _a.brandBanner.height() + _a.viewAuthenticatedHeader.height()) - 8;
+            $(_a.embedContainer).height(availableHeight);
+        }
+    }
+});
+App.logViewReportActivity = (correlationId, embedTokenId, report, loadDuration, renderDuration) => __awaiter(void 0, void 0, void 0, function* () {
+    var logEntry = new models_1.ActivityLogEntry();
+    logEntry.CorrelationId = correlationId;
+    logEntry.EmbedTokenId = embedTokenId;
+    logEntry.Activity = "ViewReport";
+    logEntry.LoginId = _a.viewModel.user;
+    logEntry.Tenant = _a.viewModel.tenantName;
+    logEntry.Report = report.name;
+    logEntry.ReportId = report.id;
+    logEntry.DatasetId = report.datasetId;
+    logEntry.Dataset = (_a.viewModel.datasets.find((dataset) => dataset.id === report.datasetId)).name;
+    logEntry.LoadDuration = loadDuration;
+    logEntry.RenderDuration = renderDuration;
+    yield AppOwnsDataWebApi_1.default.LogActivity(logEntry);
+});
+App.logEditReportActivity = (report, embedTokenId) => __awaiter(void 0, void 0, void 0, function* () {
+    var logEntry = new models_1.ActivityLogEntry();
+    logEntry.CorrelationId = "";
+    logEntry.Activity = "EditReport";
+    logEntry.LoginId = _a.viewModel.user;
+    logEntry.Tenant = _a.viewModel.tenantName;
+    logEntry.Report = report.name;
+    logEntry.ReportId = report.id;
+    logEntry.DatasetId = report.datasetId;
+    logEntry.EmbedTokenId = embedTokenId;
+    logEntry.Dataset = (_a.viewModel.datasets.find((dataset) => dataset.id === report.datasetId)).name;
+    yield AppOwnsDataWebApi_1.default.LogActivity(logEntry);
+});
+App.logCopyReportActivity = (orginalReport, reportId, reportName, embedTokenId) => __awaiter(void 0, void 0, void 0, function* () {
+    var logEntry = new models_1.ActivityLogEntry();
+    logEntry.Activity = "CopyReport";
+    logEntry.LoginId = _a.viewModel.user;
+    logEntry.Tenant = _a.viewModel.tenantName;
+    logEntry.Report = reportName;
+    logEntry.ReportId = reportId;
+    logEntry.OriginalReportId = orginalReport.id;
+    logEntry.DatasetId = orginalReport.datasetId;
+    logEntry.EmbedTokenId = embedTokenId;
+    logEntry.Dataset = (_a.viewModel.datasets.find((dataset) => dataset.id === orginalReport.datasetId)).name;
+    yield AppOwnsDataWebApi_1.default.LogActivity(logEntry);
+});
+App.logCreateReportActivity = (dataset, reportId, reportName, embedTokenId) => __awaiter(void 0, void 0, void 0, function* () {
+    var logEntry = new models_1.ActivityLogEntry();
+    logEntry.Activity = "CreateReport";
+    logEntry.LoginId = _a.viewModel.user;
+    logEntry.Tenant = _a.viewModel.tenantName;
+    logEntry.Report = reportName;
+    logEntry.ReportId = reportId;
+    logEntry.DatasetId = dataset.id;
+    logEntry.Dataset = dataset.name;
+    logEntry.EmbedTokenId = embedTokenId;
+    yield AppOwnsDataWebApi_1.default.LogActivity(logEntry);
+});
+App.registerWindowResizeHandler = () => __awaiter(void 0, void 0, void 0, function* () {
+    $(window).resize(function () {
+        return __awaiter(this, void 0, void 0, function* () {
+            clearTimeout(_a.resizedFinished);
+            _a.resizedFinished = setTimeout(function () {
+                return __awaiter(this, void 0, void 0, function* () {
+                    _a.setReportLayout();
                 });
-            });
-            return [2 /*return*/];
+            }, 100);
         });
-    }); };
-    App.applyBranding = function (viewModel) {
-        var t = viewModel.theme;
-        if (!t)
-            return;
-        var primary = t.primary || '#37474F';
-        var secondary = t.secondary || '#78909C';
-        var tertiary = t.tertiary || '#FF6F00';
-        document.documentElement.style.setProperty('--theme-primary', primary);
-        document.documentElement.style.setProperty('--theme-secondary', secondary);
-        document.documentElement.style.setProperty('--theme-tertiary', tertiary);
-        _a.brandBanner.css('background', "linear-gradient(135deg, ".concat(primary, " 0%, ").concat(secondary, " 100%)"));
-        var sym = t.logoSymbol || viewModel.tenantName.substring(0, 2).toUpperCase();
-        $("#brand-logo").html("<span style=\"font-size:2em;font-weight:900;color:white;font-family:sans-serif;" +
-            "letter-spacing:-1px;text-shadow:0 1px 3px rgba(0,0,0,0.4)\">".concat(sym, "</span>"));
-        $("#brand-company-name").text(viewModel.tenantName);
-        $("#brand-tagline").text(t.tagline || '');
+    });
+});
+App.applyBranding = (viewModel) => {
+    const t = viewModel.theme;
+    if (!t)
+        return;
+    const primary = t.primary || '#37474F';
+    const secondary = t.secondary || '#78909C';
+    const tertiary = t.tertiary || '#FF6F00';
+    document.documentElement.style.setProperty('--theme-primary', primary);
+    document.documentElement.style.setProperty('--theme-secondary', secondary);
+    document.documentElement.style.setProperty('--theme-tertiary', tertiary);
+    _a.brandBanner.css('background', `linear-gradient(135deg, ${primary} 0%, ${secondary} 100%)`);
+    const sym = t.logoSymbol || viewModel.tenantName.substring(0, 2).toUpperCase();
+    $("#brand-logo").html(`<span style="font-size:2em;font-weight:900;color:white;font-family:sans-serif;` +
+        `letter-spacing:-1px;text-shadow:0 1px 3px rgba(0,0,0,0.4)">${sym}</span>`);
+    $("#brand-company-name").text(viewModel.tenantName);
+    $("#brand-tagline").text(t.tagline || '');
+};
+App.applyPowerBiTheme = (report, viewModel) => {
+    if (!(viewModel === null || viewModel === void 0 ? void 0 : viewModel.theme))
+        return;
+    const t = viewModel.theme;
+    const themeJson = {
+        name: viewModel.tenantName + ' Theme',
+        dataColors: [
+            t.primary, t.secondary, t.tertiary,
+            '#546E7A', '#90A4AE', '#FF8F00', '#00897B', '#5C6BC0', '#F06292'
+        ],
+        tableAccent: t.primary,
+        foreground: '#212121',
+        background: '#FFFFFF'
     };
-    App.applyPowerBiTheme = function (report, viewModel) {
-        if (!(viewModel === null || viewModel === void 0 ? void 0 : viewModel.theme))
-            return;
-        var t = viewModel.theme;
-        var themeJson = {
-            name: viewModel.tenantName + ' Theme',
-            dataColors: [
-                t.primary, t.secondary, t.tertiary,
-                '#546E7A', '#90A4AE', '#FF8F00', '#00897B', '#5C6BC0', '#F06292'
-            ],
-            tableAccent: t.primary,
-            foreground: '#212121',
-            background: '#FFFFFF'
-        };
-        report.applyTheme({ themeJson: themeJson }).catch(function (e) { return console.warn('PBI theme apply failed:', e); });
-    };
-    App.reportOnExpiration = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var secondsToExpire, minutes, seconds, timeToExpire;
-        return __generator(_a, function (_b) {
-            secondsToExpire = Math.floor((new Date(_a.viewModel.embedTokenExpiration).getTime() - new Date().getTime()) / 1000);
-            minutes = Math.floor(secondsToExpire / 60);
-            seconds = secondsToExpire % 60;
-            timeToExpire = minutes + ":" + seconds;
-            console.log("Token expires in ", timeToExpire);
-            return [2 /*return*/];
-        });
-    }); };
-    return App;
-}());
+    report.applyTheme({ themeJson }).catch(e => console.warn('PBI theme apply failed:', e));
+};
+App.reportOnExpiration = () => __awaiter(void 0, void 0, void 0, function* () {
+    var secondsToExpire = Math.floor((new Date(_a.viewModel.embedTokenExpiration).getTime() - new Date().getTime()) / 1000);
+    var minutes = Math.floor(secondsToExpire / 60);
+    var seconds = secondsToExpire % 60;
+    var timeToExpire = minutes + ":" + seconds;
+    console.log("Token expires in ", timeToExpire);
+});
 exports["default"] = App;
 $(App.onDocumentReady);
 
@@ -53650,20 +58244,17 @@ $(App.onDocumentReady);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var AppSettings = /** @class */ (function () {
-    function AppSettings() {
-    }
-    // replace with production URL after deploying Web API
-    AppSettings.apiRoot = "https://localhost:44302/api/";
-    // setting for Azure AD app which supports SPA authentication
-    AppSettings.tenant = "24945eed-3a26-431f-8ccb-4f5b87881901";
-    AppSettings.clientId = "e83d71a3-6b80-48bd-9e2c-fa6b04dc40ba";
-    // permission scopes required with App-Owns-Data Web API
-    AppSettings.apiScopes = [
-        "api://" + AppSettings.clientId + "/Reports.Embed"
-    ];
-    return AppSettings;
-}());
+class AppSettings {
+}
+// replace with production URL after deploying Web API
+AppSettings.apiRoot = "https://localhost:44302/api/";
+// setting for Azure AD app which supports SPA authentication
+AppSettings.tenant = "24945eed-3a26-431f-8ccb-4f5b87881901";
+AppSettings.clientId = "e83d71a3-6b80-48bd-9e2c-fa6b04dc40ba";
+// permission scopes required with App-Owns-Data Web API
+AppSettings.apiScopes = [
+    "api://" + AppSettings.clientId + "/Reports.Embed"
+];
 exports["default"] = AppSettings;
 
 
@@ -53679,41 +58270,23 @@ exports["default"] = AppSettings;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.User = exports.ActivityLogEntry = exports.ViewModel = exports.Dataset = exports.Report = exports.TenantTheme = void 0;
-var TenantTheme = /** @class */ (function () {
-    function TenantTheme() {
-    }
-    return TenantTheme;
-}());
+class TenantTheme {
+}
 exports.TenantTheme = TenantTheme;
-var Report = /** @class */ (function () {
-    function Report() {
-    }
-    return Report;
-}());
+class Report {
+}
 exports.Report = Report;
-var Dataset = /** @class */ (function () {
-    function Dataset() {
-    }
-    return Dataset;
-}());
+class Dataset {
+}
 exports.Dataset = Dataset;
-var ViewModel = /** @class */ (function () {
-    function ViewModel() {
-    }
-    return ViewModel;
-}());
+class ViewModel {
+}
 exports.ViewModel = ViewModel;
-var ActivityLogEntry = /** @class */ (function () {
-    function ActivityLogEntry() {
-    }
-    return ActivityLogEntry;
-}());
+class ActivityLogEntry {
+}
 exports.ActivityLogEntry = ActivityLogEntry;
-var User = /** @class */ (function () {
-    function User() {
-    }
-    return User;
-}());
+class User {
+}
 exports.User = User;
 
 
@@ -53769,139 +58342,79 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var $ = __importStar(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
-var models_1 = __webpack_require__(/*! ../models/models */ "./App/models/models.ts");
-var appSettings_1 = __importDefault(__webpack_require__(/*! ../appSettings */ "./App/appSettings.ts"));
-var SpaAuthService_1 = __importDefault(__webpack_require__(/*! ./SpaAuthService */ "./App/services/SpaAuthService.ts"));
-var AppOwnsDataWebApi = /** @class */ (function () {
-    function AppOwnsDataWebApi() {
-    }
-    var _a;
-    _a = AppOwnsDataWebApi;
-    AppOwnsDataWebApi.LoginUser = function (LoginId, UserName) { return __awaiter(void 0, void 0, void 0, function () {
-        var user, accessToken, postData, restUrl;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    user = new models_1.User();
-                    user.LoginId = LoginId;
-                    user.UserName = UserName;
-                    console.log("Process user login", user);
-                    return [4 /*yield*/, SpaAuthService_1.default.getAccessToken()];
-                case 1:
-                    accessToken = _b.sent();
-                    postData = JSON.stringify(user);
-                    restUrl = appSettings_1.default.apiRoot + "UserLogin/";
-                    return [2 /*return*/, $.ajax({
-                            url: restUrl,
-                            method: "POST",
-                            contentType: "application/json",
-                            data: postData,
-                            crossDomain: true,
-                            headers: {
-                                "Accept": "application/json",
-                                "Authorization": "Bearer " + accessToken
-                            }
-                        })];
-            }
-        });
-    }); };
-    AppOwnsDataWebApi.GetEmbeddingData = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var accessToken, restUrl;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0: return [4 /*yield*/, SpaAuthService_1.default.getAccessToken()];
-                case 1:
-                    accessToken = _b.sent();
-                    restUrl = appSettings_1.default.apiRoot + "Embed/";
-                    return [2 /*return*/, $.ajax({
-                            url: restUrl,
-                            crossDomain: true,
-                            headers: {
-                                "Accept": "application/json;",
-                                "Authorization": "Bearer " + accessToken
-                            }
-                        })];
-            }
-        });
-    }); };
-    AppOwnsDataWebApi.GetEmbedToken = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var accessToken, restUrl;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0: return [4 /*yield*/, SpaAuthService_1.default.getAccessToken()];
-                case 1:
-                    accessToken = _b.sent();
-                    restUrl = appSettings_1.default.apiRoot + "EmbedToken/";
-                    return [2 /*return*/, $.ajax({
-                            url: restUrl,
-                            crossDomain: true,
-                            headers: {
-                                "Accept": "application/json;",
-                                "Authorization": "Bearer " + accessToken
-                            }
-                        })];
-            }
-        });
-    }); };
-    AppOwnsDataWebApi.LogActivity = function (activityLogEntry) { return __awaiter(void 0, void 0, void 0, function () {
-        var accessToken, postData, restUrl;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    console.log("Log custom event", activityLogEntry);
-                    return [4 /*yield*/, SpaAuthService_1.default.getAccessToken()];
-                case 1:
-                    accessToken = _b.sent();
-                    postData = JSON.stringify(activityLogEntry);
-                    restUrl = appSettings_1.default.apiRoot + "ActivityLog/";
-                    return [2 /*return*/, $.ajax({
-                            url: restUrl,
-                            method: "POST",
-                            contentType: "application/json",
-                            data: postData,
-                            crossDomain: true,
-                            headers: {
-                                "Accept": "application/json",
-                                "Authorization": "Bearer " + accessToken
-                            }
-                        })];
-            }
-        });
-    }); };
-    return AppOwnsDataWebApi;
-}());
+const $ = __importStar(__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"));
+const models_1 = __webpack_require__(/*! ../models/models */ "./App/models/models.ts");
+const appSettings_1 = __importDefault(__webpack_require__(/*! ../appSettings */ "./App/appSettings.ts"));
+const SpaAuthService_1 = __importDefault(__webpack_require__(/*! ./SpaAuthService */ "./App/services/SpaAuthService.ts"));
+class AppOwnsDataWebApi {
+}
+_a = AppOwnsDataWebApi;
+AppOwnsDataWebApi.LoginUser = (LoginId, UserName) => __awaiter(void 0, void 0, void 0, function* () {
+    var user = new models_1.User();
+    user.LoginId = LoginId;
+    user.UserName = UserName;
+    console.log("Process user login", user);
+    var accessToken = yield SpaAuthService_1.default.getAccessToken();
+    var postData = JSON.stringify(user);
+    var restUrl = appSettings_1.default.apiRoot + "UserLogin/";
+    return $.ajax({
+        url: restUrl,
+        method: "POST",
+        contentType: "application/json",
+        data: postData,
+        crossDomain: true,
+        headers: {
+            "Accept": "application/json",
+            "Authorization": "Bearer " + accessToken
+        }
+    });
+});
+AppOwnsDataWebApi.GetEmbeddingData = () => __awaiter(void 0, void 0, void 0, function* () {
+    var accessToken = yield SpaAuthService_1.default.getAccessToken();
+    var restUrl = appSettings_1.default.apiRoot + "Embed/";
+    return $.ajax({
+        url: restUrl,
+        crossDomain: true,
+        headers: {
+            "Accept": "application/json;",
+            "Authorization": "Bearer " + accessToken
+        }
+    });
+});
+AppOwnsDataWebApi.GetEmbedToken = () => __awaiter(void 0, void 0, void 0, function* () {
+    var accessToken = yield SpaAuthService_1.default.getAccessToken();
+    var restUrl = appSettings_1.default.apiRoot + "EmbedToken/";
+    return $.ajax({
+        url: restUrl,
+        crossDomain: true,
+        headers: {
+            "Accept": "application/json;",
+            "Authorization": "Bearer " + accessToken
+        }
+    });
+});
+AppOwnsDataWebApi.LogActivity = (activityLogEntry) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("Log custom event", activityLogEntry);
+    var accessToken = yield SpaAuthService_1.default.getAccessToken();
+    var postData = JSON.stringify(activityLogEntry);
+    var restUrl = appSettings_1.default.apiRoot + "ActivityLog/";
+    return $.ajax({
+        url: restUrl,
+        method: "POST",
+        contentType: "application/json",
+        data: postData,
+        crossDomain: true,
+        headers: {
+            "Accept": "application/json",
+            "Authorization": "Bearer " + accessToken
+        }
+    });
+});
 exports["default"] = AppOwnsDataWebApi;
 
 
@@ -53957,169 +58470,109 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-var msal = __importStar(__webpack_require__(/*! @azure/msal-browser */ "./node_modules/@azure/msal-browser/dist/index.js"));
-var appSettings_1 = __importDefault(__webpack_require__(/*! ./../appSettings */ "./App/appSettings.ts"));
-var SpaAuthService = /** @class */ (function () {
-    function SpaAuthService() {
-    }
-    SpaAuthService.getAccessToken = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var tokenRequest, tokenReponse, error_1, accessToken;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        tokenRequest = {
-                            scopes: appSettings_1.default.apiScopes,
-                            account: _a.publicApplication.getAccountByUsername(_a.userName)
-                        };
-                        _b.label = 1;
-                    case 1:
-                        _b.trys.push([1, 3, , 7]);
-                        return [4 /*yield*/, _a.publicApplication.acquireTokenSilent(tokenRequest)];
-                    case 2:
-                        tokenReponse = (_b.sent());
-                        return [3 /*break*/, 7];
-                    case 3:
-                        error_1 = _b.sent();
-                        if (!(error_1 instanceof msal.InteractionRequiredAuthError)) return [3 /*break*/, 5];
-                        return [4 /*yield*/, _a.publicApplication.acquireTokenPopup(tokenRequest)];
-                    case 4:
-                        tokenReponse = _b.sent();
-                        return [3 /*break*/, 6];
-                    case 5: throw error_1;
-                    case 6: return [3 /*break*/, 7];
-                    case 7:
-                        accessToken = tokenReponse.accessToken;
-                        return [2 /*return*/, accessToken];
+const msal = __importStar(__webpack_require__(/*! @azure/msal-browser */ "./node_modules/@azure/msal-browser/dist/index.js"));
+const appSettings_1 = __importDefault(__webpack_require__(/*! ./../appSettings */ "./App/appSettings.ts"));
+class SpaAuthService {
+    static getAccessToken() {
+        return __awaiter(this, void 0, void 0, function* () {
+            var tokenRequest = {
+                scopes: appSettings_1.default.apiScopes,
+                account: _a.publicApplication.getAccountByUsername(_a.userName)
+            };
+            var tokenReponse;
+            try {
+                tokenReponse = (yield _a.publicApplication.acquireTokenSilent(tokenRequest));
+            }
+            catch (error) {
+                if (error instanceof msal.InteractionRequiredAuthError) {
+                    tokenReponse = yield _a.publicApplication.acquireTokenPopup(tokenRequest);
                 }
-            });
-        });
-    };
-    var _a;
-    _a = SpaAuthService;
-    SpaAuthService.clientId = appSettings_1.default.clientId;
-    SpaAuthService.authority = "https://login.microsoftonline.com/" + appSettings_1.default.tenant;
-    SpaAuthService.userIsAuthenticated = false;
-    SpaAuthService.userDisplayName = "";
-    SpaAuthService.userName = "";
-    SpaAuthService.msalConfig = {
-        auth: {
-            clientId: _a.clientId,
-            authority: _a.authority,
-        },
-        cache: {
-            cacheLocation: "localStorage",
-            storeAuthStateInCookie: false
-        }
-    };
-    SpaAuthService.publicApplication = new msal.PublicClientApplication(_a.msalConfig);
-    // MSAL-browser 2.28+ requires explicit initialization before any auth operation
-    SpaAuthService.initPromise = null;
-    SpaAuthService.ensureInitialized = function () {
-        if (!_a.initPromise) {
-            _a.initPromise = _a.publicApplication.initialize();
-        }
-        return _a.initPromise;
-    };
-    SpaAuthService.attemptSillentLogin = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var userInfo;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0: return [4 /*yield*/, _a.ensureInitialized()];
-                case 1:
-                    _b.sent();
-                    userInfo = _a.publicApplication.getAllAccounts()[0];
-                    if (userInfo) {
-                        _a.userName = userInfo.username;
-                        _a.userDisplayName = userInfo.name;
-                        _a.userIsAuthenticated = true;
-                        _a.uiUpdateCallback();
-                    }
-                    return [2 /*return*/];
+                else {
+                    throw error;
+                }
             }
+            // return access token to caller 
+            var accessToken = tokenReponse.accessToken;
+            return accessToken;
         });
-    }); };
-    SpaAuthService.login = function () { return __awaiter(void 0, void 0, void 0, function () {
-        var loginRequest, loginResult, userInfo, error_2;
-        return __generator(_a, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    _b.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, _a.ensureInitialized()];
-                case 1:
-                    _b.sent();
-                    loginRequest = { scopes: appSettings_1.default.apiScopes };
-                    return [4 /*yield*/, _a.publicApplication.loginPopup(loginRequest)];
-                case 2:
-                    loginResult = _b.sent();
-                    userInfo = loginResult.account;
-                    _a.userName = userInfo.username;
-                    _a.userDisplayName = userInfo.name;
-                    _a.userIsAuthenticated = true;
-                    _a.uiUpdateCallback();
-                    return [3 /*break*/, 4];
-                case 3:
-                    error_2 = _b.sent();
-                    console.error("Login failed:", error_2);
-                    if (error_2 instanceof msal.BrowserAuthError && error_2.errorCode === "interaction_in_progress") {
-                        localStorage.clear();
-                        sessionStorage.clear();
-                        document.cookie = 'msal.interaction.status=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
-                        location.reload();
-                    }
-                    else if (error_2 instanceof msal.BrowserAuthError && error_2.errorCode === "popup_window_error") {
-                        alert("The login popup was blocked. Please allow popups for this site in your browser settings and try again.");
-                    }
-                    else if (!(error_2 instanceof msal.BrowserAuthError && error_2.errorCode === "user_cancelled")) {
-                        alert("Login failed: " + (error_2.message || "Unknown error. Check the browser console for details."));
-                    }
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
-            }
-        });
-    }); };
-    SpaAuthService.logout = function () {
-        _a.userName = "";
-        _a.userDisplayName = "";
-        _a.userIsAuthenticated = false;
-        sessionStorage.clear();
-        localStorage.clear();
-        document.cookie = 'msal.interaction.status=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
-        location.reload();
-    };
-    return SpaAuthService;
-}());
+    }
+}
+_a = SpaAuthService;
+SpaAuthService.clientId = appSettings_1.default.clientId;
+SpaAuthService.authority = "https://login.microsoftonline.com/" + appSettings_1.default.tenant;
+SpaAuthService.userIsAuthenticated = false;
+SpaAuthService.userDisplayName = "";
+SpaAuthService.userName = "";
+SpaAuthService.msalConfig = {
+    auth: {
+        clientId: _a.clientId,
+        authority: _a.authority,
+    },
+    cache: {
+        cacheLocation: "localStorage",
+        storeAuthStateInCookie: false
+    }
+};
+SpaAuthService.publicApplication = new msal.PublicClientApplication(_a.msalConfig);
+// MSAL-browser 2.28+ requires explicit initialization before any auth operation
+SpaAuthService.initPromise = null;
+SpaAuthService.ensureInitialized = () => {
+    if (!_a.initPromise) {
+        _a.initPromise = _a.publicApplication.initialize();
+    }
+    return _a.initPromise;
+};
+SpaAuthService.attemptSillentLogin = () => __awaiter(void 0, void 0, void 0, function* () {
+    yield _a.ensureInitialized();
+    var userInfo = _a.publicApplication.getAllAccounts()[0];
+    if (userInfo) {
+        _a.userName = userInfo.username;
+        _a.userDisplayName = userInfo.name;
+        _a.userIsAuthenticated = true;
+        _a.uiUpdateCallback();
+    }
+});
+SpaAuthService.login = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield _a.ensureInitialized();
+        var loginRequest = { scopes: appSettings_1.default.apiScopes };
+        var loginResult = yield _a.publicApplication.loginPopup(loginRequest);
+        var userInfo = loginResult.account;
+        _a.userName = userInfo.username;
+        _a.userDisplayName = userInfo.name;
+        _a.userIsAuthenticated = true;
+        _a.uiUpdateCallback();
+    }
+    catch (error) {
+        console.error("Login failed:", error);
+        if (error instanceof msal.BrowserAuthError && error.errorCode === "interaction_in_progress") {
+            localStorage.clear();
+            sessionStorage.clear();
+            document.cookie = 'msal.interaction.status=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+            location.reload();
+        }
+        else if (error instanceof msal.BrowserAuthError && error.errorCode === "popup_window_error") {
+            alert("The login popup was blocked. Please allow popups for this site in your browser settings and try again.");
+        }
+        else if (!(error instanceof msal.BrowserAuthError && error.errorCode === "user_cancelled")) {
+            alert("Login failed: " + (error.message || "Unknown error. Check the browser console for details."));
+        }
+    }
+});
+SpaAuthService.logout = () => {
+    _a.userName = "";
+    _a.userDisplayName = "";
+    _a.userIsAuthenticated = false;
+    sessionStorage.clear();
+    localStorage.clear();
+    document.cookie = 'msal.interaction.status=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+    location.reload();
+};
 exports["default"] = SpaAuthService;
 
 
