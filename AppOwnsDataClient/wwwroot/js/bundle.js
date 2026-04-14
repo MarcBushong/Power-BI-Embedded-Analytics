@@ -57917,10 +57917,15 @@ App.loadViewModel = (viewModel, reportId) => __awaiter(void 0, void 0, void 0, f
     else {
         viewModel.reports.forEach((report) => {
             var li = $("<li>");
-            li.append($("<i>").addClass("fa-solid fa-chart-bar"));
-            li.append($("<a>", {
-                "href": "javascript:void(0);"
-            }).text(report.name).click(() => { _a.embedReport(report); }));
+            var iconCls = report.reportType === "PaginatedReport" ? "fa-solid fa-file-lines" : "fa-solid fa-chart-bar";
+            li.append($("<a>", { "href": "javascript:void(0);" })
+                .append($("<i>").addClass(iconCls))
+                .append(document.createTextNode("\u00a0" + report.name))
+                .click(function () {
+                _a.reportsList.find("li a").removeClass("active");
+                $(this).addClass("active");
+                _a.embedReport(report);
+            }));
             _a.reportsList.append(li);
         });
     }
@@ -57933,10 +57938,10 @@ App.loadViewModel = (viewModel, reportId) => __awaiter(void 0, void 0, void 0, f
         else {
             viewModel.datasets.forEach((dataset) => {
                 var li = $("<li>");
-                li.append($("<i>").addClass("fa-solid fa-database"));
-                li.append($("<a>", {
-                    "href": "javascript:void(0);"
-                }).text(dataset.name).click(() => { _a.embedNewReport(dataset); }));
+                li.append($("<a>", { "href": "javascript:void(0);" })
+                    .append($("<i>").addClass("fa-solid fa-database"))
+                    .append(document.createTextNode("\u00a0" + dataset.name))
+                    .click(() => { _a.embedNewReport(dataset); }));
                 _a.datasetsList.append(li);
             });
         }
@@ -57946,10 +57951,14 @@ App.loadViewModel = (viewModel, reportId) => __awaiter(void 0, void 0, void 0, f
     if (reportId !== undefined) {
         var newReport = viewModel.reports.find((report) => report.id === reportId);
         _a.embedReport(newReport, true);
+        // mark matching link active
+        _a.reportsList.find("li a").filter((_, el) => $(el).text().trim() === newReport.name).addClass("active");
     }
     else {
         var newReport = viewModel.reports[0];
         _a.embedReport(newReport, false);
+        // mark first link active
+        _a.reportsList.find("li:first-child a").addClass("active");
     }
 });
 App.embedReport = (report_1, ...args_1) => __awaiter(void 0, [report_1, ...args_1], void 0, function* (report, editMode = false) {
@@ -58110,8 +58119,9 @@ App.setReportLayout = () => __awaiter(void 0, void 0, void 0, function* () {
             $(_a.embedContainer).height($(_a.embedContainer).width() * 3);
         }
         else {
-            // Use available viewport height — CSS flex handles layout; just set
-            // the pixel height so the Power BI SDK can size its iframe correctly.
+            // CSS flex layout (height: calc(100vh - 196px) on #embed-layout)
+            // handles the container height exactly like the admin portal.
+            // Do NOT set inline height here — it overrides CSS and causes sizing bugs.
             _a.tenantName.show();
             _a.fullScreenButton.show();
             if (_a.viewModel && _a.viewModel.userCanCreate) {
@@ -58120,8 +58130,6 @@ App.setReportLayout = () => __awaiter(void 0, void 0, void 0, function* () {
             else {
                 _a.datasetsListContainer.hide();
             }
-            let availableHeight = $(window).height() - (_a.topBanner.height() + _a.brandBanner.height() + _a.viewAuthenticatedHeader.height()) - 8;
-            $(_a.embedContainer).height(availableHeight);
         }
     }
 });
@@ -58190,6 +58198,20 @@ App.registerWindowResizeHandler = () => __awaiter(void 0, void 0, void 0, functi
         });
     });
 });
+App.buildLogoSvg = (sym) => {
+    sym = (sym || 'T').toUpperCase();
+    const logos = {
+        'WT': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/><path d="M5 18 C14 11 30 9 41 14 L37 21 C26 17 12 19 7 25 Z" fill="rgba(255,255,255,0.95)"/><path d="M7 25 C11 27 17 26 21 23 L19 30 C13 32 6 30 7 27 Z" fill="rgba(255,255,255,0.55)"/><line x1="22" y1="28" x2="22" y2="39" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/><circle cx="38" cy="10" r="2.5" fill="rgba(255,255,255,0.4)"/></svg>',
+        'CO': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/><path d="M35 13 A17 17 0 1 0 35 31 L29 27 A10 10 0 1 1 29 17 Z" fill="rgba(255,255,255,0.95)"/><path d="M30 18 L37 14 L36 22 L30 26 Z" fill="rgba(255,255,255,0.35)"/><circle cx="22" cy="22" r="2.5" fill="rgba(255,255,255,0.25)"/></svg>',
+        'MC': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/><rect x="5" y="30" width="6" height="9" rx="1.5" fill="rgba(255,255,255,0.65)"/><rect x="13" y="22" width="6" height="17" rx="1.5" fill="rgba(255,255,255,0.8)"/><rect x="21" y="13" width="6" height="26" rx="1.5" fill="rgba(255,255,255,0.95)"/><rect x="29" y="19" width="6" height="20" rx="1.5" fill="rgba(255,255,255,0.75)"/><line x1="24" y1="13" x2="24" y2="6" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/><circle cx="24" cy="5" r="2" fill="rgba(255,255,255,0.6)"/></svg>',
+        'AC': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/><path d="M22 7 L34 36 L22 30 L10 36 Z" fill="none" stroke="rgba(255,255,255,0.95)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><line x1="15" y1="27" x2="29" y2="27" stroke="rgba(255,255,255,0.95)" stroke-width="2" stroke-linecap="round"/><circle cx="22" cy="17" r="2" fill="rgba(255,255,255,0.75)"/><circle cx="36" cy="11" r="3.5" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/><circle cx="36" cy="11" r="1.2" fill="rgba(255,255,255,0.6)"/></svg>',
+        'ROCKET': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/><path d="M16 14 Q22 3 28 14 Z" fill="rgba(255,255,255,0.95)"/><rect x="16" y="14" width="12" height="16" rx="2" fill="rgba(255,255,255,0.9)"/><circle cx="22" cy="19" r="3" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/><path d="M16 24 L9 34 L16 30 Z" fill="rgba(255,255,255,0.72)"/><path d="M28 24 L35 34 L28 30 Z" fill="rgba(255,255,255,0.72)"/><path d="M16 30 L14 34 L30 34 L28 30 Z" fill="rgba(255,255,255,0.55)"/><path d="M14 34 C13 38 22 43 22 43 C22 43 31 38 30 34 Z" fill="rgba(255,255,255,0.85)"/><path d="M17 34 C16 37 22 40 22 40 C22 40 28 37 27 34 Z" fill="rgba(255,255,255,0.3)"/></svg>'
+    };
+    if (logos[sym])
+        return logos[sym];
+    const fs = sym.length > 1 ? '13' : '17';
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="21" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><circle cx="22" cy="22" r="17" fill="rgba(255,255,255,0.1)"/><text x="22" y="28" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="${fs}" font-weight="800" fill="white" letter-spacing="-0.5">${sym}</text></svg>`;
+};
 App.applyBranding = (viewModel) => {
     const t = viewModel.theme;
     if (!t)
@@ -58202,8 +58224,7 @@ App.applyBranding = (viewModel) => {
     document.documentElement.style.setProperty('--theme-tertiary', tertiary);
     _a.brandBanner.css('background', `linear-gradient(135deg, ${primary} 0%, ${secondary} 100%)`);
     const sym = t.logoSymbol || viewModel.tenantName.substring(0, 2).toUpperCase();
-    $("#brand-logo").html(`<span style="font-size:2em;font-weight:900;color:white;font-family:sans-serif;` +
-        `letter-spacing:-1px;text-shadow:0 1px 3px rgba(0,0,0,0.4)">${sym}</span>`);
+    $("#brand-logo").html(_a.buildLogoSvg(sym));
     $("#brand-company-name").text(viewModel.tenantName);
     $("#brand-tagline").text(t.tagline || '');
 };
